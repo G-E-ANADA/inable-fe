@@ -1,7 +1,18 @@
-import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Main from "./pages/Main";
+import SampleLoginPage from "./pages/SampleLoginPage";
 
-const App: React.FC = () => {
-  return <h1>Hello World</h1>;
+const App = () => {
+  return (
+    <Router>
+      <div>
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/sample-login" element={<SampleLoginPage />} />
+        </Routes>
+      </div>
+    </Router>
+  );
 };
 
 export default App;
