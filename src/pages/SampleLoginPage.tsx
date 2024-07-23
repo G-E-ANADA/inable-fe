@@ -17,15 +17,15 @@ const Login = () => {
       alert(`Username: ${username}, Password: ${password}`);
 
       // 서버에 요청을 보내는 예시
-      // const response = await fetch('http://yourserver.com/login', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify({ username, password }),
-      // });
-      // const data = await response.json();
-      // console.log(data); // 서버 응답을 확인하거나 상태를 변경하는 등의 작업을 수행
+      const response = await fetch("http://15.165.197.234/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ uid: username, password }),
+      });
+      const data = await response.json();
+      console.log(data); // 서버 응답을 확인하거나 상태를 변경하는 등의 작업을 수행
     } catch (error) {
       console.error("Error during login:", error);
       alert("로그인에 실패했습니다. 다시 시도해주세요.");
