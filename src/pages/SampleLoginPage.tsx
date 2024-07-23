@@ -5,6 +5,7 @@ import { useState } from "react";
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const API_URL = process.env.REACT_APP_AUTH_API;
 
   const handleLogin = async () => {
     if (!username || !password) {
@@ -17,7 +18,7 @@ const Login = () => {
       alert(`Username: ${username}, Password: ${password}`);
 
       // 서버에 요청을 보내는 예시
-      const response = await fetch("http://15.165.197.234/auth/login", {
+      const response = await fetch(`${API_URL}/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -25,7 +26,10 @@ const Login = () => {
         body: JSON.stringify({ uid: username, password }),
       });
       const data = await response.json();
-      console.log(data); // 서버 응답을 확인하거나 상태를 변경하는 등의 작업을 수행
+      const token = data.access_token;
+
+      //token을 쿠기에 저장
+      localStorage.setItem("token", token);
     } catch (error) {
       console.error("Error during login:", error);
       alert("로그인에 실패했습니다. 다시 시도해주세요.");
