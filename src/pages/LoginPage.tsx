@@ -9,6 +9,12 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const API_URL = process.env.REACT_APP_AUTH_API;
 
+  if (useAuthStore.getState().token) {
+    // '/'로 이동
+    alert("이미 로그인되어 있습니다.");
+    window.location.href = "/";
+  }
+
   const handleLogin = async () => {
     if (!username || !password) {
       alert("사용자 이름과 비밀번호를 입력해주세요.");
