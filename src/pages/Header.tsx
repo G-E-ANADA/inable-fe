@@ -1,9 +1,6 @@
 import { Link } from "react-router-dom";
-import useAuthStore from "../store/store";
 
 const Header = () => {
-  console.log(useAuthStore.getState().token);
-
   return (
     <div>
       <h1>Inable</h1>
@@ -13,6 +10,9 @@ const Header = () => {
         </li>
         <li>
           <Link to="/login">login</Link>
+        </li>
+        <li>
+          <Link to="/logout">logout</Link>
         </li>
       </ul>
     </div>

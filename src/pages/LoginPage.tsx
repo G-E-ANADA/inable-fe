@@ -37,8 +37,8 @@ const Login = () => {
       const access_token = data.access_token;
       useAuthStore.getState().setToken(access_token);
 
-      //token을 쿠기에 저장
-      // localStorage.setItem("token", token);
+      alert("로그인되었습니다.");
+      window.location.href = "/";
     } catch (error) {
       console.error("Error during login:", error);
       alert("로그인에 실패했습니다. 다시 시도해주세요.");
