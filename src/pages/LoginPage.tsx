@@ -1,6 +1,7 @@
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
+import useAuthStore from "../store/store";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -26,10 +27,11 @@ const Login = () => {
         body: JSON.stringify({ uid: username, password }),
       });
       const data = await response.json();
-      const token = data.access_token;
+      const access_token = data.access_token;
+      useAuthStore.getState().setToken(access_token);
 
       //token을 쿠기에 저장
-      localStorage.setItem("token", token);
+      // localStorage.setItem("token", token);
     } catch (error) {
       console.error("Error during login:", error);
       alert("로그인에 실패했습니다. 다시 시도해주세요.");
