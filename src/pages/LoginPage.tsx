@@ -2,6 +2,7 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
 import useAuthStore from "../store/store";
+import Header from "./Header";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -39,33 +40,36 @@ const Login = () => {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        height: "100vh",
-      }}
-    >
-      <TextField
-        label="Username"
-        variant="outlined"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        style={{ marginBottom: 20 }}
-      />
-      <TextField
-        label="Password"
-        type="password"
-        variant="outlined"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        style={{ marginBottom: 20 }}
-      />
-      <Button variant="contained" color="primary" onClick={handleLogin}>
-        로그인
-      </Button>
+    <div>
+      <Header />
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          height: "100vh",
+        }}
+      >
+        <TextField
+          label="Username"
+          variant="outlined"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          style={{ marginBottom: 20 }}
+        />
+        <TextField
+          label="Password"
+          type="password"
+          variant="outlined"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          style={{ marginBottom: 20 }}
+        />
+        <Button variant="contained" color="primary" onClick={handleLogin}>
+          로그인
+        </Button>
+      </div>
     </div>
   );
 };

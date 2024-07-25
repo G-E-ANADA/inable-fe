@@ -1,19 +1,11 @@
 import { Link } from "react-router-dom";
 import useAuthStore from "../store/store";
+import Header from "./Header";
 
 const Main = () => {
   console.log(useAuthStore.getState().token);
 
-  return (
-    <div>
-      <h1>Main 화면</h1>
-      <ul>
-        <li>
-          <Link to="/login">login</Link>
-        </li>
-      </ul>
-    </div>
-  );
+  return <Header />;
 };
 
 export default Main;
