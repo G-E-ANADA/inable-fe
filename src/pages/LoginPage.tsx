@@ -2,7 +2,7 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
 import useAuthStore from "../store/store";
-import Header from "./Header";
+import Main from "./Main";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -47,7 +47,7 @@ const Login = () => {
 
   return (
     <div>
-      <Header />
+      <Main />
       <div
         style={{
           display: "flex",
