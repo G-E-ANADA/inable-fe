@@ -2,8 +2,6 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
 import useAuthStore from "../store/store";
-import Header from "./Header";
-import { log } from "console";
 import User from "../entities/User";
 
 const Login = () => {
@@ -73,7 +71,6 @@ const Login = () => {
 
   return (
     <div>
-      <Main />
       <div
         style={{
           display: "flex",
