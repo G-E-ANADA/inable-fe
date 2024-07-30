@@ -2,7 +2,9 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
 import useAuthStore from "../store/store";
-import Main from "./Main";
+import Header from "./Header";
+import { log } from "console";
+import User from "../entities/User";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -21,11 +23,24 @@ const Login = () => {
       return;
     }
 
-    // TODO: 서버에 요청을 보내고, 응답 처리
-    try {
-      alert(`Username: ${username}, Password: ${password}`);
+    const access_token = await getAccessToken();
+    useAuthStore.getState().setToken(access_token);
 
-      // 서버에 요청을 보내는 예시
+    const userInfo = await getUserInfo(access_token);
+    useAuthStore.getState().setUser(userInfo);
+    console.log(userInfo);
+
+    if (!access_token || !userInfo) {
+      alert("로그인에 실패했습니다.");
+      return;
+    }
+
+    alert("로그인되었습니다.");
+    window.location.href = "/";
+  };
+
+  const getAccessToken = async () => {
+    try {
       const response = await fetch(`${API_URL}/auth/login`, {
         method: "POST",
         headers: {
@@ -35,13 +50,24 @@ const Login = () => {
       });
       const data = await response.json();
       const access_token = data.access_token;
-      useAuthStore.getState().setToken(access_token);
-
-      alert("로그인되었습니다.");
-      window.location.href = "/";
+      return access_token;
     } catch (error) {
-      console.error("Error during login:", error);
-      alert("로그인에 실패했습니다. 다시 시도해주세요.");
+      console.error("Error during getAccessToken:", error);
+    }
+  };
+
+  const getUserInfo = async (access_token: string) => {
+    try {
+      const response = await fetch(`${API_URL}/profile`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      });
+      const data = await response.json();
+      return User.craeteUser(data);
+    } catch (error) {
+      console.error("Error during getUserInfo:", error);
     }
   };
 

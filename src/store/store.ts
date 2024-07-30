@@ -1,12 +1,15 @@
 import create from "zustand";
 import { persist } from "zustand/middleware";
+import User from "../entities/User";
 
 const useAuthStore = create(
   persist(
     (set) => ({
       token: null,
+      user: User,
       setToken: (token: string) => set({ token }),
       clearToken: () => set({ token: null }),
+      setUser: (user: User) => set({ user }),
     }),
     {
       name: "auth-storage", // storage 이름을 설정합니다.
