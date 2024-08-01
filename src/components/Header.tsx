@@ -1,18 +1,8 @@
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
-import { styled } from "@mui/material/styles";
 import LinkItem from "./LinkItem";
 import Logo from "./Logo";
 import Navigation from "./Navigation";
-
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(2),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
 
 const navLinks = [
   { to: "/", text: "AI 도우미" },
@@ -27,21 +17,15 @@ const loginLink = [{ to: "/login", text: "로그인" }];
 const Header = ({}) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={3}>
+      <Grid container spacing={3} padding={2}>
         <Grid item xs>
-          <Item>
-            <Logo text="InAble" />
-          </Item>
+          <Logo text="InAble" />
         </Grid>
-        <Grid item xs={6}>
-          <Item>
-            <Navigation links={navLinks}></Navigation>
-          </Item>
+        <Grid item xs={5}>
+          <Navigation links={navLinks}></Navigation>
         </Grid>
         <Grid item xs>
-          <Item>
-            <LinkItem to={loginLink[0].to} text={loginLink[0].text}></LinkItem>
-          </Item>
+          <LinkItem to={loginLink[0].to} text={loginLink[0].text}></LinkItem>
         </Grid>
       </Grid>
     </Box>
