@@ -1,11 +1,13 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import Header from "../components/Header";
+import Home from "../components/Home";
 
 const Main = () => {
   return (
     <>
       <Header></Header>
-      <div>
+      <Home></Home>
+      {/* <div>
         <h1>Main 화면</h1>
         <ul>
           <li>
@@ -18,7 +20,7 @@ const Main = () => {
             <Link to="/logout">logout</Link>
           </li>
         </ul>
-      </div>
+      </div> */}
     </>
   );
 };
