@@ -29,13 +29,13 @@ const Header = ({}) => {
         </div>
         <div className={styles.tab}>
           {loginUser ? (
-            <Link className={styles.text} to="/logout">
-              logout
-            </Link>
+            <a className={styles.text} href="/logout">
+              로그아웃
+            </a>
           ) : (
-            <Link className={styles.text} to="/login">
-              login
-            </Link>
+            <a className={styles.text} href="/login">
+              로그인
+            </a>
           )}
         </div>
       </div>
