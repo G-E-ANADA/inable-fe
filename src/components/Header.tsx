@@ -1,5 +1,6 @@
 import styles from "../css/Header.module.css";
 import logo from "../asset/logo.svg";
+import { Link } from "react-router-dom";
 
 const Header = ({}) => {
   return (
@@ -24,7 +25,9 @@ const Header = ({}) => {
           </div>
         </div>
         <div className={styles.tab}>
-          <div className={styles.text}>로그인</div>
+          <Link className={styles.text} to="/login">
+            login
+          </Link>
         </div>
       </div>
     </div>

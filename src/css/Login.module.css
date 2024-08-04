@@ -1,0 +1,245 @@
+.logoIcon {
+  width: 180px;
+  position: relative;
+  height: 100px;
+}
+.text {
+  position: relative;
+  line-height: 150%;
+  font-weight: 500;
+}
+.tab {
+  width: 110px;
+  background-color: #fff;
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.tabParent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 40px;
+}
+.logoParent {
+  width: 1280px;
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.gnb {
+  position: absolute;
+  top: 0px;
+  left: calc(50% - 960px);
+  background-color: #fff;
+  width: 1920px;
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: 21px;
+}
+.div1 {
+  position: absolute;
+  top: calc(50% - 244.5px);
+  left: calc(50% - 33px);
+  font-size: 24px;
+  line-height: 150%;
+  font-weight: 500;
+}
+.div2 {
+  align-self: stretch;
+  position: relative;
+  line-height: 150%;
+}
+.label {
+  flex: 1;
+  position: relative;
+  letter-spacing: 0.15px;
+  line-height: 24px;
+}
+.content {
+  align-self: stretch;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 8px 0px;
+  box-sizing: border-box;
+  min-height: 24px;
+}
+.input {
+  align-self: stretch;
+  flex: 1;
+  border-radius: 6px;
+  border: 2px solid #224a99;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0px 12px;
+}
+.textfield {
+  width: 400px;
+  height: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.6);
+  font-family: Roboto;
+}
+.group {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 12px;
+}
+.input1 {
+  align-self: stretch;
+  flex: 1;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.23);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0px 12px;
+}
+.textfield1 {
+  width: 400px;
+  height: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  font-size: 16px;
+  color: rgba(121, 121, 121, 0.6);
+  font-family: Roboto;
+}
+.frameParent {
+  position: absolute;
+  top: 76px;
+  left: 0px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 16px;
+  text-align: left;
+  color: #494949;
+}
+.btn {
+  position: absolute;
+  top: calc(50% + 61.5px);
+  left: calc(50% - 200px);
+  border-radius: 6px;
+  background-color: #224a99;
+  width: 400px;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 60px;
+  box-sizing: border-box;
+  color: rgba(255, 255, 255, 0.5);
+}
+.btn1 {
+  position: absolute;
+  top: calc(50% + 127.5px);
+  left: calc(50% - 200px);
+  border-radius: 6px;
+  background-color: #fff;
+  border: 1px solid #9b9b9b;
+  box-sizing: border-box;
+  width: 400px;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 60px;
+  color: #224a99;
+}
+.div4 {
+  position: relative;
+  line-height: 150%;
+}
+.frameDiv {
+  position: absolute;
+  top: 462px;
+  left: calc(50% - 115px);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 40px;
+  text-align: left;
+  color: #797979;
+}
+.parent {
+  position: absolute;
+  top: calc(50% - 340px);
+  left: calc(50% - 200px);
+  width: 400px;
+  height: 489px;
+  color: #000;
+}
+.image50Icon {
+  width: 50px;
+  position: relative;
+  height: 50px;
+  object-fit: cover;
+}
+.image52Icon {
+  width: 50px;
+  position: relative;
+  border-radius: 99px;
+  height: 49.9px;
+  object-fit: cover;
+}
+.image50Parent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 80px;
+}
+.parent1 {
+  position: absolute;
+  top: calc(50% + 200px);
+  left: calc(50% - 200px);
+  width: 400px;
+  height: 489px;
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 24px;
+  text-align: left;
+  color: #494949;
+}
+.div {
+  width: 100%;
+  position: relative;
+  background-color: #fff;
+  height: 1080px;
+  overflow: hidden;
+  text-align: center;
+  font-size: 18px;
+  color: #4f4f4f;
+  font-family: "Noto Sans CJK KR";
+}
