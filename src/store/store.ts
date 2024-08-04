@@ -6,9 +6,9 @@ const useAuthStore = create(
   persist(
     (set) => ({
       token: null,
-      user: User,
+      user: User || null,
       setToken: (token: string) => set({ token }),
-      clearToken: () => set({ token: null }),
+      clearToken: () => set({ token: null, user: null }),
       setUser: (user: User) => set({ user }),
     }),
     {

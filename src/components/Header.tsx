@@ -1,8 +1,11 @@
 import styles from "../css/Header.module.css";
 import logo from "../asset/logo.svg";
 import { Link } from "react-router-dom";
+import useAuthStore from "../store/store";
 
 const Header = ({}) => {
+  const loginUser = useAuthStore.getState().user;
+
   return (
     <div className={styles.gnb}>
       <div className={styles.logoParent}>
@@ -25,9 +28,15 @@ const Header = ({}) => {
           </div>
         </div>
         <div className={styles.tab}>
-          <Link className={styles.text} to="/login">
-            login
-          </Link>
+          {loginUser ? (
+            <Link className={styles.text} to="/logout">
+              logout
+            </Link>
+          ) : (
+            <Link className={styles.text} to="/login">
+              login
+            </Link>
+          )}
         </div>
       </div>
     </div>
