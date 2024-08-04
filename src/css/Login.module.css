@@ -1,50 +1,3 @@
-.logoIcon {
-  width: 180px;
-  position: relative;
-  height: 100px;
-}
-.text {
-  position: relative;
-  line-height: 150%;
-  font-weight: 500;
-}
-.tab {
-  width: 110px;
-  background-color: #fff;
-  height: 100px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-.tabParent {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 40px;
-}
-.logoParent {
-  width: 1280px;
-  height: 100px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
-.gnb {
-  position: absolute;
-  top: 0px;
-  left: calc(50% - 960px);
-  background-color: #fff;
-  width: 1920px;
-  height: 100px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  font-size: 21px;
-}
 .div1 {
   position: absolute;
   top: calc(50% - 244.5px);
@@ -191,7 +144,7 @@
 }
 .parent {
   position: absolute;
-  top: calc(50% - 340px);
+  top: calc(50% - 400px);
   left: calc(50% - 200px);
   width: 400px;
   height: 489px;
