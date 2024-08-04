@@ -3,6 +3,7 @@ import User from "../entities/User";
 import useAuthStore from "../store/store";
 import styles from "../css/Login.module.css";
 import Header from "../components/Header";
+import { TextField } from "@mui/material";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -79,21 +80,21 @@ const Login = () => {
             <div className={styles.group}>
               <div className={styles.div2}>아이디</div>
               <div className={styles.textfield}>
-                <div className={styles.input}>
-                  <div className={styles.content}>
-                    <div className={styles.label} />
-                  </div>
-                </div>
+                <input
+                  className={styles.input}
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                ></input>
               </div>
             </div>
             <div className={styles.group}>
               <div className={styles.div2}>비밀번호</div>
-              <div className={styles.textfield1}>
-                <div className={styles.input1}>
-                  <div className={styles.content}>
-                    <div className={styles.label}>비밀번호를 입력해 주세요</div>
-                  </div>
-                </div>
+              <div className={styles.textfield}>
+                <input
+                  className={styles.input}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                ></input>
               </div>
             </div>
           </div>
