@@ -5,8 +5,13 @@
 }
 .text {
   position: relative;
+  font-size: 21px;
   line-height: 150%;
   font-weight: 500;
+  font-family: "Noto Sans CJK KR";
+  color: #4f4f4f;
+  text-align: center;
+  text-decoration: none;
 }
 .tab {
   width: 110px;

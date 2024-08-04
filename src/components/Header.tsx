@@ -1,7 +1,11 @@
 import styles from "../css/Header.module.css";
 import logo from "../asset/logo.svg";
+import { Link } from "react-router-dom";
+import useAuthStore from "../store/store";
 
 const Header = ({}) => {
+  const loginUser = useAuthStore.getState().user;
+
   return (
     <div className={styles.gnb}>
       <div className={styles.logoParent}>
@@ -24,7 +28,15 @@ const Header = ({}) => {
           </div>
         </div>
         <div className={styles.tab}>
-          <div className={styles.text}>로그인</div>
+          {loginUser ? (
+            <a className={styles.text} href="/logout">
+              로그아웃
+            </a>
+          ) : (
+            <a className={styles.text} href="/login">
+              로그인
+            </a>
+          )}
         </div>
       </div>
     </div>

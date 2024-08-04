@@ -1,6 +1,9 @@
 import styles from "../css/Home.module.css";
+import useAuthStore from "../store/store";
 
 const Home = ({}) => {
+  const loginUser = useAuthStore.getState().user;
+
   return (
     <div className={styles.home}>
       <div className={styles.frameParent}>
@@ -85,7 +88,11 @@ const Home = ({}) => {
       <div className={styles.div35}>교육 정보</div>
       <div className={styles.parent10}>
         <div className={styles.div36}>
-          <p className={styles.p}>반갑습니다</p>
+          {loginUser ? (
+            <p className={styles.p}>{`${loginUser.name}님,`}</p>
+          ) : (
+            <p className={styles.p}>반갑습니다</p>
+          )}
           <p className={styles.p}>{`어떤 일자리를 찾고 계신가요? `}</p>
         </div>
         <div className={styles.parent11}>
