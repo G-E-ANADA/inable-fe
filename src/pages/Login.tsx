@@ -99,7 +99,9 @@ const Login = () => {
             </div>
           </div>
           <div className={styles.btn}>
-            <div className={styles.text}>로그인</div>
+            <div className={styles.text} onClick={handleLogin}>
+              로그인
+            </div>
           </div>
           <div className={styles.btn1}>
             <div className={styles.text}>회원가입</div>
