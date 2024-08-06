@@ -103,7 +103,11 @@ const Login = () => {
             </div>
           </div>
           <div className={styles.btn1}>
-            <div className={styles.text}>회원가입</div>
+            <div className={styles.text}>
+              <a className={styles.text} href="/signup">
+                회원가입
+              </a>
+            </div>
           </div>
           <div className={styles.frameDiv}>
             <div className={styles.div4}>아이디 찾기</div>

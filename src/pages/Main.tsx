@@ -6,20 +6,6 @@ const Main = () => {
     <>
       <Header></Header>
       <Home></Home>
-      {/* <div>
-        <h1>Main 화면</h1>
-        <ul>
-          <li>
-            <Link to="/">main</Link>
-          </li>
-          <li>
-            <Link to="/login">login</Link>
-          </li>
-          <li>
-            <Link to="/logout">logout</Link>
-          </li>
-        </ul>
-      </div> */}
     </>
   );
 };
