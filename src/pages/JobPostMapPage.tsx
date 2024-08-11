@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import JobPostMap from "../components/JobPostMap";
+import JobPostMap from "../components/map/JobPostMap";
 import { JobPostDataType } from "../types/JobPostDataType";
 
 const JobPostMapPage = () => {
