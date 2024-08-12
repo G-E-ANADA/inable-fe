@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "parcel src/index.html",
+    "start": "parcel src/index.html --open",
     "build": "parcel build src/index.html"
   },
   "keywords": [],
@@ -18,7 +18,8 @@
     "parcel": "^2.12.0",
     "process": "^0.11.10",
     "ts-node": "^10.9.2",
-    "typescript": "^5.5.3"
+    "typescript": "^5.5.3",
+    "typescript-plugin-css-modules": "^5.1.0"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
@@ -29,6 +30,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.24.1",
+    "styled-components": "^6.1.12",
     "zustand": "^4.5.4"
   }
 }
