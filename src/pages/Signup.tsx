@@ -1,15 +1,13 @@
 import { useState } from "react";
 import Header from "../components/Header";
 import styles from "../css/Signup.module.css";
-import User from "../entities/User";
-import useAuthStore from "../store/store";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import useAuthStore from "../store/store";
 
 const Signup = () => {
-  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
   const [email, setEmail] = useState("");
@@ -23,65 +21,38 @@ const Signup = () => {
 
   const API_URL = process.env.REACT_APP_AUTH_API;
 
-  //   if (useAuthStore.getState().token) {
-  //     // '/'로 이동
-  //     alert("이미 로그인되어 있습니다.");
-  //     window.location.href = "/";
-  //   }
+  if (useAuthStore.getState().token) {
+    // '/'로 이동
+    alert("이미 로그인되어 있습니다.");
+    window.location.href = "/";
+  }
 
-  //   const handleLogin = async () => {
-  //     if (!username || !password) {
-  //       alert("사용자 이름과 비밀번호를 입력해주세요.");
-  //       return;
-  //     }
-
-  //     const access_token = await getAccessToken();
-  //     useAuthStore.getState().setToken(access_token);
-
-  //     const userInfo = await getUserInfo(access_token);
-  //     useAuthStore.getState().setUser(userInfo);
-  //     console.log(userInfo);
-
-  //     if (!access_token || !userInfo) {
-  //       alert("로그인에 실패했습니다.");
-  //       return;
-  //     }
-
-  //     alert("로그인되었습니다.");
-  //     window.location.href = "/";
-  //   };
-
-  //   const getAccessToken = async () => {
-  //     try {
-  //       const response = await fetch(`${API_URL}/auth/login`, {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify({ uid: username, password }),
-  //       });
-  //       const data = await response.json();
-  //       const access_token = data.access_token;
-  //       return access_token;
-  //     } catch (error) {
-  //       console.error("Error during getAccessToken:", error);
-  //     }
-  //   };
-
-  //   const getUserInfo = async (access_token: string) => {
-  //     try {
-  //       const response = await fetch(`${API_URL}/profile`, {
-  //         method: "GET",
-  //         headers: {
-  //           Authorization: `Bearer ${access_token}`,
-  //         },
-  //       });
-  //       const data = await response.json();
-  //       return User.craeteUser(data);
-  //     } catch (error) {
-  //       console.error("Error during getUserInfo:", error);
-  //     }
-  //   };
+  const handleSignup = async () => {
+    const parameter = {
+      name,
+      uid: email,
+      password,
+      gender,
+      phone: number,
+      address,
+      birth_year: birthYear,
+      birth_month: birthMonth,
+      birth_date: birthDate,
+    };
+    await useAuthStore
+      .getState()
+      .handleSignup(
+        name,
+        email,
+        password,
+        gender,
+        number,
+        address,
+        birthYear,
+        birthMonth,
+        birthDate
+      );
+  };
 
   return (
     <>
@@ -91,16 +62,17 @@ const Signup = () => {
           <div className={styles.div1}>회원가입</div>
           <div className={styles.frameParent}>
             <div className={styles.group}>
-              <div className={styles.div2}>아이디</div>
+              <div className={styles.div2}>이메일</div>
               <div className={styles.textfield}>
                 <input
                   className={styles.input}
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  placeholder="아이디를 입력해 주세요"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="이메일을 입력해 주세요"
                 ></input>
               </div>
             </div>
+
             <div className={styles.container}>
               <div className={styles.div2}>비밀번호</div>
               <div className={styles.textfield}>
@@ -123,18 +95,8 @@ const Signup = () => {
                 ></input>
               </div>
             </div>
+
             <div className={styles.parent1}>
-              <div className={styles.div2}>이메일</div>
-              <div className={styles.textfield}>
-                <input
-                  className={styles.input}
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="이메일을 입력해 주세요"
-                ></input>
-              </div>
-            </div>
-            <div className={styles.parent2}>
               <div className={styles.div2}>이름*</div>
               <div className={styles.textfield}>
                 <input
@@ -145,7 +107,7 @@ const Signup = () => {
                 ></input>
               </div>
             </div>
-            <div className={styles.parent3}>
+            <div className={styles.parent2}>
               <div className={styles.div2}>성별*</div>
               <div className={styles.frameGroup}>
                 <div className={styles.radioParent}>
@@ -180,29 +142,29 @@ const Signup = () => {
                 </div>
               </div>
             </div>
-            <div className={styles.parent4}>
+            <div className={styles.parent3}>
               <div className={styles.div2}>연락처*</div>
               <div className={styles.textfield}>
                 <input
                   className={styles.input}
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  value={number}
+                  onChange={(e) => setNumber(e.target.value)}
                   placeholder="연락처를 입력해 주세요"
                 ></input>
               </div>
             </div>
-            <div className={styles.parent5}>
+            <div className={styles.parent4}>
               <div className={styles.div2}>주소*</div>
               <div className={styles.textfield}>
                 <input
                   className={styles.input}
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
                   placeholder="주소를 입력해 주세요"
                 ></input>
               </div>
             </div>
-            <div className={styles.parent6}>
+            <div className={styles.parent5}>
               <div className={styles.div2}>생년월일*</div>
               <div className={styles.selectParent}>
                 <FormControl size="small" variant="outlined" fullWidth>
@@ -210,9 +172,9 @@ const Signup = () => {
                   <Select
                     labelId="select-label"
                     id="select-demo"
-                    // value={value}
+                    value={birthYear}
                     label="년도"
-                    // onChange={handleChange}
+                    onChange={(e) => setBirthYear(e.target.value)}
                   >
                     <MenuItem value={1995}>1995</MenuItem>
                     <MenuItem value={1996}>1996</MenuItem>
@@ -228,9 +190,9 @@ const Signup = () => {
                   <Select
                     labelId="select-label"
                     id="select-demo"
-                    // value={value}
+                    value={birthMonth}
                     label="월"
-                    // onChange={handleChange}
+                    onChange={(e) => setBirthMonth(e.target.value)}
                   >
                     <MenuItem value={1}>1</MenuItem>
                     <MenuItem value={2}>2</MenuItem>
@@ -252,9 +214,9 @@ const Signup = () => {
                   <Select
                     labelId="select-label"
                     id="select-demo"
-                    // value={value}
+                    value={birthDate}
                     label="일"
-                    // onChange={handleChange}
+                    onChange={(e) => setBirthDate(e.target.value)}
                   >
                     <MenuItem value={2}>2</MenuItem>
                     <MenuItem value={3}>3</MenuItem>
@@ -291,7 +253,9 @@ const Signup = () => {
               </div>
             </div>
             <div className={styles.btn}>
-              <div className={styles.text}>회원가입</div>
+              <div className={styles.text} onClick={handleSignup}>
+                회원가입
+              </div>
             </div>
           </div>
         </div>
