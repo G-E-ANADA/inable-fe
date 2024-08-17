@@ -1,9 +1,8 @@
-import React from "react";
-import Paper from "@mui/material/Paper";
-import DynamicTable from "./DynamicTable";
-import styled from "styled-components";
 import { Pagination } from "@mui/material";
+import React from "react";
+import styled from "styled-components";
 import { JobPostListColumn } from "../../types/JobPostDataType";
+import DynamicTable from "./DynamicTable";
 
 interface JobPostListProps {
   columns: JobPostListColumn[];
@@ -28,11 +27,9 @@ const JobPostList = ({
 
   return (
     <>
-      <StyledPaper>
-        <StyledDynamicTableContainer>
-          <DynamicTable columns={columns} data={data} />
-        </StyledDynamicTableContainer>
-      </StyledPaper>
+      <StyledDynamicTableContainer>
+        <DynamicTable columns={columns} data={data} />
+      </StyledDynamicTableContainer>
       <PaginationContainer>
         <Pagination
           size="small"
@@ -50,11 +47,6 @@ const JobPostList = ({
 };
 
 export default JobPostList;
-
-const StyledPaper = styled(Paper)`
-  margin-bottom: 1rem;
-  elevation: 0;
-`;
 
 const StyledDynamicTableContainer = styled.div`
   width: 100%;
