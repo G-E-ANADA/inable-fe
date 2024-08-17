@@ -30,7 +30,7 @@ const JobPostList = ({
       <StyledDynamicTableContainer>
         <DynamicTable columns={columns} data={data} />
       </StyledDynamicTableContainer>
-      <PaginationContainer>
+      <StyledPaginationContainer>
         <Pagination
           size="small"
           color="primary"
@@ -41,7 +41,7 @@ const JobPostList = ({
           siblingCount={1} // Number of sibling pages to show
           boundaryCount={2} // Number of boundary pages to show
         />
-      </PaginationContainer>
+      </StyledPaginationContainer>
     </>
   );
 };
@@ -54,8 +54,10 @@ const StyledDynamicTableContainer = styled.div`
   overflow-x: auto;
 `;
 
-const PaginationContainer = styled.div`
+const StyledPaginationContainer = styled.div`
   display: flex;
   justify-content: center;
   padding-top: 40px;
+  min-width: 800px;
+  overflow-x: auto;
 `;
