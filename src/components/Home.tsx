@@ -1,5 +1,6 @@
 import styles from "../css/Home.module.css";
 import useAuthStore from "../store/store";
+import searchIcon from "../asset/searchIcon.svg";
 
 const Home = ({}) => {
   const loginUser = useAuthStore.getState().user;
@@ -97,7 +98,9 @@ const Home = ({}) => {
         </div>
         <div className={styles.parent11}>
           <div className={styles.div37}>무엇이든 물어보세요</div>
-          <img className={styles.frameChild} alt="" src="Frame 427319075.svg" />
+          <button className={styles.frameChild}>
+            <img src={searchIcon} />
+          </button>
         </div>
       </div>
     </div>

@@ -226,6 +226,9 @@ body {
   width: 44px;
   position: relative;
   height: 48px;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 .parent11 {
   align-self: stretch;
