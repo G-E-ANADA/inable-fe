@@ -103,6 +103,10 @@ const JobPostListPage = () => {
     setCurrentPage(1);
   };
 
+  const handleRowClick = (jobPost: JobPostListData) => {
+    navigate(`/job-post/${jobPost.id}`, { state: { jobPost } });
+  };
+
   if (showLoading)
     return (
       <div
@@ -176,6 +180,7 @@ const JobPostListPage = () => {
         itemsPerPage={itemsPerPage}
         onPageChange={handlePageChange}
         onRowsPerPageChange={handleRowsPerPageChange}
+        onRowClick={handleRowClick}
       />
     </>
   );

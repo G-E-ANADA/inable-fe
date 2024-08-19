@@ -1,6 +1,8 @@
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import GlobalStyle from "./components/style/GlobalStyle";
+import JobPostDetailPage from "./pages/JobPostDetailPage";
 import JobPostListPage from "./pages/JobPostListPage";
 import JobPostMapPage from "./pages/JobPostMapPage";
 import Login from "./pages/Login";
@@ -8,7 +10,6 @@ import Logout from "./pages/LogoutPage";
 import Main from "./pages/Main";
 import Signup from "./pages/Signup";
 import theme from "./theme";
-import GlobalStyle from "./components/style/GlobalStyle";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => {
               <Route path="/signup" element={<Signup />} />
               <Route path="/jobPostList" element={<JobPostListPage />} />
               <Route path="/jobPostMap" element={<JobPostMapPage />} />
+              <Route path="/job-post/:id" element={<JobPostDetailPage />} />
             </Routes>
           </div>
         </Router>
