@@ -1,13 +1,24 @@
 import styles from "../css/Home.module.css";
 import useAuthStore from "../store/store";
 import searchIcon from "../asset/searchIcon.svg";
+import { useState } from "react";
 
 const Home = ({}) => {
   const loginUser = useAuthStore.getState().user;
 
+  const [animate, setAnimate] = useState(false);
+
+  const chatbotHandler = async () => {
+    setAnimate(true);
+  };
+
   return (
     <div className={styles.home}>
-      <div className={styles.chatbotContainer}>
+      <div
+        className={`${styles.chatbotContainer} ${
+          animate ? styles.animateChatbotContainer : ""
+        } `}
+      >
         <div className={styles.div36}>
           {loginUser ? (
             <p className={styles.p}>{`${loginUser.name}님,`}</p>
@@ -18,7 +29,7 @@ const Home = ({}) => {
         </div>
         <div className={styles.parent11}>
           <div className={styles.div37}>무엇이든 물어보세요</div>
-          <button className={styles.frameChild}>
+          <button className={styles.frameChild} onClick={chatbotHandler}>
             <img src={searchIcon} />
           </button>
         </div>
