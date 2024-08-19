@@ -1,50 +1,20 @@
 import { SelectChangeEvent } from "@mui/material";
-import axios from "axios";
+import Button from "@mui/material/Button";
+import Skeleton from "@mui/material/Skeleton";
 import React, { useEffect, useState } from "react";
-import { ThemeProvider } from "styled-components";
+import { useQuery } from "react-query";
+import { useNavigate } from "react-router-dom";
+import { styled } from "styled-components";
+import { fetchJobPostList } from "../api/jobPosts";
 import Header from "../components/Header";
 import JobPostList from "../components/jobPostList/JobPostList";
-import GlobalStyle from "../components/style/GlobalStyle";
-import theme from "../theme";
-import { JobPostListColumn } from "../types/JobPostDataType";
+import {
+  jobPostListColumns,
+  JobPostListData,
+  SearchCriteria,
+} from "../types/JobPostDataType";
 
-interface JobPost {
-  busplaName: string;
-  cntctNo: string;
-  compAddr: string;
-  empType: string;
-  enterType: string;
-  jobNm: string;
-  offerregDt: string;
-  regDt: string;
-  regagnName: string;
-  reqCareer: string;
-  reqEduc: string;
-  rno: string;
-  rnum: string;
-  salary: string;
-  salaryType: string;
-  termDate: string;
-  reqMajor?: string;
-  envBothHands: string;
-  envEyesight: string;
-  envLiftPower: string;
-  envLstnTalk: string;
-  envStndWalk: string;
-  envHandwork: string;
-  reqLicens?: string;
-}
-
-interface SearchCriteria {
-  compAddr: string;
-  jobNm: string;
-  empType: string;
-  envEyesight: string;
-  envLiftPower: string;
-  envBothHands: string;
-}
-
-const JobPostMapPage = () => {
+const JobPostListPage = () => {
   const [searchCriteria, setSearchCriteria] = useState<SearchCriteria>({
     compAddr: "",
     jobNm: "",
@@ -53,63 +23,62 @@ const JobPostMapPage = () => {
     envLiftPower: "",
     envBothHands: "",
   });
-  const [jobPosts, setJobPosts] = useState<JobPost[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [itemsPerPage, setItemsPerPage] = useState<number>(10);
+  const [jobPosts, setJobPosts] = useState<JobPostListData[]>([]);
   const [totalItemsCount, setTotalItemsCount] = useState<number>(0);
+  const [showLoading, setShowLoading] = useState<boolean>(true); // 로딩 상태
 
-  useEffect(() => {
-    const fetchJobPosts = async () => {
-      setLoading(true);
-      try {
-        const response = await axios.get(
-          "http://localhost:8000/job_posts/search",
-          {
-            params: {
-              ...searchCriteria,
-              start: (currentPage - 1) * itemsPerPage,
-              limit: itemsPerPage,
-            },
-          }
+  const navigate = useNavigate();
+
+  const { isLoading, error } = useQuery(
+    ["jobPosts", searchCriteria, currentPage, itemsPerPage],
+    () =>
+      fetchJobPostList({
+        ...searchCriteria,
+        start: (currentPage - 1) * itemsPerPage,
+        limit: itemsPerPage,
+      }),
+    {
+      onSuccess: (data) => {
+        const processedData = data.job_posts.map(
+          (jobPost: JobPostListData) => ({
+            ...jobPost,
+            compAddr:
+              jobPost.compAddr.split(" ")[0] +
+              " " +
+              jobPost.compAddr.split(" ")[1],
+            envBothHands: jobPost.envBothHands.substring(
+              0,
+              jobPost.envBothHands.indexOf("작")
+            ),
+            envLiftPower: jobPost.envLiftPower.substring(
+              0,
+              jobPost.envLiftPower.indexOf("g") + 1
+            ),
+          })
         );
 
-        response.data.job_posts.forEach((jobPost: JobPost) => {
-          jobPost.compAddr =
-            jobPost.compAddr.split(" ")[0] +
-            " " +
-            jobPost.compAddr.split(" ")[1];
+        setJobPosts(processedData);
+        setTotalItemsCount(data.total_count);
+        setShowLoading(false); // 데이터 로딩 완료 후 로딩 상태 해제
+      },
+      onError: () => setShowLoading(false), // 에러 발생 시 로딩 상태 해제
+    }
+  );
 
-          jobPost.envBothHands = jobPost.envBothHands.substring(
-            0,
-            jobPost.envBothHands.indexOf("작")
-          );
+  useEffect(() => {
+    if (isLoading) {
+      const timer = setTimeout(() => {
+        setShowLoading(true);
+      }, 200); // 200ms 후에 로딩 상태 표시
 
-          jobPost.envLiftPower = jobPost.envLiftPower.substring(
-            0,
-            jobPost.envLiftPower.indexOf("g") + 1
-          );
-        });
-
-        setJobPosts(response.data.job_posts);
-        setTotalItemsCount(response.data.total_count);
-        setLoading(false);
-      } catch (err) {
-        if (axios.isAxiosError(err) && err.message) {
-          setError(err.message);
-        } else {
-          setError("An unexpected error occurred.");
-        }
-        setLoading(false);
-      }
-    };
-
-    fetchJobPosts();
-  }, [searchCriteria, currentPage, itemsPerPage]);
+      return () => clearTimeout(timer);
+    }
+  }, [isLoading]);
 
   const handleSearch = () => {
-    setCurrentPage(1); // 검색 시 첫 페이지로 돌아감
+    setCurrentPage(1);
   };
 
   const handleChange = (event: SelectChangeEvent<string>) => {
@@ -124,95 +93,44 @@ const JobPostMapPage = () => {
     event: React.ChangeEvent<unknown>,
     newPage: number
   ) => {
-    setCurrentPage(newPage); // MUI의 페이지는 0부터 시작하므로 +1
+    setCurrentPage(newPage);
   };
 
   const handleRowsPerPageChange = (
     event: React.ChangeEvent<{ value: unknown }>
   ) => {
     setItemsPerPage(parseInt(event.target.value as string, 10));
-    setCurrentPage(1); // 페이지당 아이템 수 변경 시 첫 페이지로 돌아감
+    setCurrentPage(1);
   };
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (showLoading)
+    return (
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          height: "100vh",
+          justifyContent: "center",
+        }}
+      >
+        <StyledSkeletonContainer>
+          <StyledHeaderSkeleton variant="rectangular" />
+          <div style={{ width: "100%" }}>
+            {Array(5)
+              .fill(null)
+              .map((_, index) => (
+                <StyledRowSkeleton key={index} variant="rectangular" />
+              ))}
+          </div>
+        </StyledSkeletonContainer>
+      </div>
+    );
 
-  const columns: JobPostListColumn[] = [
-    {
-      id: "busplaName",
-      label: "사업장명",
-      minWidth: "80px",
-      colAlign: "center",
-      rowAlign: "left",
-    },
-    {
-      id: "compAddr",
-      label: "사업장 주소",
-      minWidth: "130px",
-      colAlign: "center",
-      rowAlign: "left",
-    },
-    {
-      id: "empType",
-      label: "고용 형태",
-      minWidth: "100px",
-      colAlign: "center",
-      rowAlign: "center",
-    },
-    {
-      id: "jobNm",
-      label: "모집 직종",
-      minWidth: "120px",
-      colAlign: "center",
-      rowAlign: "left",
-    },
-    {
-      id: "salaryType",
-      label: "임금 형태",
-      minWidth: "100px",
-      colAlign: "center",
-      rowAlign: "center",
-    },
-    {
-      id: "salary",
-      label: "임금",
-      minWidth: "90px",
-      colAlign: "center",
-      rowAlign: "left",
-    },
-    {
-      id: "envBothHands",
-      label: "양손",
-      minWidth: "60px",
-      colAlign: "center",
-      rowAlign: "left",
-    },
-    {
-      id: "envEyesight",
-      label: "시력",
-      minWidth: "60px",
-      colAlign: "center",
-      rowAlign: "left",
-    },
-    {
-      id: "envLiftPower",
-      label: "드는힘",
-      minWidth: "60px",
-      colAlign: "center",
-      rowAlign: "left",
-    },
-    {
-      id: "termDate",
-      label: "모집 기간",
-      minWidth: "220px",
-      colAlign: "center",
-      rowAlign: "center",
-    },
-  ];
+  if (error) return <div>Error: {error as string}</div>;
 
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
+    <>
       <Header />
       <div style={{ padding: 60 }}>
         <div
@@ -249,18 +167,43 @@ const JobPostMapPage = () => {
       <div>검색 조건 확인</div>
       <div>
         <div>검색결과</div>
-        <JobPostList
-          columns={columns}
-          data={jobPosts}
-          currentPage={currentPage}
-          totalItemsCount={totalItemsCount}
-          itemsPerPage={itemsPerPage}
-          onPageChange={handlePageChange}
-          onRowsPerPageChange={handleRowsPerPageChange}
-        />
       </div>
-    </ThemeProvider>
+      <JobPostList
+        columns={jobPostListColumns}
+        data={jobPosts}
+        currentPage={currentPage}
+        totalItemsCount={totalItemsCount}
+        itemsPerPage={itemsPerPage}
+        onPageChange={handlePageChange}
+        onRowsPerPageChange={handleRowsPerPageChange}
+      />
+    </>
   );
 };
 
-export default JobPostMapPage;
+export default JobPostListPage;
+
+const StyledSkeletonContainer = styled.div`
+  width: 100%;
+  min-width: 800px;
+  overflow-x: auto;
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+`;
+
+const StyledHeaderSkeleton = styled(Skeleton)`
+  width: 100%;
+  height: 63px; // 헤더 높이
+  border-radius: 16px;
+  border: 1px solid #c5c5c5;
+  margin-bottom: 8px;
+`;
+
+const StyledRowSkeleton = styled(Skeleton)`
+  width: 100%;
+  height: 27px; // 데이터 로우 높이
+  border-radius: 16px;
+  border: 1px solid #c5c5c5;
+  margin-bottom: 4px;
+`;
