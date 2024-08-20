@@ -19,7 +19,11 @@ const Home = ({}) => {
           animate ? styles.animateChatbotContainer : ""
         } `}
       >
-        <div className={styles.div36}>
+        <div
+          className={`${styles.chatboLabelContainer} ${
+            animate ? styles.hideChatboLabelContainer : ""
+          } `}
+        >
           {loginUser ? (
             <p className={styles.p}>{`${loginUser.name}님,`}</p>
           ) : (
@@ -27,8 +31,43 @@ const Home = ({}) => {
           )}
           <p className={styles.p}>{`어떤 일자리를 찾고 계신가요? `}</p>
         </div>
-        <div className={styles.parent11}>
-          {/* <div className={styles.div37}>무엇이든 물어보세요</div> */}
+
+        <div
+          className={`${styles.chatbotChattingContainer} ${
+            animate ? styles.animateChatbotChattingContainer : ""
+          } `}
+        >
+          <div className={styles.horizontalContainer2}>
+            <div className={styles.timeLabel}>2024-07-21-일</div>
+          </div>
+
+          <div
+            className={`${styles.chatContainer} ${
+              animate ? styles.animateChatContainer : ""
+            } `}
+          >
+            <div className={styles.buttonContainer}>
+              <div className={styles.buttonContainer1}>
+                <div className={styles.div5}>12:09</div>
+                <div className={styles.userChatBox}>
+                  <div className={styles.chatBox}>
+                    동작구에 사무보조로 지원할 수 있는 일자리 알려줘
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className={styles.horizontalContainer3}>
+              <div className={styles.horizontalContainer4}>
+                <div className={styles.horizontalContainer5}>
+                  <div className={styles.chatBox}>알겠어 잠만</div>
+                </div>
+                <div className={styles.div5}>12:09</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.chatbotInputBoxContainer}>
           <input
             className={styles.div37}
             placeholder="무엇이든 물어보세요"

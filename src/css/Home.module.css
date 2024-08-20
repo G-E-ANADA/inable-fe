@@ -182,7 +182,7 @@ body {
 .p {
   margin: 0;
 }
-.div36 {
+.chatboLabelContainer {
   position: relative;
   letter-spacing: 0.02em;
   line-height: 120%;
@@ -191,6 +191,11 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.hideChatboLabelContainer {
+  display: none;
+}
+
 .div37 {
   position: relative;
   width: 100%;
@@ -207,7 +212,8 @@ body {
   border: none;
   cursor: pointer;
 }
-.parent11 {
+
+.chatbotInputBoxContainer {
   align-self: stretch;
   border-radius: 8px;
   background-color: #fff;
@@ -219,6 +225,53 @@ body {
   text-align: center;
   font-size: 21px;
 }
+
+.chatbotChattingContainer {
+  opacity: 0;
+  visibility: hidden;
+  height: 0;
+  /* background-color: red; */
+}
+
+.animateChatbotChattingContainer {
+  animation: increaseChatbotChattingContainer 2s forwards;
+}
+
+@keyframes increaseChatbotChattingContainer {
+  from {
+    opacity: 0;
+    visibility: hidden;
+    height: 213px;
+  }
+  to {
+    opacity: 1;
+    visibility: visible;
+    height: 650px;
+  }
+}
+
+.chatContainer {
+  position: relative;
+  /* height: 550px; */
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.animateChatContainer {
+  animation: increaseChatContainer 0.1s forwards;
+}
+
+@keyframes increaseChatContainer {
+  from {
+    height: 0;
+  }
+  to {
+    height: 650px;
+  }
+}
+
 .chatbotContainer {
   position: relative;
   margin: 0 auto;
@@ -242,7 +295,7 @@ body {
   gap: 10px;
   width: 1300px;
   height: 450px;
-  transition: margin-top 1s ease-in-out; /* margin-top 변경 시 애니메이션 적용 */
+  /* transition: margin-top 1s ease-in-out; margin-top 변경 시 애니메이션 적용 */
 }
 
 .animateChatbotContainer {
@@ -252,9 +305,13 @@ body {
 @keyframes increaseChatbotContainer {
   from {
     height: 184px;
+    /* margin-top: 117px; */
+    justify-content: center;
   }
   to {
     height: 740px;
+    /* margin-top: 50px; */
+    justify-content: space-between;
   }
 }
 
@@ -278,5 +335,117 @@ body {
   text-align: left;
   font-size: 18px;
   color: #000;
+  font-family: "Noto Sans CJK KR";
+}
+
+/* */
+
+.timeLabel {
+  position: relative;
+
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: right;
+}
+.horizontalContainer2 {
+  position: relative;
+  width: 634px;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  box-sizing: border-box;
+  text-align: right;
+  color: #494949;
+}
+.chatBox {
+  position: relative;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.2px;
+  letter-spacing: 0.02em;
+  text-align: left;
+}
+.userChatBox {
+  border-radius: 8px;
+  background-color: #224a99;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+}
+.buttonContainer1 {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 12px;
+}
+.buttonContainer {
+  position: relative;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.05));
+  width: 634px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 16px 10px;
+  box-sizing: border-box;
+  font-size: 12px;
+  color: #797979;
+}
+.horizontalContainer5 {
+  border-radius: 8px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+}
+.div5 {
+  position: relative;
+  color: #797979;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.4px;
+  letter-spacing: 0.02em;
+  text-align: left;
+}
+.horizontalContainer4 {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 12px;
+  z-index: 1;
+}
+.horizontalContainer3 {
+  position: relative;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.05));
+  width: 634px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 16px 10px;
+  box-sizing: border-box;
+  gap: 10px;
+  color: #000;
+}
+.card {
+  width: 100%;
+  position: relative;
+  height: 740px;
+  text-align: left;
+  font-size: 16px;
+  color: #c4c4c4;
   font-family: "Noto Sans CJK KR";
 }
