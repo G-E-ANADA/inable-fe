@@ -1,5 +1,4 @@
 import {
-  Paper,
   Table,
   TableBody,
   TableCell,
@@ -8,14 +7,18 @@ import {
   TableRow,
 } from "@mui/material";
 import styled from "styled-components";
-import { JobPostListColumn } from "../../types/JobPostDataType";
+import {
+  JobPostListColumn,
+  JobPostListData,
+} from "../../types/JobPostDataType";
 
 interface DynamicTableProps {
   columns: JobPostListColumn[];
   data: any[];
+  onRowClick: (jobPost: JobPostListData) => void;
 }
 
-const DynamicTable = ({ columns, data }: DynamicTableProps) => {
+const DynamicTable = ({ columns, data, onRowClick }: DynamicTableProps) => {
   return (
     <StyledTableContainer>
       <StyledTable>
@@ -25,7 +28,10 @@ const DynamicTable = ({ columns, data }: DynamicTableProps) => {
               <StyledTableColCell
                 key={column.id}
                 align={column.colAlign || "center"}
-                style={{ minWidth: column.minWidth }}
+                style={{
+                  width: column.width || "auto", // 설정된 폭을 사용합니다.
+                  minWidth: column.width || "auto", // 최소 폭을 설정합니다.
+                }}
               >
                 {column.label}
               </StyledTableColCell>
@@ -34,7 +40,7 @@ const DynamicTable = ({ columns, data }: DynamicTableProps) => {
         </StyledTableHead>
         <TableBody>
           {data.map((row, rowIndex) => (
-            <StyledTableRow key={rowIndex}>
+            <StyledTableRow key={rowIndex} onClick={() => onRowClick(row)}>
               {columns.map((column) => (
                 <StyledTableRowCell
                   key={column.id}
@@ -65,6 +71,7 @@ const StyledTableContainer = styled(TableContainer)`
 const StyledTable = styled(Table)`
   width: 100%;
   height: 100%;
+  table-layout: fixed; // 테이블 레이아웃을 고정으로 설정
 `;
 
 const StyledTableHead = styled(TableHead)`
