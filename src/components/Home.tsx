@@ -4,12 +4,39 @@ import searchIcon from "../asset/searchIcon.svg";
 import { useState } from "react";
 
 const Home = ({}) => {
+  const API_URL = process.env.REACT_APP_AI_API;
   const loginUser = useAuthStore.getState().user;
 
   const [animate, setAnimate] = useState(false);
+  const [data, setData] = useState("");
+  const [query, setQuery] = useState("");
 
   const chatbotHandler = async () => {
     setAnimate(true);
+    queryToAI();
+  };
+
+  const queryToAI = async () => {
+    // EventSource를 사용하여 SSE 연결
+    const eventSource = new EventSource(
+      `${API_URL}/api/v1/chatlog/jayden/ai?query=${query}`
+    );
+
+    // 데이터 수신 시 처리
+    eventSource.onmessage = (event) => {
+      setData((prevData) => prevData + event.data);
+    };
+
+    // 오류 처리
+    eventSource.onerror = (error) => {
+      console.error("SSE Error:", error);
+      eventSource.close(); // 필요시 연결 닫기
+    };
+
+    // 컴포넌트 언마운트 시 EventSource 닫기
+    return () => {
+      eventSource.close();
+    };
   };
 
   return (
@@ -59,7 +86,10 @@ const Home = ({}) => {
             <div className={styles.horizontalContainer3}>
               <div className={styles.horizontalContainer4}>
                 <div className={styles.horizontalContainer5}>
-                  <div className={styles.chatBox}>알겠어 잠만</div>
+                  <div
+                    className={styles.chatBox}
+                    dangerouslySetInnerHTML={{ __html: data }}
+                  ></div>
                 </div>
                 <div className={styles.div5}>12:09</div>
               </div>
@@ -71,8 +101,8 @@ const Home = ({}) => {
           <input
             className={styles.div37}
             placeholder="무엇이든 물어보세요"
-            // value={username}
-            // onChange={(e) => setUsername(e.target.value)}
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
           ></input>
           <button className={styles.frameChild} onClick={chatbotHandler}>
             <img src={searchIcon} />
