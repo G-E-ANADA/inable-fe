@@ -1,4 +1,4 @@
-import { SelectChangeEvent } from "@mui/material";
+import { Container, SelectChangeEvent } from "@mui/material";
 import Button from "@mui/material/Button";
 import Skeleton from "@mui/material/Skeleton";
 import React, { useEffect, useState } from "react";
@@ -44,7 +44,7 @@ const JobPostListPage = () => {
         const processedData = data.job_posts.map(
           (jobPost: JobPostListData) => ({
             ...jobPost,
-            compAddr:
+            area:
               jobPost.compAddr.split(" ")[0] +
               " " +
               jobPost.compAddr.split(" ")[1],
@@ -135,58 +135,66 @@ const JobPostListPage = () => {
 
   return (
     <>
-      <Header />
-      <div style={{ padding: 60 }}>
-        <div
-          style={{
-            width: "100%",
-            maxWidth: "600px",
-            margin: "0 auto",
-            textAlign: "center",
-            color: "black",
-            fontSize: 24,
-            fontWeight: "500",
-            lineHeight: 3,
-            whiteSpace: "nowrap", // 텍스트 줄바꿈 방지
-          }}
-        >
-          실시간 채용 정보
+      <Container>
+        <Header />
+        <div>
+          <div
+            style={{
+              width: "100%",
+              maxWidth: "600px",
+              margin: "0 auto",
+              textAlign: "center",
+              color: "black",
+              fontSize: 24,
+              fontWeight: "500",
+              lineHeight: 3,
+              whiteSpace: "nowrap", // 텍스트 줄바꿈 방지
+            }}
+          >
+            실시간 채용 정보
+          </div>
+          <div
+            style={{
+              width: "100%",
+              maxWidth: "600px",
+              margin: "0 auto",
+              textAlign: "center",
+              color: "#707070",
+              fontSize: 18,
+              fontWeight: "400",
+              whiteSpace: "nowrap", // 텍스트 줄바꿈 방지
+            }}
+          >
+            실시간 채용 정보를 확인해 보세요
+          </div>
         </div>
-        <div
-          style={{
-            width: "100%",
-            maxWidth: "600px",
-            margin: "0 auto",
-            textAlign: "center",
-            color: "#707070",
-            fontSize: 18,
-            fontWeight: "400",
-            whiteSpace: "nowrap", // 텍스트 줄바꿈 방지
-          }}
-        >
-          실시간 채용 정보를 확인해 보세요
+        <div>검색 필터</div>
+        <div>검색 조건 확인</div>
+        <div>
+          <div>검색결과</div>
         </div>
-      </div>
-      <div>검색 필터</div>
-      <div>검색 조건 확인</div>
-      <div>
-        <div>검색결과</div>
-      </div>
-      <JobPostList
-        columns={jobPostListColumns}
-        data={jobPosts}
-        currentPage={currentPage}
-        totalItemsCount={totalItemsCount}
-        itemsPerPage={itemsPerPage}
-        onPageChange={handlePageChange}
-        onRowsPerPageChange={handleRowsPerPageChange}
-        onRowClick={handleRowClick}
-      />
+        <JobPostList
+          columns={jobPostListColumns}
+          data={jobPosts}
+          currentPage={currentPage}
+          totalItemsCount={totalItemsCount}
+          itemsPerPage={itemsPerPage}
+          onPageChange={handlePageChange}
+          onRowsPerPageChange={handleRowsPerPageChange}
+          onRowClick={handleRowClick}
+        />
+      </Container>
     </>
   );
 };
 
 export default JobPostListPage;
+
+const Container = styled.div`
+  padding-left: 320px;
+  padding-right: 320px;
+  padding-bottom: 80px;
+`;
 
 const StyledSkeletonContainer = styled.div`
   width: 100%;
