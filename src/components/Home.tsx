@@ -28,7 +28,13 @@ const Home = ({}) => {
           <p className={styles.p}>{`어떤 일자리를 찾고 계신가요? `}</p>
         </div>
         <div className={styles.parent11}>
-          <div className={styles.div37}>무엇이든 물어보세요</div>
+          {/* <div className={styles.div37}>무엇이든 물어보세요</div> */}
+          <input
+            className={styles.div37}
+            placeholder="무엇이든 물어보세요"
+            // value={username}
+            // onChange={(e) => setUsername(e.target.value)}
+          ></input>
           <button className={styles.frameChild} onClick={chatbotHandler}>
             <img src={searchIcon} />
           </button>

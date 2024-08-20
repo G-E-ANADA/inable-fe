@@ -193,6 +193,9 @@ body {
 }
 .div37 {
   position: relative;
+  width: 100%;
+  border: none;
+  outline: none;
   letter-spacing: 0.02em;
   line-height: 150%;
 }
