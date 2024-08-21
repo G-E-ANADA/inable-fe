@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
+import loader from "../../asset/loader.mp4";
 
 interface ChatProps {
   //owner는 "ai" or "user"로 구분
@@ -47,9 +48,21 @@ const Chat = ({ owner, chat }: ChatProps) => {
         <HorizontalContainer3>
           <HorizontalContainer4>
             <HorizontalContainer5>
-              <ChatBox
-                dangerouslySetInnerHTML={{ __html: displayedText }}
-              ></ChatBox>
+              {displayedText === "" ? (
+                <video
+                  src={loader}
+                  type="video/mp4"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  style={{ width: "24px", height: "24px" }} // 원하는 크기로 변경
+                />
+              ) : (
+                <ChatBox
+                  dangerouslySetInnerHTML={{ __html: displayedText }}
+                ></ChatBox>
+              )}
             </HorizontalContainer5>
             <Div5>
               {hours}:{minutes}
