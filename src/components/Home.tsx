@@ -2,6 +2,8 @@ import styles from "../css/Home.module.css";
 import useAuthStore from "../store/store";
 import searchIcon from "../asset/searchIcon.svg";
 import { useState } from "react";
+import Chat from "./chat/Chat";
+import ReactDOM from "react-dom/client"; // ReactDOM을 명시적으로 import
 
 const Home = ({}) => {
   const API_URL = process.env.REACT_APP_AI_API;
@@ -12,31 +14,83 @@ const Home = ({}) => {
   const [query, setQuery] = useState("");
 
   const chatbotHandler = async () => {
+    if (query === "") return;
     setAnimate(true);
-    queryToAI();
+
+    const userQuery = query;
+    addChat("user", userQuery);
+    setQuery("");
+    queryToAI(userQuery);
   };
 
-  const queryToAI = async () => {
+  const queryToAI = async (query: string) => {
     // EventSource를 사용하여 SSE 연결
     const eventSource = new EventSource(
       `${API_URL}/api/v1/chatlog/jayden/ai?query=${query}`
     );
 
-    // 데이터 수신 시 처리
+    let accumulatedText = ""; // SSE로부터 수신된 데이터를 누적하는 변수
+    let chatInstance: any; // 생성된 Chat 컴포넌트 인스턴스를 추적하기 위한 변수
+
+    // SSE 이벤트 수신 시 처리
     eventSource.onmessage = (event) => {
-      setData((prevData) => prevData + event.data);
+      accumulatedText += event.data; // 수신된 데이터를 누적
+      if (!chatInstance) {
+        // 최초 수신 시 Chat 컴포넌트를 추가하고 chatInstance에 할당
+        chatInstance = addChat("ai", accumulatedText);
+      } else {
+        // 이미 생성된 Chat 컴포넌트의 상태를 업데이트
+        chatInstance.update(accumulatedText);
+      }
     };
 
     // 오류 처리
     eventSource.onerror = (error) => {
       console.error("SSE Error:", error);
       eventSource.close(); // 필요시 연결 닫기
+      setData("");
     };
 
     // 컴포넌트 언마운트 시 EventSource 닫기
     return () => {
       eventSource.close();
     };
+  };
+
+  const addChat = (owner: "user" | "ai", text: string) => {
+    // chatContainer 클래스에 Chat 컴포넌트 추가하는 코드
+    const chatContainer = document.querySelector(`.${styles.chatContainer}`);
+
+    // 새로운 div 요소를 생성하고 이를 chatContainer에 추가합니다.
+    const newChatContainer = document.createElement("div");
+    if (chatContainer === null) return;
+    chatContainer.appendChild(newChatContainer);
+
+    // 생성된 div 요소에 Chat 컴포넌트를 렌더링합니다.
+    const root = ReactDOM.createRoot(newChatContainer);
+    let currentText = text; // 현재 텍스트 상태를 추적하는 변수
+
+    const update = (newText: string) => {
+      currentText = newText;
+      root.render(<Chat owner={owner} chat={currentText} />);
+    };
+
+    // 최초 렌더링
+    update(text);
+
+    // update 함수를 반환해서 나중에 상태 업데이트에 사용
+    return { update };
+  };
+
+  //년월일 요일 구하기
+  const getDay = () => {
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const dayOfWeek = date.getDay();
+    const dayOfWeekStr = ["일", "월", "화", "수", "목", "금", "토"];
+    return `${year}-${month}-${day}-${dayOfWeekStr[dayOfWeek]}`;
   };
 
   return (
@@ -65,7 +119,7 @@ const Home = ({}) => {
           } `}
         >
           <div className={styles.horizontalContainer2}>
-            <div className={styles.timeLabel}>2024-07-21-일</div>
+            <div className={styles.timeLabel}>{getDay()}</div>
           </div>
 
           <div
@@ -73,27 +127,8 @@ const Home = ({}) => {
               animate ? styles.animateChatContainer : ""
             } `}
           >
-            <div className={styles.buttonContainer}>
-              <div className={styles.buttonContainer1}>
-                <div className={styles.div5}>12:09</div>
-                <div className={styles.userChatBox}>
-                  <div className={styles.chatBox}>
-                    동작구에 사무보조로 지원할 수 있는 일자리 알려줘
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className={styles.horizontalContainer3}>
-              <div className={styles.horizontalContainer4}>
-                <div className={styles.horizontalContainer5}>
-                  <div
-                    className={styles.chatBox}
-                    dangerouslySetInnerHTML={{ __html: data }}
-                  ></div>
-                </div>
-                <div className={styles.div5}>12:09</div>
-              </div>
-            </div>
+            {/* <Chat owner="user" chat={query} /> */}
+            {/* <Chat owner="ai" chat={data} /> */}
           </div>
         </div>
 
