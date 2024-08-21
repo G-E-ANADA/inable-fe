@@ -3,7 +3,7 @@ import useAuthStore from "../store/store";
 
 const Home = ({}) => {
   const loginUser = useAuthStore.getState().user;
-
+  // 안냥하세요 재들린!
   return (
     <div className={styles.home}>
       <div className={styles.frameParent}>
