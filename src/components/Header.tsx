@@ -23,11 +23,20 @@ const navLinks = [
 const Header = () => {
   const loginUser = useAuthStore.getState().user;
 
+  const handleLogo = () => {
+    window.location.href = "/";
+  };
+
   return (
     <>
       <div className={styles.gnb}>
         <div className={styles.logoParent}>
-          <img className={styles.logoIcon} alt="logo" src={logo} />
+          <img
+            className={styles.logoIcon}
+            alt="logo"
+            src={logo}
+            onClick={handleLogo}
+          />
           <div className={styles.tabParent}>
             {navLinks.map((link, index) => (
               <Link
