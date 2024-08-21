@@ -6,13 +6,11 @@
   line-height: 150%;
   display: inline-block;
 }
-.text {
-  width: 130px;
-  position: relative;
-  height: 27px;
+.activeSnb {
   color: #224a99;
+  font-weight: 700;
 }
-.text2 {
+.snbBox {
   width: 130px;
   position: relative;
   height: 27px;
@@ -31,4 +29,8 @@
   font-family: "Noto Sans CJK KR";
   margin-left: 130px;
   margin-top: 50px;
+}
+
+.selectBox {
+  cursor: pointer;
 }
