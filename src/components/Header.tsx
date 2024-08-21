@@ -46,7 +46,7 @@ const Header = () => {
                 로그아웃
               </a>
             ) : (
-              <a className={styles.text} href="/login">
+              <a className={styles.text} href="/loginSelect">
                 로그인
               </a>
             )}
