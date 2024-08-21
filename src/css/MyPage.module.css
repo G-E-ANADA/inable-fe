@@ -1,0 +1,245 @@
+.div {
+  align-self: stretch;
+  position: relative;
+  line-height: 150%;
+  font-weight: 500;
+}
+.textInput {
+  position: absolute;
+  top: calc(50% - 85px);
+  left: calc(50% - 640px);
+  border-radius: 12px;
+  background-color: #f4f4f4;
+  width: 1280px;
+  height: 170px;
+}
+.text {
+  position: relative;
+  line-height: 150%;
+  font-weight: 500;
+}
+.btn {
+  position: absolute;
+  top: calc(50% - 25px);
+  left: calc(50% - 150px);
+  border-radius: 6px;
+  background-color: #224a99;
+  width: 300px;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 60px;
+  box-sizing: border-box;
+}
+.textInputContainer1 {
+  align-self: stretch;
+  position: relative;
+  height: 170px;
+  text-align: center;
+  color: #fff;
+}
+.textInputContainer {
+  position: absolute;
+  top: 140px;
+  left: 320px;
+  width: 1280px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 24px;
+}
+.component2 {
+  border-bottom: 2px solid #224a99;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  color: #224a99;
+}
+.text2 {
+  position: relative;
+  line-height: 150%;
+}
+.component3 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+.component2Parent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.hiddenIcon {
+  width: 24px;
+  position: relative;
+  height: 24px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.button1 {
+  border-radius: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 9px;
+}
+.checkbox {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+}
+.button3 {
+  position: relative;
+  letter-spacing: 0.46px;
+  line-height: 22px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.horizontalContainer1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.button2 {
+  border-radius: 4px;
+  border: 1px solid rgba(34, 74, 153, 0.5);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  font-size: 13px;
+  color: #224a99;
+  font-family: Roboto;
+}
+.textInput1 {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0px 16px;
+  gap: 24px;
+  font-size: 18px;
+}
+.textInput2 {
+  align-self: stretch;
+  position: relative;
+  height: 170px;
+}
+.horizontalContainer {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 16px;
+  font-size: 16px;
+}
+.container {
+  position: absolute;
+  top: 421px;
+  left: 320px;
+  width: 1280px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 24px;
+}
+.logoIcon {
+  width: 180px;
+  position: relative;
+  height: 100px;
+}
+.tab {
+  width: 110px;
+  background-color: #fff;
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.tab3 {
+  width: 110px;
+  background-color: #fff;
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  color: #224a99;
+}
+.horizontalContainer3 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 40px;
+}
+.horizontalContainer2 {
+  width: 1280px;
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.text11 {
+  position: absolute;
+  width: 100%;
+  top: 0%;
+  left: 0%;
+  line-height: 150%;
+  display: inline-block;
+}
+.text10 {
+  width: 130px;
+  position: relative;
+  height: 27px;
+  color: #224a99;
+}
+.text12 {
+  width: 130px;
+  position: relative;
+  height: 27px;
+}
+
+.card {
+  width: 100%;
+  position: pixed;
+
+  top: 140px;
+  left: 320px;
+  gap: 24px;
+
+  background-color: #fff;
+  height: 1080px;
+  overflow: hidden;
+  text-align: left;
+  font-size: 18px;
+  color: #000;
+  font-family: "Noto Sans CJK KR";
+}

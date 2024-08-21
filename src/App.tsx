@@ -5,8 +5,10 @@ import Logout from "./pages/LogoutPage";
 import Signup from "./pages/Signup";
 import JobPostListPage from "./pages/JobPostListPage";
 import JobPostMapPage from "./pages/JobPostMapPage";
+import MyPage from "./pages/MyPage";
 import theme from "./theme";
 import { CssBaseline, ThemeProvider } from "@mui/material";
+import ResumeWriteForm from "./pages/ResumeWriteForm";
 
 const App = () => {
   return (
@@ -21,6 +23,8 @@ const App = () => {
             <Route path="/signup" element={<Signup />} />
             <Route path="/jobPostList" element={<JobPostListPage />} />
             <Route path="/jobPostMap" element={<JobPostMapPage />} />
+            <Route path="/myPage" element={<MyPage />} />
+            <Route path="/resumeWriteForm" element={<ResumeWriteForm />} />
           </Routes>
         </div>
       </Router>
