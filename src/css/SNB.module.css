@@ -1,0 +1,34 @@
+.text1 {
+  position: absolute;
+  width: 130px;
+  top: 0%;
+  left: 0%;
+  line-height: 150%;
+  display: inline-block;
+}
+.text {
+  width: 130px;
+  position: relative;
+  height: 27px;
+  color: #224a99;
+}
+.text2 {
+  width: 130px;
+  position: relative;
+  height: 27px;
+}
+.snb {
+  position: relative;
+  width: 130px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 16px;
+  text-align: left;
+  font-size: 18px;
+  color: #000;
+  font-family: "Noto Sans CJK KR";
+  margin-left: 130px;
+  margin-top: 50px;
+}

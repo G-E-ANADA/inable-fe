@@ -7,6 +7,8 @@ import JobPostMapPage from "./pages/JobPostMapPage";
 import Logout from "./pages/LogoutPage";
 import Main from "./pages/Main";
 import Signup from "./pages/Signup";
+import JobPostListPage from "./pages/JobPostListPage";
+import JobPostMapPage from "./pages/JobPostMapPage";
 import theme from "./theme";
 import LoginSelectPage from "./pages/LoginSelectPage";
 import EducationPage from "./pages/EducationPage";
