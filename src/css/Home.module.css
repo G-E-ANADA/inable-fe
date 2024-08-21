@@ -34,9 +34,8 @@ body {
   mix-blend-mode: darken;
 }
 .frameGroup {
-  position: absolute;
-  top: 0px;
-  left: 0px;
+  position: relative;
+  background-color: red;
   border-radius: 12px;
   background-color: rgba(255, 255, 255, 0.75);
   border: 2px rgba(208, 208, 208, 0.5);
@@ -104,16 +103,15 @@ body {
   object-fit: cover;
   mix-blend-mode: darken;
 }
-.frameParent1 {
-  position: absolute;
-  top: 212px;
-  left: 323px;
+.realtimeJobInfoContent {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
   border-radius: 12px;
-  background-color: rgba(255, 255, 255, 0.75);
-  border: 2px rgba(208, 208, 208, 0.5);
   box-sizing: border-box;
-  width: 311px;
-  height: 200px;
+  width: 634px;
+  height: 412px;
 }
 .frameParent {
   position: absolute;
@@ -133,10 +131,8 @@ body {
   justify-content: flex-start;
   gap: 27px;
 }
-.homeInner {
-  position: absolute;
-  top: 584px;
-  left: 966px;
+.eduInfoContent {
+  position: relative;
   border-radius: 12px;
   background-color: rgba(255, 255, 255, 0.75);
   border: 2px rgba(208, 208, 208, 0.5);
@@ -167,10 +163,8 @@ body {
   justify-content: flex-start;
   gap: 27px;
 }
-.homeChild {
-  position: absolute;
-  top: 584px;
-  left: 1289px;
+.communityContent {
+  position: relative;
   border-radius: 12px;
   background-color: rgba(255, 255, 255, 0.75);
   border: 2px rgba(208, 208, 208, 0.5);
@@ -178,37 +172,17 @@ body {
   width: 311px;
   height: 412px;
 }
-.div33 {
-  position: absolute;
-  top: 537px;
-  right: 564px;
+.areaLabel {
+  position: relative;
+  margin-bottom: 10px;
   line-height: 150%;
   font-weight: 500;
   color: #111e32;
-  text-align: center;
-}
-.div34 {
-  position: absolute;
-  top: 537px;
-  left: 322px;
-  line-height: 150%;
-  font-weight: 500;
-  color: #111e32;
-  text-align: center;
-}
-.div35 {
-  position: absolute;
-  top: 537px;
-  right: 883px;
-  line-height: 150%;
-  font-weight: 500;
-  color: #111e32;
-  text-align: center;
 }
 .p {
   margin: 0;
 }
-.div36 {
+.chatboLabelContainer {
   position: relative;
   letter-spacing: 0.02em;
   line-height: 120%;
@@ -217,8 +191,16 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.hideChatboLabelContainer {
+  display: none;
+}
+
 .div37 {
   position: relative;
+  width: 100%;
+  border: none;
+  outline: none;
   letter-spacing: 0.02em;
   line-height: 150%;
 }
@@ -226,8 +208,12 @@ body {
   width: 44px;
   position: relative;
   height: 48px;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
-.parent11 {
+
+.chatbotInputBoxContainer {
   align-self: stretch;
   border-radius: 8px;
   background-color: #fff;
@@ -239,67 +225,106 @@ body {
   text-align: center;
   font-size: 21px;
 }
-.parent10 {
-  position: absolute;
-  top: 227px;
-  left: 643px;
-  width: 634px;
+
+.chatbotChattingContainer {
+  opacity: 0;
+  visibility: hidden;
+  height: 0;
+  /* background-color: red; */
+}
+
+.animateChatbotChattingContainer {
+  animation: increaseChatbotChattingContainer 2s forwards;
+}
+
+@keyframes increaseChatbotChattingContainer {
+  from {
+    opacity: 0;
+    visibility: hidden;
+    height: 213px;
+  }
+  to {
+    opacity: 1;
+    visibility: visible;
+    height: 650px;
+  }
+}
+
+.chatContainer {
+  position: relative;
+  /* height: 550px; */
+  align-self: stretch;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: flex-end;
+}
+
+.animateChatContainer {
+  animation: increaseChatContainer 0.1s forwards;
+}
+
+@keyframes increaseChatContainer {
+  from {
+    height: 0;
+  }
+  to {
+    height: 650px;
+  }
+}
+
+.chatbotContainer {
+  position: relative;
+  margin: 0 auto;
+  margin-top: 117px;
+  display: flex;
+  width: 634px;
+  height: 184px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   gap: 40px;
   font-size: 40px;
   color: #c4c4c4;
 }
-.logoIcon {
-  width: 180px;
+
+.contentContainer {
   position: relative;
-  height: 100px;
-}
-.text {
-  position: relative;
-  line-height: 150%;
-  font-weight: 500;
-}
-.tab {
-  width: 110px;
-  background-color: #fff;
-  height: 100px;
+  margin: 0 auto;
+  margin-top: 150px;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  gap: 10px;
+  width: 1300px;
+  height: 450px;
+  /* transition: margin-top 1s ease-in-out; margin-top 변경 시 애니메이션 적용 */
 }
-.tabParent {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 40px;
+
+.animateChatbotContainer {
+  animation: increaseChatbotContainer 0.5s forwards;
 }
-.logoParent {
-  width: 1280px;
-  height: 100px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
+
+@keyframes increaseChatbotContainer {
+  from {
+    height: 184px;
+    /* margin-top: 117px; */
+    justify-content: center;
+  }
+  to {
+    height: 740px;
+    /* margin-top: 50px; */
+    justify-content: space-between;
+  }
 }
-.gnb {
-  position: absolute;
-  top: 0px;
-  left: calc(50% - 960px);
-  background-color: #fff;
-  width: 1920px;
-  height: 100px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  font-size: 21px;
-  color: #4f4f4f;
+
+.realtimeJobInfoContainer {
+  width: 634px;
+}
+
+.eduInfoContainer {
+  width: 311;
+}
+
+.communityContainer {
+  width: 311;
 }
 .home {
   width: 100%;
@@ -310,5 +335,38 @@ body {
   text-align: left;
   font-size: 18px;
   color: #000;
+  font-family: "Noto Sans CJK KR";
+}
+
+/* */
+
+.timeLabel {
+  position: relative;
+
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: right;
+}
+.horizontalContainer2 {
+  position: relative;
+  width: 634px;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  box-sizing: border-box;
+  text-align: right;
+  color: #494949;
+}
+.card {
+  width: 100%;
+  position: relative;
+  height: 740px;
+  text-align: left;
+  font-size: 16px;
+  color: #c4c4c4;
   font-family: "Noto Sans CJK KR";
 }
