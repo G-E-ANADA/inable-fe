@@ -1,10 +1,9 @@
 import { useState } from "react";
 import Header from "../components/Header";
 import styles from "../css/Login.module.css";
-import User from "../entities/User";
 import useAuthStore from "../store/store";
 
-const Login = () => {
+const MemberLogin = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -76,4 +75,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default MemberLogin;

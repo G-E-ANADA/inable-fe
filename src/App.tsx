@@ -5,11 +5,12 @@ import GlobalStyle from "./components/style/GlobalStyle";
 import JobPostDetailPage from "./pages/JobPostDetailPage";
 import JobPostListPage from "./pages/JobPostListPage";
 import JobPostMapPage from "./pages/JobPostMapPage";
-import Login from "./pages/Login";
+import MemberLogin from "./pages/MemberLogin";
 import Logout from "./pages/LogoutPage";
 import Main from "./pages/Main";
 import Signup from "./pages/Signup";
 import theme from "./theme";
+import LoginSelectPage from "./pages/LoginSelectPage";
 
 const queryClient = new QueryClient();
 
@@ -23,7 +24,8 @@ const App = () => {
           <div>
             <Routes>
               <Route path="/" element={<Main />} />
-              <Route path="/login" element={<Login />} />
+              <Route path="/loginSelect" element={<LoginSelectPage />} />
+              <Route path="/memberLogin" element={<MemberLogin />} />
               <Route path="/logout" element={<Logout />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/jobPostList" element={<JobPostListPage />} />
