@@ -13,16 +13,18 @@
   font-weight: 700;
   line-height: 36px;
   text-align: center;
+  color: white;
 }
 
 .a {
   position: relative;
-  color: black;
+  color: white;
   font-family: Noto Sans CJK KR;
   font-size: 24px;
   font-weight: 700;
   line-height: 36px;
   text-align: center;
+  color: black;
 }
 
 .frameChild {
@@ -45,6 +47,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  cursor: pointer;
 }
 .diversity15Parent {
   position: relative;
