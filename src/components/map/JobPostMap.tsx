@@ -13,7 +13,7 @@ interface Coordinates {
 interface JobPostMapType {
   coordinates: Coordinates;
   jobPostData: JobPostListData[];
-  setSortedjobPostData?: React.Dispatch<
+  setSortedJobPostData?: React.Dispatch<
     React.SetStateAction<JobPostListData[]>
   >;
 }
@@ -21,13 +21,13 @@ interface JobPostMapType {
 const JobPostMap = ({
   coordinates,
   jobPostData,
-  setSortedjobPostData,
+  setSortedJobPostData,
 }: JobPostMapType) => {
   const mapRef = useRef<HTMLDivElement | null>(null);
   const { naver } = window;
   let map: naver.maps.Map;
   const [newMap, setNewMap] = useState<naver.maps.Map | null>(null);
-  const markerListRef = useRef<naver.maps.Marker[]>([]); // 마커를 담을 배열을 useRef로 관리
+  const markerListRef = useRef<naver.maps.Marker[]>([]);
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
 
   const navigate = useNavigate();
@@ -123,7 +123,8 @@ const JobPostMap = ({
         },
       });
       newMarker.setTitle(title);
-      markerListRef.current.push(newMarker); // 마커를 배열에 추가
+      markerListRef.current.push(newMarker);
+
       naver.maps.Event.addListener(newMarker, "click", () =>
         markerClickHandler(id)
       );
@@ -139,19 +140,28 @@ const JobPostMap = ({
     if (!map) return;
 
     const mapBounds = map.getBounds();
-    let marker: naver.maps.Marker, position;
+    let visibleJobPosts: JobPostListData[] = [];
 
-    // 마커의 위치를 position 변수에 저장
+    // let marker: naver.maps.Marker, position;
+
     for (let i = 0; i < markers.length; i++) {
-      marker = markers[i];
-      position = marker.getPosition();
+      const marker = markers[i];
+      const position = marker.getPosition();
 
-      // mapBounds와 비교하며 마커가 현재 화면에 보이는 영역에 있는지 확인
       if (mapBounds.hasPoint(position)) {
         showMarker(map, marker);
+
+        const jobPost = jobPostData.find(
+          (post) =>
+            post.latitude === position.y && post.longitude === position.x
+        );
+        if (jobPost) visibleJobPosts.push(jobPost);
       } else {
         hideMarker(marker);
       }
+    }
+    if (setSortedJobPostData) {
+      setSortedJobPostData(visibleJobPosts);
     }
   };
 
