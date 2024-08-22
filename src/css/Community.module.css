@@ -17,11 +17,11 @@
   align-items: center;
   justify-content: center;
 }
-.text3 {
+.text1 {
   position: relative;
   line-height: 150%;
 }
-.tab3 {
+.tab1 {
   width: 110px;
   background-color: #fff;
   height: 100px;
@@ -31,20 +31,40 @@
   justify-content: center;
   color: #224a99;
 }
-.horizontalContainer1 {
+.tabParent {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
   gap: 40px;
 }
-.horizontalContainer {
+.logoParent {
   width: 1280px;
   height: 100px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+}
+
+.text7 {
+  position: absolute;
+  width: 100%;
+  top: 0%;
+  left: 0%;
+  line-height: 150%;
+  display: inline-block;
+}
+.text6 {
+  width: 130px;
+  position: relative;
+  height: 27px;
+}
+.text10 {
+  width: 130px;
+  position: relative;
+  height: 27px;
+  color: #224a99;
 }
 
 .div1 {
@@ -60,7 +80,7 @@
   overflow: hidden;
   flex-shrink: 0;
 }
-.button1 {
+.padding {
   border-radius: 100px;
   display: flex;
   flex-direction: row;
@@ -75,27 +95,27 @@
   align-items: center;
   justify-content: flex-start;
 }
-.button {
+.checkboxParent {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
   gap: 20px;
 }
-.button3 {
+.button1 {
   position: relative;
   letter-spacing: 0.46px;
   line-height: 22px;
   text-transform: uppercase;
   font-weight: 500;
 }
-.horizontalContainer4 {
+.base {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
 }
-.button2 {
+.button {
   border-radius: 4px;
   border: 1px solid rgba(34, 74, 153, 0.5);
   overflow: hidden;
@@ -108,105 +128,76 @@
   color: #224a99;
   font-family: Roboto;
 }
-.textInput {
+.frameGroup {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 24px;
+}
+.frameWrapper {
   align-self: stretch;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  padding: 0px 16px;
-  gap: 24px;
+  padding: 0px 40px 0px 16px;
 }
-.button5 {
+.div3 {
+  width: 120px;
+  position: relative;
+  line-height: 150%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+.wrapper {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
+}
+.div5 {
+  position: relative;
+  line-height: 150%;
+  white-space: pre-wrap;
 }
 .container {
+  align-self: stretch;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  gap: 24px;
-}
-.horizontalContainer6 {
-  align-self: stretch;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0px 40px 0px 16px;
-}
-.horizontalContainer5 {
-  align-self: stretch;
-  height: 71px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
   text-align: center;
+  font-size: 18px;
 }
-.horizontalContainer3 {
-  align-self: stretch;
+.group {
+  width: 380px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: flex-start;
-  gap: 16px;
-}
-.component3 {
-  border-bottom: 2px solid #224a99;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-  color: #224a99;
-}
-.component2 {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-}
-.component3Parent {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  font-size: 16px;
-}
-.icLikeIcon {
-  width: 24px;
-  position: relative;
-  height: 24px;
-}
-.button11 {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
   justify-content: flex-start;
   gap: 12px;
+  text-align: left;
+  font-size: 21px;
 }
-.container3 {
+.head {
   align-self: stretch;
+  height: 71px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
   padding: 0px 40px 0px 16px;
+  box-sizing: border-box;
 }
-.container2 {
+.headWrapper {
   align-self: stretch;
-  height: 71px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
 }
-.verticalContainer2 {
+.frameContainer {
   align-self: stretch;
   display: flex;
   flex-direction: column;
@@ -215,7 +206,7 @@
   gap: 24px;
   text-align: center;
 }
-.verticalContainer {
+.frameParent {
   align-self: stretch;
   display: flex;
   flex-direction: column;
@@ -223,7 +214,7 @@
   justify-content: flex-start;
   gap: 24px;
 }
-.contents {
+.parent {
   position: absolute;
   top: 40px;
   left: 60px;
@@ -232,42 +223,16 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  gap: 101px;
+  gap: 24px;
 }
-.text10 {
-  position: absolute;
-  width: 100%;
-  top: 0%;
-  left: 0%;
-  line-height: 150%;
-  display: inline-block;
-}
-.text9 {
-  width: 130px;
-  position: relative;
-  height: 27px;
-  color: #224a99;
-}
-.text11 {
-  width: 130px;
-  position: relative;
-  height: 27px;
-}
-
 .div {
   width: 100%;
   position: relative;
   background-color: #fff;
   height: 1080px;
-
+  overflow: hidden;
   text-align: left;
   font-size: 18px;
   color: #000;
   font-family: "Noto Sans CJK KR";
-}
-
-.contentContainer {
-  display: flex;
-  flex-direction: row;
-  align-items: start;
 }
