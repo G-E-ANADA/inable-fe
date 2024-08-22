@@ -1,0 +1,98 @@
+.tip1 {
+  align-self: stretch;
+
+  margin-bottom: 50px;
+
+  font-family: Noto Sans CJK KR;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 27px;
+  text-align: left;
+}
+.tipWrapper {
+  position: relative;
+  width: 1280px;
+}
+.frameChild {
+  width: 400px;
+  position: relative;
+  border-radius: 12px;
+  height: 400px;
+  overflow: hidden;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+.ai {
+  position: relative;
+  font-size: 21px;
+  line-height: 150%;
+  font-weight: 500;
+  font-family: "Noto Sans CJK KR";
+  color: #000;
+  text-align: center;
+}
+.frameGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 12px;
+}
+.frameItem {
+  width: 400px;
+  position: relative;
+  height: 400px;
+  object-fit: cover;
+}
+.frameInner {
+  width: 400px;
+  position: relative;
+  border-radius: 12px;
+  background-color: #f3f3f3;
+  height: 400px;
+}
+.rectangleParent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 12px;
+  color: transparent;
+}
+.rectangleIcon {
+  width: 400px;
+  position: relative;
+  border-radius: 12px;
+  height: 400px;
+  object-fit: cover;
+}
+.frameParent {
+  position: relative;
+  width: 1280px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 38px;
+  text-align: center;
+  font-size: 21px;
+}
+.tip {
+  width: 100%;
+  position: relative;
+  background-color: #fff;
+  height: 1080px;
+  overflow: hidden;
+  text-align: left;
+  font-size: 18px;
+  color: #000;
+  font-family: "Noto Sans CJK KR";
+  margin-top: 50px;
+  margin-left: 60px;
+}
+.contentContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+}
