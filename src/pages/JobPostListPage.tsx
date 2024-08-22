@@ -138,59 +138,57 @@ const JobPostListPage = () => {
     <>
       <StyledContainer>
         <Header />
-        <StyledContents>
+        <div
+          style={{
+            maxWidth: "1040px",
+            minWidth: "1040px",
+            marginTop: "60px",
+            marginBottom: "44px",
+          }}
+        >
           <div
             style={{
-              maxWidth: "1040px",
-              minWidth: "1040px",
-              marginTop: "60px",
-              marginBottom: "44px",
+              width: "100%",
+              margin: "0",
+              textAlign: "center",
+              color: "black",
+              fontSize: 24,
+              fontWeight: "500",
+              lineHeight: 2,
+              whiteSpace: "nowrap", // 텍스트 줄바꿈 방지
             }}
           >
-            <div
-              style={{
-                width: "100%",
-                margin: "0",
-                textAlign: "center",
-                color: "black",
-                fontSize: 24,
-                fontWeight: "500",
-                lineHeight: 2,
-                whiteSpace: "nowrap", // 텍스트 줄바꿈 방지
-              }}
-            >
-              실시간 채용 정보
-            </div>
-            <div
-              style={{
-                width: "100%",
-                maxWidth: "600px",
-                margin: "0 auto",
-                textAlign: "center",
-                color: "#707070",
-                fontSize: 18,
-                fontWeight: "400",
-                whiteSpace: "nowrap", // 텍스트 줄바꿈 방지
-              }}
-            >
-              실시간 채용 정보를 확인해 보세요
-            </div>
+            실시간 채용 정보
           </div>
-          <div>검색 필터</div>
-          <div>검색 조건 확인</div>
-          <div>
-            <div>검색결과</div>
+          <div
+            style={{
+              width: "100%",
+              maxWidth: "600px",
+              margin: "0 auto",
+              textAlign: "center",
+              color: "#707070",
+              fontSize: 18,
+              fontWeight: "400",
+              whiteSpace: "nowrap", // 텍스트 줄바꿈 방지
+            }}
+          >
+            실시간 채용 정보를 확인해 보세요
           </div>
-          <JobPostList
-            columns={jobPostListColumns}
-            data={jobPosts}
-            currentPage={currentPage}
-            totalItemsCount={totalItemsCount}
-            itemsPerPage={itemsPerPage}
-            onPageChange={handlePageChange}
-            onRowClick={handleRowClick}
-          />
-        </StyledContents>
+        </div>
+        <div>검색 필터</div>
+        <div>검색 조건 확인</div>
+        <div>
+          <div>검색결과</div>
+        </div>
+        <JobPostList
+          columns={jobPostListColumns}
+          data={jobPosts}
+          currentPage={currentPage}
+          totalItemsCount={totalItemsCount}
+          itemsPerPage={itemsPerPage}
+          onPageChange={handlePageChange}
+          onRowClick={handleRowClick}
+        />
       </StyledContainer>
     </>
   );
