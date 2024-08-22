@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import { JobPostDataType } from "../../types/JobPostDataType";
+import { JobPostMapDataType } from "../../types/JobPostDataType";
 import CustomMapMarker from "./CustomMapMarker";
+import Refresh from "../../asset/Refresh.svg";
 
 interface Coordinates {
   latitude: number;
@@ -10,13 +11,13 @@ interface Coordinates {
 
 interface JobPostType {
   coordinates: Coordinates;
-  jobPostData: JobPostDataType[];
+  jobPostData: JobPostMapDataType[];
   setSortedjobPostData?: React.Dispatch<
-    React.SetStateAction<JobPostDataType[]>
+    React.SetStateAction<JobPostMapDataType[]>
   >;
 }
 
-const FieldMap = ({
+const JobPostMap = ({
   coordinates,
   jobPostData,
   setSortedjobPostData,
@@ -177,11 +178,17 @@ const FieldMap = ({
   return (
     <StyledMapContainer>
       <StyledMap id="map" ref={mapRef}></StyledMap>
+      <StyledButton onClick={() => console.log("reset btn")}>
+        <StyledButtonIcon>
+          <img src={Refresh} alt="" />
+        </StyledButtonIcon>
+        <StyledButtonContent>현 위치에서 검색</StyledButtonContent>
+      </StyledButton>
     </StyledMapContainer>
   );
 };
 
-export default FieldMap;
+export default JobPostMap;
 
 const StyledMapContainer = styled.div`
   position: relative;
@@ -189,6 +196,65 @@ const StyledMapContainer = styled.div`
 
 const StyledMap = styled.div`
   width: 100%;
-  height: 47rem;
+  height: 600px;
   margin: 0 auto;
+`;
+
+const StyledButton = styled.div`
+  width: 180px;
+  height: 40px;
+  position: absolute;
+  display: table;
+  padding: 0.5rem 0.2rem;
+  table-layout: auto;
+  border-radius: 2.3rem;
+  background-color: #fff;
+  border: 2px solid #224a99;
+  z-index: 10;
+  bottom: 24px;
+  border-bottom-width: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+  // @media (min-width: 768px) {
+  //   padding: 1rem 0.8rem;
+  //   bottom: 4rem;
+  // }
+`;
+
+const StyledButtonIcon = styled.div`
+  display: table-cell;
+  display: inline-block;
+  width: 2rem;
+  height: 2em;
+  margin-left: 1.5rem;
+  margint-right: 1.5rem;
+  padding-top: 0.3rem;
+  // @media (min-width: 768px) {
+  //   width: 2.7rem;
+  //   height: 2.7rem;
+  //   padding-top: 0.2rem;
+  // }
+`;
+
+const StyledButtonContent = styled.div`
+  max-width: 17rem;
+  padding: 0 2rem 0 0rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: table-cell;
+  vertical-align: middle;
+  cursor: pointer;
+  font-family: Roboto;
+  color: #224a99;
+  font-size: 16px;
+  letter-spacing: -0.04rem;
+  font-weight: 600;
+  line-height: 2rem;
+  // @media (min-width: 768px) {
+  //   height: 3rem;
+  //   font-size: 16px;
+  //   line-height: 3rem;
+  // }
 `;
