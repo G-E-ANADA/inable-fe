@@ -13,7 +13,7 @@ import {
   SearchCriteria,
 } from "../types/JobPostDataType";
 
-const SampleMapSearchPage = () => {
+const JobPostMapPage = () => {
   const [searchCriteria, setSearchCriteria] = useState<SearchCriteria>({
     compAddr: "",
     jobNm: "",
@@ -23,16 +23,26 @@ const SampleMapSearchPage = () => {
     envBothHands: "",
   });
   const [jobPosts, setJobPosts] = useState<JobPostListData[]>([]);
+  const [visibleJobPosts, setVisibleJobPosts] = useState<JobPostListData[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [itemsPerPage, setItemsPerPage] = useState<number>(10);
   const [totalItemsCount, setTotalItemsCount] = useState<number>(0);
+  const [mapCoordinates, setMapCoordinates] = useState<{
+    latitude: number;
+    longitude: number;
+  }>({
+    latitude: 37.5665, // 초기 좌표
+    longitude: 126.978,
+  });
 
   const navigate = useNavigate();
 
-  // 초기 좌표 설정 (전체 지도 보기용)
-  const initialCoordinates = { latitude: 37.5665, longitude: 126.978 };
+  useEffect(() => {
+    console.log("mapCoordinates", mapCoordinates);
+  }),
+    [mapCoordinates];
 
   useEffect(() => {
     const fetchJobPosts = async () => {
@@ -46,24 +56,30 @@ const SampleMapSearchPage = () => {
           },
         });
 
-        response.data.job_posts.forEach((jobPost: JobPostListData) => {
-          jobPost.area =
-            jobPost.compAddr.split(" ")[0] +
-            " " +
-            jobPost.compAddr.split(" ")[1];
+        const jobPosts = response.data.job_posts.map((jobPost: any) => {
+          const latitude = parseFloat(jobPost.latitude);
+          const longitude = parseFloat(jobPost.longitude);
 
-          jobPost.envBothHands = jobPost.envBothHands.substring(
-            0,
-            jobPost.envBothHands.indexOf("작")
-          );
-
-          jobPost.envLiftPower = jobPost.envLiftPower.substring(
-            0,
-            jobPost.envLiftPower.indexOf("g") + 1
-          );
+          return {
+            ...jobPost,
+            latitude,
+            longitude,
+            area:
+              jobPost.compAddr.split(" ")[0] +
+              " " +
+              jobPost.compAddr.split(" ")[1],
+            envBothHands: jobPost.envBothHands.substring(
+              0,
+              jobPost.envBothHands.indexOf("작")
+            ),
+            envLiftPower: jobPost.envLiftPower.substring(
+              0,
+              jobPost.envLiftPower.indexOf("g") + 1
+            ),
+          };
         });
 
-        setJobPosts(response.data.job_posts);
+        setJobPosts(jobPosts);
         setTotalItemsCount(response.data.total_count);
         setLoading(false);
       } catch (err) {
@@ -91,7 +107,7 @@ const SampleMapSearchPage = () => {
     event: React.ChangeEvent<unknown>,
     newPage: number
   ) => {
-    setCurrentPage(newPage); // MUI의 페이지는 0부터 시작하므로 +1
+    setCurrentPage(newPage);
   };
 
   const handleRowClick = (jobPost: JobPostListData) => {
@@ -108,8 +124,9 @@ const SampleMapSearchPage = () => {
         <StyledContents>
           <StyledMapContanier>
             <JobPostMap
-              coordinates={initialCoordinates}
+              coordinates={mapCoordinates}
               jobPostData={jobPosts}
+              setSortedJobPostData={setVisibleJobPosts}
             />
           </StyledMapContanier>
           <SearchOptions
@@ -123,7 +140,7 @@ const SampleMapSearchPage = () => {
             </StyledListHeader>
             <JobPostList
               columns={jobPostListColumns}
-              data={jobPosts}
+              data={visibleJobPosts}
               currentPage={currentPage}
               totalItemsCount={totalItemsCount}
               itemsPerPage={itemsPerPage}
@@ -137,7 +154,7 @@ const SampleMapSearchPage = () => {
   );
 };
 
-export default SampleMapSearchPage;
+export default JobPostMapPage;
 
 const StyledContainer = styled.div`
   padding-left: 320px;
