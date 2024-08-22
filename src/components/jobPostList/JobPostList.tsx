@@ -31,11 +31,11 @@ const JobPostList = ({
   const totalPages = Math.ceil(totalItemsCount / itemsPerPage);
 
   return (
-    <>
+    <Container>
       <StyledDynamicTableContainer>
         <DynamicTable columns={columns} data={data} onRowClick={onRowClick} />
       </StyledDynamicTableContainer>
-      <StyledPaginationContainer>
+      <PaginationContainer>
         <Pagination
           size="small"
           color="primary"
@@ -46,12 +46,20 @@ const JobPostList = ({
           siblingCount={1} // Number of sibling pages to show
           boundaryCount={2} // Number of boundary pages to show
         />
-      </StyledPaginationContainer>
-    </>
+      </PaginationContainer>
+    </Container>
   );
 };
 
 export default JobPostList;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 1040px;
+  max-width: 1040px;
+`;
 
 const StyledDynamicTableContainer = styled.div`
   width: 100%;
@@ -59,10 +67,9 @@ const StyledDynamicTableContainer = styled.div`
   overflow-x: auto;
 `;
 
-const StyledPaginationContainer = styled.div`
+const PaginationContainer = styled.div`
   display: flex;
   justify-content: center;
   padding-top: 40px;
-  min-width: 800px;
-  overflow-x: auto;
+  padding-bottom: 40px;
 `;
