@@ -46,7 +46,7 @@ const JobPostList = ({
           siblingCount={1} // Number of sibling pages to show
           boundaryCount={2} // Number of boundary pages to show
         />
-      </PaginationContainer>
+      </StyledPaginationContainer>
     </Container>
   );
 };
