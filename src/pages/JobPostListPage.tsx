@@ -188,7 +188,6 @@ const JobPostListPage = () => {
             totalItemsCount={totalItemsCount}
             itemsPerPage={itemsPerPage}
             onPageChange={handlePageChange}
-            onRowsPerPageChange={handleRowsPerPageChange}
             onRowClick={handleRowClick}
           />
         </StyledContents>

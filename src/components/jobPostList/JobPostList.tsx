@@ -14,7 +14,6 @@ interface JobPostListProps {
   totalItemsCount: number;
   itemsPerPage: number;
   onPageChange: (event: React.ChangeEvent<unknown>, newPage: number) => void;
-  onRowsPerPageChange: (event: React.ChangeEvent<{ value: unknown }>) => void;
   onRowClick: (jobPost: JobPostListData) => void;
 }
 
@@ -25,7 +24,6 @@ const JobPostList = ({
   totalItemsCount,
   itemsPerPage,
   onPageChange,
-  onRowsPerPageChange,
   onRowClick,
 }: JobPostListProps) => {
   const totalPages = Math.ceil(totalItemsCount / itemsPerPage);
