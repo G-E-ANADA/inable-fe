@@ -35,7 +35,7 @@ const JobPostList = ({
       <StyledDynamicTableContainer>
         <DynamicTable columns={columns} data={data} onRowClick={onRowClick} />
       </StyledDynamicTableContainer>
-      <StyledPaginationContainer>
+      <PaginationContainer>
         <Pagination
           size="small"
           color="primary"
@@ -67,10 +67,9 @@ const StyledDynamicTableContainer = styled.div`
   overflow-x: auto;
 `;
 
-const StyledPaginationContainer = styled.div`
+const PaginationContainer = styled.div`
   display: flex;
   justify-content: center;
   padding-top: 40px;
-  min-width: 800px;
-  overflow-x: auto;
+  padding-bottom: 40px;
 `;
