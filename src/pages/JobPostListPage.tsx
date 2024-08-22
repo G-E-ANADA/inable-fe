@@ -1,4 +1,4 @@
-import { Container, SelectChangeEvent } from "@mui/material";
+import { SelectChangeEvent } from "@mui/material";
 import Button from "@mui/material/Button";
 import Skeleton from "@mui/material/Skeleton";
 import React, { useEffect, useState } from "react";
@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 import { fetchJobPostList } from "../api/jobPosts";
 import Header from "../components/Header";
+import SearchOptions from "../components/common/SearchOptions";
 import JobPostList from "../components/jobPostList/JobPostList";
 import {
   jobPostListColumns,
@@ -134,45 +135,13 @@ const JobPostListPage = () => {
   if (error) return <div>Error: {error as string}</div>;
 
   return (
-    <>
-      <Container>
-        <Header />
-        <div>
-          <div
-            style={{
-              width: "100%",
-              maxWidth: "600px",
-              margin: "0 auto",
-              textAlign: "center",
-              color: "black",
-              fontSize: 24,
-              fontWeight: "500",
-              lineHeight: 3,
-              whiteSpace: "nowrap", // 텍스트 줄바꿈 방지
-            }}
-          >
-            실시간 채용 정보
-          </div>
-          <div
-            style={{
-              width: "100%",
-              maxWidth: "600px",
-              margin: "0 auto",
-              textAlign: "center",
-              color: "#707070",
-              fontSize: 18,
-              fontWeight: "400",
-              whiteSpace: "nowrap", // 텍스트 줄바꿈 방지
-            }}
-          >
-            실시간 채용 정보를 확인해 보세요
-          </div>
-        </div>
-        <div>검색 필터</div>
-        <div>검색 조건 확인</div>
-        <div>
-          <div>검색결과</div>
-        </div>
+    <StyledContainer>
+      <Header />
+      <StyledContents>
+        <SearchOptions
+          searchCriteria={searchCriteria}
+          handleChange={handleChange}
+        />
         <JobPostList
           columns={jobPostListColumns}
           data={jobPosts}
@@ -183,22 +152,29 @@ const JobPostListPage = () => {
           onRowsPerPageChange={handleRowsPerPageChange}
           onRowClick={handleRowClick}
         />
-      </Container>
-    </>
+      </StyledContents>
+    </StyledContainer>
   );
 };
 
 export default JobPostListPage;
 
-const Container = styled.div`
+const StyledContainer = styled.div`
   padding-left: 320px;
   padding-right: 320px;
-  padding-bottom: 80px;
+  margin: 0;
+  box-sizing: border-box;
+`;
+
+const StyledContents = styled.div`
+  padding: 20px;
 `;
 
 const StyledSkeletonContainer = styled.div`
+  padding-left: 320px;
+  padding-right: 320px;
   width: 100%;
-  min-width: 800px;
+  min-width: 1040px;
   overflow-x: auto;
   align-items: center;
   flex-direction: column;
