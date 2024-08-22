@@ -1,19 +1,20 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { JobPostMapDataType } from "../../types/JobPostDataType";
-import CustomMapMarker from "./CustomMapMarker";
 import Refresh from "../../asset/Refresh.svg";
+import { JobPostListData } from "../../types/JobPostDataType";
+import CustomMapMarker from "./CustomMapMarker";
 
 interface Coordinates {
   latitude: number;
   longitude: number;
 }
 
-interface JobPostType {
+interface JobPostMapType {
   coordinates: Coordinates;
-  jobPostData: JobPostMapDataType[];
+  jobPostData: JobPostListData[];
   setSortedjobPostData?: React.Dispatch<
-    React.SetStateAction<JobPostMapDataType[]>
+    React.SetStateAction<JobPostListData[]>
   >;
 }
 
@@ -21,14 +22,15 @@ const JobPostMap = ({
   coordinates,
   jobPostData,
   setSortedjobPostData,
-}: JobPostType) => {
+}: JobPostMapType) => {
   const mapRef = useRef<HTMLDivElement | null>(null);
   const { naver } = window;
   let map: naver.maps.Map;
   const [newMap, setNewMap] = useState<naver.maps.Map | null>(null);
-  // const createMarkerList: naver.maps.Marker[] = []; //마커를 담을 배열
   const markerListRef = useRef<naver.maps.Marker[]>([]); // 마커를 담을 배열을 useRef로 관리
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleResize = () => {
@@ -75,7 +77,6 @@ const JobPostMap = ({
 
   useEffect(() => {
     if (newMap) {
-      console.log("!!", markerListRef);
       const MoveEventListner = naver.maps.Event.addListener(
         newMap,
         "idle",
@@ -93,11 +94,9 @@ const JobPostMap = ({
     markerListRef.current = [];
 
     jobPostData.forEach((data) => {
-      const { id, title, lat, lng } = data;
-      addMarker(map, id, title, lat, lng);
+      const { id, busplaName, latitude, longitude } = data;
+      addMarker(map, id, busplaName, latitude, longitude);
     });
-
-    console.log("Markers added:", markerListRef.current);
   };
 
   const addMarker = (
@@ -166,9 +165,12 @@ const JobPostMap = ({
     marker.setMap(null);
   };
 
-  //마커 클릭 이벤트 핸들러
   const markerClickHandler = (id: string) => {
-    console.log("Marker clicked!");
+    const selectedJobPost = jobPostData.find((jobPost) => jobPost.id === id);
+
+    if (selectedJobPost) {
+      navigate(`/job-post/${id}`, { state: { jobPost: selectedJobPost } });
+    }
   };
 
   const idleHandler = () => {

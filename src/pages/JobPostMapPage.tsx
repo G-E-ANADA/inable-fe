@@ -10,7 +10,6 @@ import JobPostMap from "../components/map/JobPostMap";
 import {
   jobPostListColumns,
   JobPostListData,
-  JobPostMapDataType,
   SearchCriteria,
 } from "../types/JobPostDataType";
 
@@ -23,13 +22,6 @@ const SampleMapSearchPage = () => {
     envLiftPower: "",
     envBothHands: "",
   });
-  const [searchKeyword, setSearchKeyword] = useState("");
-  const [jobPostMapData, setJobPostMapData] = useState<JobPostMapDataType[]>(
-    []
-  );
-  const [sortedjobPostMapData, setSortedjobPostMapData] = useState<
-    JobPostMapDataType[]
-  >([]);
   const [jobPosts, setJobPosts] = useState<JobPostListData[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -39,32 +31,6 @@ const SampleMapSearchPage = () => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    // API 호출 함수
-    const fetchJobPostData = async () => {
-      try {
-        const response = await axios.get("http://127.0.0.1:8000/job_posts/");
-        const data = response.data;
-
-        // 받아온 데이터를 원하는 형식으로 변환
-        const transformedData = data["job_posts"].map((item: any) => ({
-          id: item.id,
-          title: item.busplaName,
-          address: { area: item.compAddr, fullAddress: item.compAddr },
-          lat: parseFloat(item.latitude),
-          lng: parseFloat(item.longitude),
-        }));
-
-        setJobPostMapData(transformedData);
-      } catch (error) {
-        console.error("Failed to fetch job post data:", error);
-      }
-    };
-
-    fetchJobPostData();
-    setSearchKeyword("서울시 마포구");
-  }, []);
-
   // 초기 좌표 설정 (전체 지도 보기용)
   const initialCoordinates = { latitude: 37.5665, longitude: 126.978 };
 
@@ -72,19 +38,16 @@ const SampleMapSearchPage = () => {
     const fetchJobPosts = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(
-          "http://localhost:8000/job_posts/search",
-          {
-            params: {
-              ...searchCriteria,
-              start: (currentPage - 1) * itemsPerPage,
-              limit: itemsPerPage,
-            },
-          }
-        );
+        const response = await axios.get("http://localhost:8000/job_posts/", {
+          params: {
+            ...searchCriteria,
+            start: (currentPage - 1) * itemsPerPage,
+            limit: itemsPerPage,
+          },
+        });
 
         response.data.job_posts.forEach((jobPost: JobPostListData) => {
-          jobPost.compAddr =
+          jobPost.area =
             jobPost.compAddr.split(" ")[0] +
             " " +
             jobPost.compAddr.split(" ")[1];
@@ -116,10 +79,6 @@ const SampleMapSearchPage = () => {
     fetchJobPosts();
   }, [searchCriteria, currentPage, itemsPerPage]);
 
-  const handleSearch = () => {
-    setCurrentPage(1); // 검색 시 첫 페이지로 돌아감
-  };
-
   const handleChange = (event: SelectChangeEvent<string>) => {
     const { name, value } = event.target;
     setSearchCriteria((prev) => ({
@@ -135,13 +94,6 @@ const SampleMapSearchPage = () => {
     setCurrentPage(newPage); // MUI의 페이지는 0부터 시작하므로 +1
   };
 
-  const handleRowsPerPageChange = (
-    event: React.ChangeEvent<{ value: unknown }>
-  ) => {
-    setItemsPerPage(parseInt(event.target.value as string, 10));
-    setCurrentPage(1); // 페이지당 아이템 수 변경 시 첫 페이지로 돌아감
-  };
-
   const handleRowClick = (jobPost: JobPostListData) => {
     navigate(`/job-post/${jobPost.id}`, { state: { jobPost } });
   };
@@ -150,38 +102,38 @@ const SampleMapSearchPage = () => {
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <StyledContainer>
+    <>
       <Header></Header>
-      <StyledContents>
-        <StyledMapContanier>
-          <JobPostMap
-            coordinates={initialCoordinates}
-            jobPostData={jobPostMapData}
-            setSortedjobPostData={setSortedjobPostMapData}
+      <StyledContainer>
+        <StyledContents>
+          <StyledMapContanier>
+            <JobPostMap
+              coordinates={initialCoordinates}
+              jobPostData={jobPosts}
+            />
+          </StyledMapContanier>
+          <SearchOptions
+            searchCriteria={searchCriteria}
+            handleChange={handleChange}
           />
-        </StyledMapContanier>
-        <SearchOptions
-          searchCriteria={searchCriteria}
-          handleChange={handleChange}
-        />
-        <div>
-          <StyledListHeader>
-            <Text>검색결과</Text>
-            <SelectBox>tt</SelectBox>
-          </StyledListHeader>
-          <JobPostList
-            columns={jobPostListColumns}
-            data={jobPosts}
-            currentPage={currentPage}
-            totalItemsCount={totalItemsCount}
-            itemsPerPage={itemsPerPage}
-            onPageChange={handlePageChange}
-            onRowsPerPageChange={handleRowsPerPageChange}
-            onRowClick={handleRowClick}
-          />
-        </div>
-      </StyledContents>
-    </StyledContainer>
+          <div>
+            <StyledListHeader>
+              <Text>검색결과</Text>
+              <SelectBox>tt</SelectBox>
+            </StyledListHeader>
+            <JobPostList
+              columns={jobPostListColumns}
+              data={jobPosts}
+              currentPage={currentPage}
+              totalItemsCount={totalItemsCount}
+              itemsPerPage={itemsPerPage}
+              onPageChange={handlePageChange}
+              onRowClick={handleRowClick}
+            />
+          </div>
+        </StyledContents>
+      </StyledContainer>
+    </>
   );
 };
 
@@ -192,6 +144,8 @@ const StyledContainer = styled.div`
   padding-right: 320px;
   margin: 0;
   box-sizing: border-box;
+  max-width: 1040px;
+  min-width: 1040px;
 `;
 
 const StyledContents = styled.div``;
@@ -206,18 +160,25 @@ const StyledMapContanier = styled.div`
 `;
 
 const StyledListHeader = styled.div`
+  max-width: 1040px;
+  min-width: 1040px;
   width: 100%;
   position: relative;
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
-  justify-content: space-between;
+  align-items: center; /* 세로 정렬을 가운데로 */
+  justify-content: space-between; /* 왼쪽과 오른쪽 끝으로 배치 */
   text-align: left;
   font-size: 21px;
   color: #191919;
   margin-bottom: 24px;
 `;
 
-const Text = styled.div``;
+const Text = styled.div`
+  flex-grow: 1; /* 나머지 공간을 차지 */
+  text-align: left; /* 왼쪽 정렬 */
+`;
 
-const SelectBox = styled.div``;
+const SelectBox = styled.div`
+  text-align: right; /* 오른쪽 정렬 */
+`;
