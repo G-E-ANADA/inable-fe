@@ -1,4 +1,4 @@
-import { Container, SelectChangeEvent } from "@mui/material";
+import { SelectChangeEvent } from "@mui/material";
 import Button from "@mui/material/Button";
 import Skeleton from "@mui/material/Skeleton";
 import React, { useEffect, useState } from "react";
@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 import { fetchJobPostList } from "../api/jobPosts";
 import Header from "../components/Header";
+import SearchOptions from "../components/common/SearchOptions";
 import JobPostList from "../components/jobPostList/JobPostList";
 import {
   jobPostListColumns,
@@ -201,7 +202,8 @@ export default JobPostListPage;
 const StyledContainer = styled.div`
   padding-left: 320px;
   padding-right: 320px;
-  padding-bottom: 80px;
+  margin: 0;
+  box-sizing: border-box;
 `;
 
 const StyledContents = styled.div`
@@ -209,8 +211,10 @@ const StyledContents = styled.div`
 `;
 
 const StyledSkeletonContainer = styled.div`
+  padding-left: 320px;
+  padding-right: 320px;
   width: 100%;
-  min-width: 800px;
+  min-width: 1040px;
   overflow-x: auto;
   align-items: center;
   flex-direction: column;

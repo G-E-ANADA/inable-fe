@@ -2,6 +2,7 @@
   width: 180px;
   position: relative;
   height: 100px;
+  cursor: pointer;
 }
 .text {
   position: relative;
