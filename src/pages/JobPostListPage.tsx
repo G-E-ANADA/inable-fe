@@ -137,17 +137,23 @@ const JobPostListPage = () => {
     <>
       <Container>
         <Header />
-        <div>
+        <div
+          style={{
+            maxWidth: "1040px",
+            minWidth: "1040px",
+            marginTop: "60px",
+            marginBottom: "44px",
+          }}
+        >
           <div
             style={{
               width: "100%",
-              maxWidth: "600px",
-              margin: "0 auto",
+              margin: "0",
               textAlign: "center",
               color: "black",
               fontSize: 24,
               fontWeight: "500",
-              lineHeight: 3,
+              lineHeight: 2,
               whiteSpace: "nowrap", // 텍스트 줄바꿈 방지
             }}
           >
@@ -203,6 +209,9 @@ const StyledSkeletonContainer = styled.div`
   align-items: center;
   flex-direction: column;
   display: flex;
+  padding-left: 320px;
+  padding-right: 320px;
+  padding-bottom: 80px;
 `;
 
 const StyledHeaderSkeleton = styled(Skeleton)`
