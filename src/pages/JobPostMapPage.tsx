@@ -80,8 +80,13 @@ const JobPostMapPage = () => {
         });
 
         setJobPosts(jobPosts);
-        setTotalItemsCount(response.data.total_count);
+        setTotalItemsCount(response.data.job_posts.length);
         setLoading(false);
+
+        // 초기 로드 시 visibleJobPosts 업데이트
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        setVisibleJobPosts(jobPosts.slice(startIndex, endIndex));
       } catch (err) {
         if (axios.isAxiosError(err) && err.message) {
           setError(err.message);
