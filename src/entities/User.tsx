@@ -1,4 +1,4 @@
-type memberType = "personal"|"corp";
+type memberType = "PERSONAL"|"CORP";
 
 class User {
   id: number;
@@ -15,7 +15,7 @@ class User {
     name: string,
     createdAt: Date,
     updatedAt: Date,
-    type: memberType,
+    type: memberType = "PERSONAL",
     lastLogin?: Date
   ) {
     this.id = id;
