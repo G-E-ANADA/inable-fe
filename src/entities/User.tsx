@@ -1,12 +1,17 @@
-type memberType = "PERSONAL"|"CORP";
+// 상수 정의
+export const PERSONAL_TYPE = "PERSONAL" as const;
+export const CORP_TYPE = "CORP" as const;
 
-class User {
+// 타입 정의
+export type MemberType = typeof PERSONAL_TYPE | typeof CORP_TYPE;
+
+export class User {
   id: number;
   uid: string;
   name: string;
   createdAt: Date;
   updatedAt: Date;
-  type: memberType;
+  type: MemberType;
   lastLogin?: Date;
 
   constructor(
@@ -15,7 +20,7 @@ class User {
     name: string,
     createdAt: Date,
     updatedAt: Date,
-    type: memberType = "PERSONAL",
+    type: MemberType = PERSONAL_TYPE,
     lastLogin?: Date
   ) {
     this.id = id;
@@ -33,7 +38,7 @@ class User {
     name: string;
     createdAt: Date;
     updatedAt: Date;
-    type: memberType,
+    type: MemberType,
     lastLogin?: Date;
   }) {
     return new User(
@@ -52,5 +57,3 @@ class User {
   //     this.lastLogin = date;
   //   }
 }
-
-export default User;

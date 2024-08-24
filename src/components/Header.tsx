@@ -2,6 +2,7 @@ import styles from "../css/Header.module.css";
 import logo from "../asset/logo.svg";
 import { Link } from "react-router-dom";
 import useAuthStore from "../store/store";
+import { CORP_TYPE } from "../entities/User";
 
 interface NavLink {
   to: string;
@@ -12,7 +13,7 @@ interface HeaderProps {
   navLinks: NavLink[];
 }
 
-const navLinks = [
+const navLinksForPersonalMember = [
   { to: "/", text: "AI 도우미" },
   { to: "/jobPostList", text: "채용 정보" },
   { to: "/jobPostMap", text: "채용 지도" },
@@ -20,8 +21,21 @@ const navLinks = [
   { to: "/educationInfo", text: "교육 정보" },
 ];
 
+const navLinksForCorpMember = [
+  { to: "/", text: "기업" },
+  { to: "/jobPostList", text: "채용 정보" },
+  { to: "/jobPostMap", text: "채용 지도" },
+  { to: "/myPage", text: "나의 정보" },
+  { to: "/educationInfo", text: "교육 정보" },
+];
+
+let navLinks = navLinksForPersonalMember;
+
 const Header = () => {
   const loginUser = useAuthStore.getState().user;
+  if(loginUser && loginUser.type === CORP_TYPE){
+    navLinks = navLinksForCorpMember
+  }
 
   const handleLogo = () => {
     window.location.href = "/";
@@ -29,7 +43,7 @@ const Header = () => {
 
   return (
     <>
-      <div className={styles.gnb}>
+    <div className={styles.gnb}>
         <div className={styles.logoParent}>
           <img
             className={styles.logoIcon}
