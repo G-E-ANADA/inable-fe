@@ -1,9 +1,12 @@
+type memberType = "personal"|"corp";
+
 class User {
   id: number;
   uid: string;
   name: string;
   createdAt: Date;
   updatedAt: Date;
+  type: memberType;
   lastLogin?: Date;
 
   constructor(
@@ -12,6 +15,7 @@ class User {
     name: string,
     createdAt: Date,
     updatedAt: Date,
+    type: memberType,
     lastLogin?: Date
   ) {
     this.id = id;
@@ -20,6 +24,7 @@ class User {
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
     this.lastLogin = lastLogin;
+    this.type = type;
   }
 
   static craeteUser(data: {
@@ -28,6 +33,7 @@ class User {
     name: string;
     createdAt: Date;
     updatedAt: Date;
+    type: memberType,
     lastLogin?: Date;
   }) {
     return new User(
@@ -36,6 +42,7 @@ class User {
       data.name,
       data.createdAt,
       data.updatedAt,
+      data.type,
       data.lastLogin
     );
   }
