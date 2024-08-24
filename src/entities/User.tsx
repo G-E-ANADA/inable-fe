@@ -1,9 +1,17 @@
-class User {
+// 상수 정의
+export const PERSONAL_TYPE = "PERSONAL" as const;
+export const CORP_TYPE = "CORP" as const;
+
+// 타입 정의
+export type MemberType = typeof PERSONAL_TYPE | typeof CORP_TYPE;
+
+export class User {
   id: number;
   uid: string;
   name: string;
   createdAt: Date;
   updatedAt: Date;
+  type: MemberType;
   lastLogin?: Date;
 
   constructor(
@@ -12,6 +20,7 @@ class User {
     name: string,
     createdAt: Date,
     updatedAt: Date,
+    type: MemberType = PERSONAL_TYPE,
     lastLogin?: Date
   ) {
     this.id = id;
@@ -20,6 +29,7 @@ class User {
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
     this.lastLogin = lastLogin;
+    this.type = type;
   }
 
   static craeteUser(data: {
@@ -28,6 +38,7 @@ class User {
     name: string;
     createdAt: Date;
     updatedAt: Date;
+    type: MemberType,
     lastLogin?: Date;
   }) {
     return new User(
@@ -36,14 +47,9 @@ class User {
       data.name,
       data.createdAt,
       data.updatedAt,
+      data.type,
       data.lastLogin
     );
   }
 
-  // 필요한 메소드 추가 가능
-  //   updateLastLogin(date: Date) {
-  //     this.lastLogin = date;
-  //   }
 }
-
-export default User;

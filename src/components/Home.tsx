@@ -8,6 +8,7 @@ import ReactDOM from "react-dom/client"; // ReactDOM을 명시적으로 import
 const Home = ({}) => {
   const API_URL = process.env.REACT_APP_AI_API;
   const loginUser = useAuthStore.getState().user;
+  console.log(loginUser)
 
   const [animate, setAnimate] = useState(false);
   const [data, setData] = useState("");
