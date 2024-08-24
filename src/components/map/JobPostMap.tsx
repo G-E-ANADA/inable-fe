@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import Refresh from "../../asset/Refresh.svg";
 import { JobPostListData } from "../../types/JobPostDataType";
 import CustomMapMarker from "./CustomMapMarker";
 
@@ -194,12 +193,6 @@ const JobPostMap = ({
   return (
     <StyledMapContainer>
       <StyledMap id="map" ref={mapRef}></StyledMap>
-      <StyledButton onClick={() => console.log("reset btn")}>
-        <StyledButtonIcon>
-          <img src={Refresh} alt="" />
-        </StyledButtonIcon>
-        <StyledButtonContent>현 위치에서 검색</StyledButtonContent>
-      </StyledButton>
     </StyledMapContainer>
   );
 };

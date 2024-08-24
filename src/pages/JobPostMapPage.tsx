@@ -10,23 +10,24 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 import Header from "../components/Header";
-import SearchOptions from "../components/common/SearchOptions";
 import JobPostList from "../components/jobPostList/JobPostList";
 import JobPostMap from "../components/map/JobPostMap";
+import MapSearchOptions from "../components/map/MapSearchOptions";
 import {
   jobPostListColumns,
   JobPostListData,
-  SearchCriteria,
+  MapSearchCriteria,
 } from "../types/JobPostDataType";
 
 const JobPostMapPage = () => {
-  const [searchCriteria, setSearchCriteria] = useState<SearchCriteria>({
-    compAddr: "",
-    jobNm: "",
+  const [searchCriteria, setSearchCriteria] = useState<MapSearchCriteria>({
+    searchRegion: "",
+    searchJobCategory: "",
     empType: "",
-    envEyesight: "",
-    envLiftPower: "",
-    envBothHands: "",
+    salaryType: "",
+    searchEnvBothHands: "",
+    searchEnvEyesight: "",
+    searchEnvLiftPower: "",
   });
   const [jobPosts, setJobPosts] = useState<JobPostListData[]>([]);
   const [currentJobPosts, setCurrentJobPosts] = useState<JobPostListData[]>([]);
@@ -104,20 +105,50 @@ const JobPostMapPage = () => {
     fetchJobPosts();
   }, []);
 
+  useEffect(() => {
+    for (const key in searchCriteria) {
+      if (searchCriteria[key as keyof MapSearchCriteria] === "무관") {
+        searchCriteria[key as keyof MapSearchCriteria] = "";
+      }
+    }
+    const filteredJobPosts = visibleJobPosts.filter((jobPost) => {
+      return (
+        (!searchCriteria.searchRegion ||
+          jobPost.searchRegion.includes(searchCriteria.searchRegion)) &&
+        (!searchCriteria.searchJobCategory ||
+          jobPost.searchJobCategory === searchCriteria.searchJobCategory) &&
+        (!searchCriteria.empType ||
+          jobPost.empType === searchCriteria.empType) &&
+        (!searchCriteria.salaryType ||
+          jobPost.salaryType === searchCriteria.salaryType) &&
+        (!searchCriteria.searchEnvBothHands ||
+          jobPost.searchEnvBothHands === searchCriteria.searchEnvBothHands) &&
+        (!searchCriteria.searchEnvEyesight ||
+          jobPost.searchEnvEyesight === searchCriteria.searchEnvEyesight) &&
+        (!searchCriteria.searchEnvLiftPower ||
+          jobPost.searchEnvLiftPower === searchCriteria.searchEnvLiftPower) &&
+        true
+      );
+    });
+
+    if (filteredJobPosts) {
+      const sortedVisibleJobPosts = sortData(filteredJobPosts, sort);
+      const startIndex = (currentPage - 1) * itemsPerPage;
+      const endIndex = startIndex + itemsPerPage;
+      setCurrentJobPosts(sortedVisibleJobPosts.slice(startIndex, endIndex));
+      setTotalItemsCount(filteredJobPosts.length);
+    }
+  }, [searchCriteria, visibleJobPosts, currentPage]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchCriteria]);
+
   const handlePaging = () => {
     setCurrentPage(1);
   };
 
-  useEffect(() => {
-    setTotalItemsCount(visibleJobPostsCounts);
-
-    const sortedVisibleJobPosts = sortData(visibleJobPosts, sort);
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    setCurrentJobPosts(sortedVisibleJobPosts.slice(startIndex, endIndex));
-  }, [visibleJobPosts, currentPage]);
-
-  const handleChange = (event: SelectChangeEvent<string>) => {
+  const handleMapSearchOptionChange = (event: SelectChangeEvent<string>) => {
     const { name, value } = event.target;
     setSearchCriteria((prev) => ({
       ...prev,
@@ -175,14 +206,14 @@ const JobPostMapPage = () => {
               setVisibleJobPostsCounts={setVisibleJobPostsCounts}
             />
           </StyledMapContanier>
-          <SearchOptions
-            searchCriteria={searchCriteria}
-            handleChange={handleChange}
+          <MapSearchOptions
+            mapSearchCriteria={searchCriteria}
+            handleChange={handleMapSearchOptionChange}
           />
           <div>
             <StyledListHeader>
               <Text>검색결과</Text>
-              <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+              <FormControl sx={{ m: 1, minWidth: 220 }} size="small">
                 <InputLabel id="sort-label">정렬</InputLabel>
                 <Select
                   labelId="sort-label"
