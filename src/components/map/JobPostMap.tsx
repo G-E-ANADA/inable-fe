@@ -162,7 +162,7 @@ const JobPostMap = ({
         hideMarker(marker);
       }
     }
-    if (setSortedJobPostData && setVisibleJobPostsCounts) {
+    if (setSortedJobPostData && setVisibleJobPostsCounts && handlePaging) {
       setSortedJobPostData(visibleJobPosts);
       setVisibleJobPostsCounts(visibleJobPosts.length);
       handlePaging();

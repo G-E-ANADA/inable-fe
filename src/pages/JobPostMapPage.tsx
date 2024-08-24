@@ -45,11 +45,10 @@ const JobPostMapPage = () => {
     const fetchJobPosts = async () => {
       setLoading(true);
       try {
-        const response = await axios.get("http://localhost:8000/job_posts/", {
-          params: {
-            ...searchCriteria,
-          },
-        });
+        const response = await axios.get(
+          "http://localhost:8000/job_posts/",
+          {}
+        );
 
         const jobPosts = response.data.job_posts.map((jobPost: any) => {
           const latitude = parseFloat(jobPost.latitude);
@@ -75,7 +74,7 @@ const JobPostMapPage = () => {
         });
 
         setJobPosts(jobPosts);
-        setTotalItemsCount(response.data.job_posts.length);
+        setTotalItemsCount(response.data.total_count);
         setLoading(false);
 
         // 초기 로드 시 visibleJobPosts 업데이트
@@ -84,7 +83,7 @@ const JobPostMapPage = () => {
         setCurrentJobPosts(jobPosts.slice(startIndex, endIndex));
 
         setVisibleJobPosts(jobPosts);
-        setVisibleJobPostsCounts(jobPosts.length);
+        setVisibleJobPostsCounts(response.data.total_count);
       } catch (err) {
         if (axios.isAxiosError(err) && err.message) {
           setError(err.message);
