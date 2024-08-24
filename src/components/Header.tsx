@@ -24,9 +24,9 @@ const navLinksForPersonalMember = [
 const navLinksForCorpMember = [
   { to: "/", text: "기업" },
   { to: "/jobPostList", text: "채용 정보" },
-  { to: "/jobPostMap", text: "채용 지도" },
-  { to: "/myPage", text: "나의 정보" },
-  { to: "/educationInfo", text: "교육 정보" },
+  { to: "/jobPostMap", text: "공고 등록" },
+  { to: "/myPage", text: "지원자 관리" },
+  { to: "/educationInfo", text: "기업 정보" },
 ];
 
 let navLinks = navLinksForPersonalMember;

@@ -52,8 +52,4 @@ export class User {
     );
   }
 
-  // 필요한 메소드 추가 가능
-  //   updateLastLogin(date: Date) {
-  //     this.lastLogin = date;
-  //   }
 }
