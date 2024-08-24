@@ -16,12 +16,16 @@ interface JobPostMapType {
   setSortedJobPostData?: React.Dispatch<
     React.SetStateAction<JobPostListData[]>
   >;
+  setVisibleJobPostsCounts?: React.Dispatch<React.SetStateAction<number>>;
+  handlePaging?: () => void;
 }
 
 const JobPostMap = ({
   coordinates,
   jobPostData,
   setSortedJobPostData,
+  handlePaging,
+  setVisibleJobPostsCounts,
 }: JobPostMapType) => {
   const mapRef = useRef<HTMLDivElement | null>(null);
   const { naver } = window;
@@ -142,8 +146,6 @@ const JobPostMap = ({
     const mapBounds = map.getBounds();
     let visibleJobPosts: JobPostListData[] = [];
 
-    // let marker: naver.maps.Marker, position;
-
     for (let i = 0; i < markers.length; i++) {
       const marker = markers[i];
       const position = marker.getPosition();
@@ -160,8 +162,10 @@ const JobPostMap = ({
         hideMarker(marker);
       }
     }
-    if (setSortedJobPostData) {
+    if (setSortedJobPostData && setVisibleJobPostsCounts) {
       setSortedJobPostData(visibleJobPosts);
+      setVisibleJobPostsCounts(visibleJobPosts.length);
+      handlePaging();
     }
   };
 

@@ -23,7 +23,9 @@ const JobPostMapPage = () => {
     envBothHands: "",
   });
   const [jobPosts, setJobPosts] = useState<JobPostListData[]>([]);
+  const [currentJobPosts, setCurrentJobPosts] = useState<JobPostListData[]>([]);
   const [visibleJobPosts, setVisibleJobPosts] = useState<JobPostListData[]>([]);
+  const [visibleJobPostsCounts, setVisibleJobPostsCounts] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -40,19 +42,12 @@ const JobPostMapPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("mapCoordinates", mapCoordinates);
-  }),
-    [mapCoordinates];
-
-  useEffect(() => {
     const fetchJobPosts = async () => {
       setLoading(true);
       try {
         const response = await axios.get("http://localhost:8000/job_posts/", {
           params: {
             ...searchCriteria,
-            start: (currentPage - 1) * itemsPerPage,
-            limit: itemsPerPage,
           },
         });
 
@@ -86,7 +81,10 @@ const JobPostMapPage = () => {
         // 초기 로드 시 visibleJobPosts 업데이트
         const startIndex = (currentPage - 1) * itemsPerPage;
         const endIndex = startIndex + itemsPerPage;
-        setVisibleJobPosts(jobPosts.slice(startIndex, endIndex));
+        setCurrentJobPosts(jobPosts.slice(startIndex, endIndex));
+
+        setVisibleJobPosts(jobPosts);
+        setVisibleJobPostsCounts(jobPosts.length);
       } catch (err) {
         if (axios.isAxiosError(err) && err.message) {
           setError(err.message);
@@ -98,7 +96,18 @@ const JobPostMapPage = () => {
     };
 
     fetchJobPosts();
-  }, [searchCriteria, currentPage, itemsPerPage]);
+  }, []);
+
+  const handlePaging = () => {
+    setCurrentPage(1);
+  };
+
+  useEffect(() => {
+    setTotalItemsCount(visibleJobPostsCounts);
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    setCurrentJobPosts(visibleJobPosts.slice(startIndex, endIndex));
+  }, [visibleJobPostsCounts, currentPage]);
 
   const handleChange = (event: SelectChangeEvent<string>) => {
     const { name, value } = event.target;
@@ -132,6 +141,8 @@ const JobPostMapPage = () => {
               coordinates={mapCoordinates}
               jobPostData={jobPosts}
               setSortedJobPostData={setVisibleJobPosts}
+              handlePaging={handlePaging}
+              setVisibleJobPostsCounts={setVisibleJobPostsCounts}
             />
           </StyledMapContanier>
           <SearchOptions
@@ -145,7 +156,7 @@ const JobPostMapPage = () => {
             </StyledListHeader>
             <JobPostList
               columns={jobPostListColumns}
-              data={visibleJobPosts}
+              data={currentJobPosts}
               currentPage={currentPage}
               totalItemsCount={totalItemsCount}
               itemsPerPage={itemsPerPage}
