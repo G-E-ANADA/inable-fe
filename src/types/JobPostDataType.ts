@@ -27,6 +27,8 @@ export interface JobPostListData {
   latitude: number;
   longitude: number;
   area: string;
+  startDate: string;
+  endDate: string;
 }
 
 export interface SearchCriteria {

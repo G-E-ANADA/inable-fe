@@ -1,4 +1,10 @@
-import { SelectChangeEvent } from "@mui/material";
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -26,11 +32,12 @@ const JobPostMapPage = () => {
   const [currentJobPosts, setCurrentJobPosts] = useState<JobPostListData[]>([]);
   const [visibleJobPosts, setVisibleJobPosts] = useState<JobPostListData[]>([]);
   const [visibleJobPostsCounts, setVisibleJobPostsCounts] = useState<number>(0);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+  const [sort, setSort] = useState<string>("regDt");
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [itemsPerPage, setItemsPerPage] = useState<number>(10);
   const [totalItemsCount, setTotalItemsCount] = useState<number>(0);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
   const [mapCoordinates, setMapCoordinates] = useState<{
     latitude: number;
     longitude: number;
@@ -103,10 +110,12 @@ const JobPostMapPage = () => {
 
   useEffect(() => {
     setTotalItemsCount(visibleJobPostsCounts);
+
+    const sortedVisibleJobPosts = sortData(visibleJobPosts, sort);
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-    setCurrentJobPosts(visibleJobPosts.slice(startIndex, endIndex));
-  }, [visibleJobPostsCounts, currentPage]);
+    setCurrentJobPosts(sortedVisibleJobPosts.slice(startIndex, endIndex));
+  }, [visibleJobPosts, currentPage]);
 
   const handleChange = (event: SelectChangeEvent<string>) => {
     const { name, value } = event.target;
@@ -125,6 +134,28 @@ const JobPostMapPage = () => {
 
   const handleRowClick = (jobPost: JobPostListData) => {
     navigate(`/job-post/${jobPost.id}`, { state: { jobPost } });
+  };
+
+  const handleSortChange = (event: SelectChangeEvent<string>) => {
+    const { value } = event.target;
+    setSort(value);
+
+    const sortedVisibleJobPosts = sortData(visibleJobPosts, value);
+    setVisibleJobPosts([...sortedVisibleJobPosts]);
+    setCurrentPage(1);
+  };
+
+  const sortData = (data: JobPostListData[], sort: string) => {
+    return data.sort((a, b) => {
+      if (sort === "regDt") {
+        return parseInt(a.regDt) - parseInt(b.regDt);
+      } else if (sort === "endDt") {
+        const dateA = new Date(a.endDate).getTime();
+        const dateB = new Date(b.endDate).getTime();
+        return dateA - dateB;
+      }
+      return 0;
+    });
   };
 
   if (loading) return <div>Loading...</div>;
@@ -151,7 +182,19 @@ const JobPostMapPage = () => {
           <div>
             <StyledListHeader>
               <Text>검색결과</Text>
-              <SelectBox>tt</SelectBox>
+              <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+                <InputLabel id="sort-label">정렬</InputLabel>
+                <Select
+                  labelId="sort-label"
+                  id="sort-select"
+                  value={sort}
+                  label="정렬"
+                  onChange={handleSortChange}
+                >
+                  <MenuItem value={"regDt"}>최신순</MenuItem>
+                  <MenuItem value={"endDt"}>마감순</MenuItem>
+                </Select>
+              </FormControl>
             </StyledListHeader>
             <JobPostList
               columns={jobPostListColumns}
