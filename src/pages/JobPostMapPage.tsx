@@ -253,32 +253,20 @@ const JobPostMapPage = () => {
 export default JobPostMapPage;
 
 const StyledContainer = styled.div`
-  padding-left: 320px;
-  padding-right: 320px;
-  margin: 0;
-  box-sizing: border-box;
-  max-width: 1040px;
-  min-width: 1040px;
-`;
-
-const StyledContents = styled.div``;
-
-const StyledMapContanier = styled.div`
-  padding-top: 60px;
-  padding-bottom: 40px;
   width: 100%;
-  max-width: 1040px;
-  min-width: 1040px;
-  height: 100%;
+  height: 1080px;
+  position: relative;
 `;
+
+const StyledContents = styled.div`
+  margin: 0 auto;
+  width: 1280px;
+`;
+
+const StyledMapContanier = styled.div``;
 
 const StyledListHeader = styled.div`
-  max-width: 1040px;
-  min-width: 1040px;
-  width: 100%;
-  position: relative;
   display: flex;
-  flex-direction: row;
   align-items: center; /* 세로 정렬을 가운데로 */
   justify-content: space-between; /* 왼쪽과 오른쪽 끝으로 배치 */
   text-align: left;
