@@ -1,18 +1,28 @@
+import { useEffect, useState } from "react";
+import ReactDOM from "react-dom/client"; // ReactDOM을 명시적으로 import
+import searchIcon from "../asset/searchIcon.svg";
 import styles from "../css/Home.module.css";
 import useAuthStore from "../store/store";
-import searchIcon from "../asset/searchIcon.svg";
-import { useState } from "react";
 import Chat from "./chat/Chat";
-import ReactDOM from "react-dom/client"; // ReactDOM을 명시적으로 import
+import { useQuery } from "react-query";
+import { fetchJobPostList, fetchEduPostList } from "../api/postsApi";
+import { JobPostListData, EduPostListData } from "../types/PostDataType";
+import { useNavigate } from "react-router-dom";
 
 const Home = ({}) => {
   const API_URL = process.env.REACT_APP_AI_API;
   const loginUser = useAuthStore.getState().user;
-  console.log(loginUser)
+  console.log(loginUser);
 
   const [animate, setAnimate] = useState(false);
   const [data, setData] = useState("");
   const [query, setQuery] = useState("");
+
+  const [jobPosts, setJobPosts] = useState<JobPostListData[]>([]);
+  const [eduPosts, setEduPosts] = useState<any[]>([]);
+  const [showLoading, setShowLoading] = useState<boolean>(true);
+
+  const navigate = useNavigate(); // useNavigate 훅 호출
 
   const chatbotHandler = async () => {
     if (query === "") return;
@@ -94,6 +104,80 @@ const Home = ({}) => {
     return `${year}-${month}-${day}-${dayOfWeekStr[dayOfWeek]}`;
   };
 
+  // 실시간 채용 정보
+  const { isLoading: jobPostsLoading, error: jobPostsError } = useQuery(
+    ["jobPosts"],
+    () =>
+      fetchJobPostList({
+        sort: "regDt",
+      }),
+    {
+      onSuccess: (data) => {
+        const processedData = data.job_posts
+          .slice(0, 4)
+          .map((jobPost: JobPostListData) => ({
+            ...jobPost,
+            area:
+              jobPost.compAddr.split(" ")[0] +
+              " " +
+              jobPost.compAddr.split(" ")[1],
+            envBothHands: jobPost.envBothHands.substring(
+              0,
+              jobPost.envBothHands.indexOf("작")
+            ),
+            envLiftPower: jobPost.envLiftPower.substring(
+              0,
+              jobPost.envLiftPower.indexOf("g") + 1
+            ),
+          }));
+
+        setJobPosts(processedData);
+        setShowLoading(false); // 데이터 로딩 완료 후 로딩 상태 해제
+      },
+      onError: () => setShowLoading(false), // 에러 발생 시 로딩 상태 해제
+    }
+  );
+
+  // 교육 정보
+  const { isLoading: eduPostsLoading, error: eduPostsError } = useQuery(
+    ["eduPosts"],
+    () => fetchEduPostList(),
+    {
+      onSuccess: (data) => {
+        const processedData = data.edu_posts.slice(0, 7);
+        setEduPosts(processedData);
+        setShowLoading(false); // 데이터 로딩 완료 후 로딩 상태 해제
+      },
+      onError: () => setShowLoading(false), // 에러 발생 시 로딩 상태 해제
+    }
+  );
+
+  useEffect(() => {
+    if (jobPostsLoading || eduPostsLoading) {
+      const timer = setTimeout(() => {
+        setShowLoading(true);
+      }, 200); // 200ms 후에 로딩 상태 표시
+
+      return () => clearTimeout(timer);
+    }
+  }, [jobPostsLoading, eduPostsLoading]);
+
+  const formatDate = (dateString: string): string => {
+    dateString = dateString.split("T")[0];
+    const date = new Date(dateString);
+    const month = date.getMonth() + 1; // 월은 0부터 시작하므로 +1
+    const day = date.getDate();
+
+    return `${month}월 ${day}일`;
+  };
+
+  const handleJobInfoClick = (jobPost: JobPostListData) => {
+    navigate(`/job-post/${jobPost.id}`, { state: { jobPost } });
+  };
+
+  const handleEduInfoClick = (eduPost: EduPostListData) => {
+    navigate(`/eud-post/${eduPost.id}`, { state: { eduPost } });
+  };
   return (
     <div className={styles.home}>
       <div
@@ -150,38 +234,28 @@ const Home = ({}) => {
         <div className={styles.realtimeJobInfoContainer}>
           <div className={styles.areaLabel}>실시간 채용 정보</div>
           <div className={styles.realtimeJobInfoContent}>
-            <div className={styles.frameGroup}>
-              <div className={styles.parent}>
-                <div className={styles.div}>한국환경보전원</div>
-                <div className={styles.div1}>[계약직] 사무보조원 모집</div>
-                <div className={styles.div}>7월 10일 지원 마감</div>
+            {jobPosts.map((jobPost, index) => (
+              <div
+                className={styles.frameGroup}
+                key={index}
+                onClick={() => handleJobInfoClick(jobPost)}
+              >
+                <div className={styles.parent}>
+                  <div className={styles.div}>{jobPost.busplaName}</div>{" "}
+                  <div className={styles.div1}>
+                    [{jobPost.empType}] {jobPost.jobNm} 모집
+                  </div>{" "}
+                  <div className={styles.div}>
+                    {formatDate(jobPost.endDate)} 지원 마감
+                  </div>{" "}
+                </div>
+                <img
+                  className={styles.image48Icon}
+                  alt=""
+                  src={jobPost.compLogoUrl}
+                />{" "}
               </div>
-              <img className={styles.image48Icon} alt="" src="image 48.png" />
-            </div>
-            <div className={styles.frameGroup}>
-              <div className={styles.parent}>
-                <div className={styles.div}>한국환경보전원</div>
-                <div className={styles.div1}>[계약직] 사무보조원 모집</div>
-                <div className={styles.div}>7월 10일 지원 마감</div>
-              </div>
-              <img className={styles.image48Icon} alt="" src="image 48.png" />
-            </div>
-            <div className={styles.frameGroup}>
-              <div className={styles.parent}>
-                <div className={styles.div}>한국환경보전원</div>
-                <div className={styles.div1}>[계약직] 사무보조원 모집</div>
-                <div className={styles.div}>7월 10일 지원 마감</div>
-              </div>
-              <img className={styles.image48Icon} alt="" src="image 48.png" />
-            </div>
-            <div className={styles.frameGroup}>
-              <div className={styles.parent}>
-                <div className={styles.div}>한국환경보전원</div>
-                <div className={styles.div1}>[계약직] 사무보조원 모집</div>
-                <div className={styles.div}>7월 10일 지원 마감</div>
-              </div>
-              <img className={styles.image48Icon} alt="" src="image 48.png" />
-            </div>
+            ))}
           </div>
         </div>
 
@@ -189,13 +263,19 @@ const Home = ({}) => {
           <div className={styles.areaLabel}>교육 정보</div>
           <div className={styles.eduInfoContent}>
             <div className={styles.parent2}>
-              <div className={styles.div}>1차 직무지도원 양성과정</div>
-              <div className={styles.div}>1차 직무지도원 양성과정</div>
-              <div className={styles.div}>1차 직무지도원 양성과정</div>
-              <div className={styles.div}>1차 직무지도원 양성과정</div>
-              <div className={styles.div}>1차 직무지도원 양성과정</div>
-              <div className={styles.div}>1차 직무지도원 양성과정</div>
-              <div className={styles.div}>1차 직무지도원 양성과정</div>
+              {eduPosts.length > 0 ? (
+                eduPosts.map((eduPost, index) => (
+                  <div
+                    className={styles.div2}
+                    key={index}
+                    onClick={() => handleEduInfoClick(eduPost)}
+                  >
+                    {eduPost.title}
+                  </div>
+                ))
+              ) : (
+                <div className={styles.div}>교육 정보가 없습니다</div>
+              )}
             </div>
           </div>
         </div>

@@ -35,6 +35,16 @@ export interface JobPostListData {
   searchEnvEyesight: string;
   searchEnvLiftPower: string;
   searchEnvLstnTalk: string;
+  compLogoUrl: string;
+}
+
+export interface EduPostListData {
+  id: string;
+  category: string;
+  title: string;
+  organization: string;
+  date: string;
+  content: string;
 }
 
 export interface MapSearchCriteria {

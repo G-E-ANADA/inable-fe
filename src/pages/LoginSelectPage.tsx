@@ -14,14 +14,15 @@ const LoginSelectPage = () => {
   const handleSelectBox = (type: SelectBoxType) => {
     if (type === SelectBoxType.Personal) {
       return () => {
-        window.location.href = "/memberLogin";
+        window.location.href = `/login?type=${SelectBoxType.Personal}`;
       };
     } else if (type === SelectBoxType.Corp) {
       return () => {
-        alert("기업 회원 로그인은 준비 중입니다.");
+        window.location.href = `/login?type=${SelectBoxType.Corp}`;
       };
     }
   };
+
   return (
     <>
       <Header></Header>
