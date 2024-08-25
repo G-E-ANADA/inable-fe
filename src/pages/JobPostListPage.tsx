@@ -136,46 +136,12 @@ const JobPostListPage = () => {
 
   return (
     <>
+      <Header />
       <StyledContainer>
-        <Header />
         <StyledContents>
-          <div
-            style={{
-              maxWidth: "1040px",
-              minWidth: "1040px",
-              marginTop: "60px",
-              marginBottom: "44px",
-            }}
-          >
-            <div
-              style={{
-                width: "100%",
-                margin: "0",
-                textAlign: "center",
-                color: "black",
-                fontSize: 24,
-                fontWeight: "500",
-                lineHeight: 2,
-                whiteSpace: "nowrap", // 텍스트 줄바꿈 방지
-              }}
-            >
-              실시간 채용 정보
-            </div>
-            <div
-              style={{
-                width: "100%",
-                maxWidth: "600px",
-                margin: "0 auto",
-                textAlign: "center",
-                color: "#707070",
-                fontSize: 18,
-                fontWeight: "400",
-                whiteSpace: "nowrap", // 텍스트 줄바꿈 방지
-              }}
-            >
-              실시간 채용 정보를 확인해 보세요
-            </div>
-          </div>
+          <StyledTitle>실시간 채용 정보</StyledTitle>
+          <StyledSubTitle>실시간 채용 정보를 확인해 보세요</StyledSubTitle>
+
           <div>검색 필터</div>
           <div>검색 조건 확인</div>
           <div>
@@ -199,14 +165,29 @@ const JobPostListPage = () => {
 export default JobPostListPage;
 
 const StyledContainer = styled.div`
-  padding-left: 320px;
-  padding-right: 320px;
-  margin: 0;
-  box-sizing: border-box;
+  width: 100%;
+  height: 1080px;
+  position: relative;
 `;
 
 const StyledContents = styled.div`
-  padding: 20px;
+  margin: 0 auto;
+  width: 1280px;
+`;
+
+const StyledTitle = styled.div`
+  text-align: center;
+  color: "black";
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 2;
+`;
+
+const StyledSubTitle = styled.div`
+  text-align: center;
+  color: #707070;
+  font-size: 18px;
+  font-weight: 400;
 `;
 
 const StyledSkeletonContainer = styled.div`
