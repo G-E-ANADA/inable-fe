@@ -12,12 +12,26 @@ body {
   font-size: 18px;
   line-height: 150%;
   font-weight: 500;
+  overflow: hidden; /* 내용을 잘라내기 위해 overflow 설정 */
+  white-space: nowrap; /* 줄바꿈 방지 */
+  text-overflow: ellipsis; /* 초과된 텍스트에 '...' 표시 */
+  width: 100%;
+}
+.div2 {
+  position: relative;
+  font-size: 18px;
+  line-height: 150%;
+  font-weight: 500;
+  overflow: hidden; /* 내용을 잘라내기 위해 overflow 설정 */
+  white-space: nowrap; /* 줄바꿈 방지 */
+  text-overflow: ellipsis; /* 초과된 텍스트에 '...' 표시 */
+  width: 100%;
 }
 .parent {
   position: absolute;
   top: 89px;
   left: 30px;
-  width: 186px;
+  width: 251px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -27,10 +41,10 @@ body {
 .image48Icon {
   position: absolute;
   top: calc(50% - 67px);
-  left: calc(50% - 111.5px);
+  left: calc(45% - 111.5px);
   width: 111px;
   height: 36px;
-  object-fit: cover;
+  object-fit: contain;
   mix-blend-mode: darken;
 }
 .frameGroup {
@@ -42,7 +56,6 @@ body {
   box-sizing: border-box;
   width: 311px;
   height: 200px;
-  white-space: nowrap;
 }
 .group {
   position: absolute;
@@ -131,6 +144,7 @@ body {
   align-items: flex-start;
   justify-content: flex-start;
   gap: 27px;
+  width: 251px;
 }
 .eduInfoContent {
   position: relative;

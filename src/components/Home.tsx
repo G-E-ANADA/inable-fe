@@ -5,8 +5,9 @@ import styles from "../css/Home.module.css";
 import useAuthStore from "../store/store";
 import Chat from "./chat/Chat";
 import { useQuery } from "react-query";
-import { fetchJobPostList } from "../api/jobPosts";
-import { JobPostListData } from "../types/JobPostDataType";
+import { fetchJobPostList, fetchEduPostList } from "../api/postsApi";
+import { JobPostListData, EduPostListData } from "../types/PostDataType";
+import { useNavigate } from "react-router-dom";
 
 const Home = ({}) => {
   const API_URL = process.env.REACT_APP_AI_API;
@@ -18,7 +19,10 @@ const Home = ({}) => {
   const [query, setQuery] = useState("");
 
   const [jobPosts, setJobPosts] = useState<JobPostListData[]>([]);
+  const [eduPosts, setEduPosts] = useState<any[]>([]);
   const [showLoading, setShowLoading] = useState<boolean>(true);
+
+  const navigate = useNavigate(); // useNavigate 훅 호출
 
   const chatbotHandler = async () => {
     if (query === "") return;
@@ -101,7 +105,7 @@ const Home = ({}) => {
   };
 
   // 실시간 채용 정보
-  const { isLoading, error } = useQuery(
+  const { isLoading: jobPostsLoading, error: jobPostsError } = useQuery(
     ["jobPosts"],
     () =>
       fetchJobPostList({
@@ -134,24 +138,45 @@ const Home = ({}) => {
     }
   );
 
+  // 교육 정보
+  const { isLoading: eduPostsLoading, error: eduPostsError } = useQuery(
+    ["eduPosts"],
+    () => fetchEduPostList(),
+    {
+      onSuccess: (data) => {
+        const processedData = data.edu_posts.slice(0, 7);
+        setEduPosts(processedData);
+        setShowLoading(false); // 데이터 로딩 완료 후 로딩 상태 해제
+      },
+      onError: () => setShowLoading(false), // 에러 발생 시 로딩 상태 해제
+    }
+  );
+
   useEffect(() => {
-    if (isLoading) {
+    if (jobPostsLoading || eduPostsLoading) {
       const timer = setTimeout(() => {
         setShowLoading(true);
       }, 200); // 200ms 후에 로딩 상태 표시
 
       return () => clearTimeout(timer);
     }
-  }, [isLoading]);
+  }, [jobPostsLoading, eduPostsLoading]);
 
   const formatDate = (dateString: string): string => {
     dateString = dateString.split("T")[0];
     const date = new Date(dateString);
-    const year = date.getFullYear();
     const month = date.getMonth() + 1; // 월은 0부터 시작하므로 +1
     const day = date.getDate();
 
     return `${month}월 ${day}일`;
+  };
+
+  const handleJobInfoClick = (jobPost: JobPostListData) => {
+    navigate(`/job-post/${jobPost.id}`, { state: { jobPost } });
+  };
+
+  const handleEduInfoClick = (eduPost: EduPostListData) => {
+    navigate(`/eud-post/${eduPost.id}`, { state: { eduPost } });
   };
 
   return (
@@ -211,7 +236,11 @@ const Home = ({}) => {
           <div className={styles.areaLabel}>실시간 채용 정보</div>
           <div className={styles.realtimeJobInfoContent}>
             {jobPosts.map((jobPost, index) => (
-              <div className={styles.frameGroup} key={index}>
+              <div
+                className={styles.frameGroup}
+                key={index}
+                onClick={() => handleJobInfoClick(jobPost)}
+              >
                 <div className={styles.parent}>
                   <div className={styles.div}>{jobPost.busplaName}</div>{" "}
                   <div className={styles.div1}>
@@ -235,13 +264,19 @@ const Home = ({}) => {
           <div className={styles.areaLabel}>교육 정보</div>
           <div className={styles.eduInfoContent}>
             <div className={styles.parent2}>
-              <div className={styles.div}>1차 직무지도원 양성과정</div>
-              <div className={styles.div}>1차 직무지도원 양성과정</div>
-              <div className={styles.div}>1차 직무지도원 양성과정</div>
-              <div className={styles.div}>1차 직무지도원 양성과정</div>
-              <div className={styles.div}>1차 직무지도원 양성과정</div>
-              <div className={styles.div}>1차 직무지도원 양성과정</div>
-              <div className={styles.div}>1차 직무지도원 양성과정</div>
+              {eduPosts.length > 0 ? (
+                eduPosts.map((eduPost, index) => (
+                  <div
+                    className={styles.div2}
+                    key={index}
+                    onClick={() => handleEduInfoClick(eduPost)}
+                  >
+                    {eduPost.title}
+                  </div>
+                ))
+              ) : (
+                <div className={styles.div}>교육 정보가 없습니다</div>
+              )}
             </div>
           </div>
         </div>
