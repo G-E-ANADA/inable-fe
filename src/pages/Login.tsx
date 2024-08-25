@@ -1,12 +1,14 @@
 import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import Header from "../components/Header";
 import styles from "../css/Login.module.css";
-import User from "../entities/User";
 import useAuthStore from "../store/store";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [searchParams] = useSearchParams();
+  const type = searchParams.get("type");
 
   if (useAuthStore.getState().token) {
     // '/'로 이동
@@ -23,7 +25,9 @@ const Login = () => {
       <Header></Header>
       <div className={styles.div}>
         <div className={styles.parent}>
-          <div className={styles.div1}>로그인</div>
+          <div className={styles.div1}>
+            {type === "personal" ? "개인 회원" : "기업 회원"} 로그인
+          </div>
           <div className={styles.frameParent}>
             <div className={styles.group}>
               <div className={styles.div2}>아이디</div>

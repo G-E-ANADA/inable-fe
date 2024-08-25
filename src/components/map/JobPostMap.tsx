@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { JobPostDataType } from "../../types/JobPostDataType";
+import { JobPostListData } from "../../types/PostDataType";
 import CustomMapMarker from "./CustomMapMarker";
 
 interface Coordinates {
@@ -8,26 +9,31 @@ interface Coordinates {
   longitude: number;
 }
 
-interface JobPostType {
+interface JobPostMapType {
   coordinates: Coordinates;
-  jobPostData: JobPostDataType[];
-  setSortedjobPostData?: React.Dispatch<
-    React.SetStateAction<JobPostDataType[]>
+  jobPostData: JobPostListData[];
+  setSortedJobPostData?: React.Dispatch<
+    React.SetStateAction<JobPostListData[]>
   >;
+  setVisibleJobPostsCounts?: React.Dispatch<React.SetStateAction<number>>;
+  handlePaging?: () => void;
 }
 
-const FieldMap = ({
+const JobPostMap = ({
   coordinates,
   jobPostData,
-  setSortedjobPostData,
-}: JobPostType) => {
+  setSortedJobPostData,
+  handlePaging,
+  setVisibleJobPostsCounts,
+}: JobPostMapType) => {
   const mapRef = useRef<HTMLDivElement | null>(null);
   const { naver } = window;
   let map: naver.maps.Map;
   const [newMap, setNewMap] = useState<naver.maps.Map | null>(null);
-  // const createMarkerList: naver.maps.Marker[] = []; //마커를 담을 배열
-  const markerListRef = useRef<naver.maps.Marker[]>([]); // 마커를 담을 배열을 useRef로 관리
+  const markerListRef = useRef<naver.maps.Marker[]>([]);
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleResize = () => {
@@ -74,7 +80,6 @@ const FieldMap = ({
 
   useEffect(() => {
     if (newMap) {
-      console.log("!!", markerListRef);
       const MoveEventListner = naver.maps.Event.addListener(
         newMap,
         "idle",
@@ -92,11 +97,9 @@ const FieldMap = ({
     markerListRef.current = [];
 
     jobPostData.forEach((data) => {
-      const { id, title, lat, lng } = data;
-      addMarker(map, id, title, lat, lng);
+      const { id, busplaName, latitude, longitude } = data;
+      addMarker(map, id, busplaName, latitude, longitude);
     });
-
-    console.log("Markers added:", markerListRef.current);
   };
 
   const addMarker = (
@@ -123,7 +126,8 @@ const FieldMap = ({
         },
       });
       newMarker.setTitle(title);
-      markerListRef.current.push(newMarker); // 마커를 배열에 추가
+      markerListRef.current.push(newMarker);
+
       naver.maps.Event.addListener(newMarker, "click", () =>
         markerClickHandler(id)
       );
@@ -139,19 +143,28 @@ const FieldMap = ({
     if (!map) return;
 
     const mapBounds = map.getBounds();
-    let marker: naver.maps.Marker, position;
+    let visibleJobPosts: JobPostListData[] = [];
 
-    // 마커의 위치를 position 변수에 저장
     for (let i = 0; i < markers.length; i++) {
-      marker = markers[i];
-      position = marker.getPosition();
+      const marker = markers[i];
+      const position = marker.getPosition();
 
-      // mapBounds와 비교하며 마커가 현재 화면에 보이는 영역에 있는지 확인
       if (mapBounds.hasPoint(position)) {
         showMarker(map, marker);
+
+        const jobPost = jobPostData.find(
+          (post) =>
+            post.latitude === position.y && post.longitude === position.x
+        );
+        if (jobPost) visibleJobPosts.push(jobPost);
       } else {
         hideMarker(marker);
       }
+    }
+    if (setSortedJobPostData && setVisibleJobPostsCounts && handlePaging) {
+      setSortedJobPostData(visibleJobPosts);
+      setVisibleJobPostsCounts(visibleJobPosts.length);
+      handlePaging();
     }
   };
 
@@ -165,9 +178,12 @@ const FieldMap = ({
     marker.setMap(null);
   };
 
-  //마커 클릭 이벤트 핸들러
   const markerClickHandler = (id: string) => {
-    console.log("Marker clicked!");
+    const selectedJobPost = jobPostData.find((jobPost) => jobPost.id === id);
+
+    if (selectedJobPost) {
+      navigate(`/job-post/${id}`, { state: { jobPost: selectedJobPost } });
+    }
   };
 
   const idleHandler = () => {
@@ -181,14 +197,11 @@ const FieldMap = ({
   );
 };
 
-export default FieldMap;
+export default JobPostMap;
 
-const StyledMapContainer = styled.div`
-  position: relative;
-`;
+const StyledMapContainer = styled.div``;
 
 const StyledMap = styled.div`
   width: 100%;
-  height: 47rem;
-  margin: 0 auto;
+  height: 600px;
 `;

@@ -1,6 +1,6 @@
 import create from "zustand";
 import { persist } from "zustand/middleware";
-import User from "../entities/User";
+import {User} from "../entities/User";
 
 const API_URL = process.env.REACT_APP_AUTH_API;
 const useAuthStore = create(

@@ -1,7 +1,7 @@
 import { Pagination } from "@mui/material";
 import React from "react";
 import styled from "styled-components";
-import { JobPostListColumn } from "../../types/JobPostDataType";
+import { JobPostListColumn, JobPostListData } from "../../types/PostDataType";
 import DynamicTable from "./DynamicTable";
 
 interface JobPostListProps {
@@ -11,7 +11,7 @@ interface JobPostListProps {
   totalItemsCount: number;
   itemsPerPage: number;
   onPageChange: (event: React.ChangeEvent<unknown>, newPage: number) => void;
-  onRowsPerPageChange: (event: React.ChangeEvent<{ value: unknown }>) => void;
+  onRowClick: (jobPost: JobPostListData) => void;
 }
 
 const JobPostList = ({
@@ -21,14 +21,14 @@ const JobPostList = ({
   totalItemsCount,
   itemsPerPage,
   onPageChange,
-  onRowsPerPageChange,
+  onRowClick,
 }: JobPostListProps) => {
   const totalPages = Math.ceil(totalItemsCount / itemsPerPage);
 
   return (
-    <>
+    <StyledContainer>
       <StyledDynamicTableContainer>
-        <DynamicTable columns={columns} data={data} />
+        <DynamicTable columns={columns} data={data} onRowClick={onRowClick} />
       </StyledDynamicTableContainer>
       <StyledPaginationContainer>
         <Pagination
@@ -42,22 +42,19 @@ const JobPostList = ({
           boundaryCount={2} // Number of boundary pages to show
         />
       </StyledPaginationContainer>
-    </>
+    </StyledContainer>
   );
 };
 
 export default JobPostList;
 
-const StyledDynamicTableContainer = styled.div`
-  width: 100%;
-  min-width: 800px;
-  overflow-x: auto;
-`;
+const StyledContainer = styled.div``;
+
+const StyledDynamicTableContainer = styled.div``;
 
 const StyledPaginationContainer = styled.div`
   display: flex;
   justify-content: center;
   padding-top: 40px;
-  min-width: 800px;
-  overflow-x: auto;
+  padding-bottom: 40px;
 `;

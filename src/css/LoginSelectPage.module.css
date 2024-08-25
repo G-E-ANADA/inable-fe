@@ -1,0 +1,100 @@
+.diversity15Icon {
+  position: relative;
+  width: 291px;
+  height: 291px;
+  overflow: hidden;
+  top: 10px;
+}
+.b {
+  position: relative;
+  color: white;
+  font-family: Noto Sans CJK KR;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 36px;
+  text-align: center;
+  color: white;
+}
+
+.a {
+  position: relative;
+  color: white;
+  font-family: Noto Sans CJK KR;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 36px;
+  text-align: center;
+  color: black;
+}
+
+.frameChild {
+  width: 32px;
+  position: relative;
+  border-radius: 67.4px;
+  height: 32px;
+}
+.parent {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 60px;
+}
+.selectBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.diversity15Parent {
+  position: relative;
+  border-radius: 16px;
+  background-color: #fff;
+  border: 1px solid #224a99;
+  box-sizing: border-box;
+  width: 400px;
+  height: 400px;
+  overflow: hidden;
+}
+.receptionist12Parent {
+  position: relative;
+  border-radius: 16px;
+  background-color: #224a99;
+  width: 400px;
+  height: 400px;
+  overflow: hidden;
+  color: #fff;
+}
+.div1 {
+  position: relative;
+  margin: 100px 0;
+  font-size: 24px;
+  line-height: 150%;
+  font-weight: 500;
+  font-family: "Noto Sans CJK KR";
+  color: #000;
+  display: inline-block;
+}
+.div {
+  width: 100%;
+  position: relative;
+  background-color: #fff;
+  height: 1080px;
+  overflow: hidden;
+  text-align: center;
+  font-size: 24px;
+  color: #000;
+  font-family: "Noto Sans CJK KR";
+}
+.selectContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  text-align: left;
+  color: #797979;
+}

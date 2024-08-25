@@ -1,34 +1,47 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Main from "./pages/Main";
-import Login from "./pages/Login";
-import Logout from "./pages/LogoutPage";
-import Signup from "./pages/Signup";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import GlobalStyle from "./components/style/GlobalStyle";
+import JobPostDetailPage from "./pages/JobPostDetailPage";
 import JobPostListPage from "./pages/JobPostListPage";
 import JobPostMapPage from "./pages/JobPostMapPage";
-import MyPage from "./pages/MyPage";
+import Logout from "./pages/LogoutPage";
+import Main from "./pages/Main";
+import Signup from "./pages/Signup";
 import theme from "./theme";
-import { CssBaseline, ThemeProvider } from "@mui/material";
+import LoginSelectPage from "./pages/LoginSelectPage";
+import EducationPage from "./pages/EducationPage";
+import Login from "./pages/Login";
+import MyPage from "./pages/MyPage";
 import ResumeWriteForm from "./pages/ResumeWriteForm";
+
+const queryClient = new QueryClient();
 
 const App = () => {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Router>
-        <div>
-          <Routes>
-            <Route path="/" element={<Main />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/logout" element={<Logout />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/jobPostList" element={<JobPostListPage />} />
-            <Route path="/jobPostMap" element={<JobPostMapPage />} />
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <CssBaseline />
+        <Router>
+          <div>
+            <Routes>
+              <Route path="/" element={<Main />} />
+              <Route path="/loginSelect" element={<LoginSelectPage />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/logout" element={<Logout />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/jobPostList" element={<JobPostListPage />} />
+              <Route path="/jobPostMap" element={<JobPostMapPage />} />
+              <Route path="/job-post/:id" element={<JobPostDetailPage />} />
+              <Route path="/education" element={<EducationPage />} />
             <Route path="/myPage" element={<MyPage />} />
             <Route path="/resumeWriteForm" element={<ResumeWriteForm />} />
-          </Routes>
-        </div>
-      </Router>
-    </ThemeProvider>
+            </Routes>
+          </div>
+        </Router>
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 };
 
