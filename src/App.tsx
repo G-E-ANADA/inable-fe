@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import GlobalStyle from "./components/style/GlobalStyle";
 import JobPostDetailPage from "./pages/JobPostDetailPage";
+import JobPostListPage2 from "./pages/JobPostListPage2";
 import JobPostMapPage from "./pages/JobPostMapPage";
 import Logout from "./pages/LogoutPage";
 import Main from "./pages/Main";
@@ -13,7 +14,8 @@ import theme from "./theme";
 import LoginSelectPage from "./pages/LoginSelectPage";
 import EducationPage from "./pages/EducationPage";
 import Login from "./pages/Login";
-import JobPostListPage2 from "./pages/JobPostListPage2";
+import MyPage from "./pages/MyPage";
+import ResumeWriteForm from "./pages/ResumeWriteForm";
 
 const queryClient = new QueryClient();
 
@@ -35,6 +37,8 @@ const App = () => {
               <Route path="/jobPostMap" element={<JobPostMapPage />} />
               <Route path="/job-post/:id" element={<JobPostDetailPage />} />
               <Route path="/education" element={<EducationPage />} />
+              <Route path="/myPage" element={<MyPage />} />
+              <Route path="/resumeWriteForm" element={<ResumeWriteForm />} />
             </Routes>
           </div>
         </Router>
