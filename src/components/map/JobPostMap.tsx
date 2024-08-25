@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import Refresh from "../../asset/Refresh.svg";
 import { JobPostListData } from "../../types/JobPostDataType";
 import CustomMapMarker from "./CustomMapMarker";
 
@@ -16,12 +15,16 @@ interface JobPostMapType {
   setSortedJobPostData?: React.Dispatch<
     React.SetStateAction<JobPostListData[]>
   >;
+  setVisibleJobPostsCounts?: React.Dispatch<React.SetStateAction<number>>;
+  handlePaging?: () => void;
 }
 
 const JobPostMap = ({
   coordinates,
   jobPostData,
   setSortedJobPostData,
+  handlePaging,
+  setVisibleJobPostsCounts,
 }: JobPostMapType) => {
   const mapRef = useRef<HTMLDivElement | null>(null);
   const { naver } = window;
@@ -142,8 +145,6 @@ const JobPostMap = ({
     const mapBounds = map.getBounds();
     let visibleJobPosts: JobPostListData[] = [];
 
-    // let marker: naver.maps.Marker, position;
-
     for (let i = 0; i < markers.length; i++) {
       const marker = markers[i];
       const position = marker.getPosition();
@@ -160,8 +161,10 @@ const JobPostMap = ({
         hideMarker(marker);
       }
     }
-    if (setSortedJobPostData) {
+    if (setSortedJobPostData && setVisibleJobPostsCounts && handlePaging) {
       setSortedJobPostData(visibleJobPosts);
+      setVisibleJobPostsCounts(visibleJobPosts.length);
+      handlePaging();
     }
   };
 
@@ -190,12 +193,6 @@ const JobPostMap = ({
   return (
     <StyledMapContainer>
       <StyledMap id="map" ref={mapRef}></StyledMap>
-      <StyledButton onClick={() => console.log("reset btn")}>
-        <StyledButtonIcon>
-          <img src={Refresh} alt="" />
-        </StyledButtonIcon>
-        <StyledButtonContent>현 위치에서 검색</StyledButtonContent>
-      </StyledButton>
     </StyledMapContainer>
   );
 };
