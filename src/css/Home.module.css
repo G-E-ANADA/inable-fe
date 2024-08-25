@@ -42,6 +42,7 @@ body {
   box-sizing: border-box;
   width: 311px;
   height: 200px;
+  white-space: nowrap;
 }
 .group {
   position: absolute;

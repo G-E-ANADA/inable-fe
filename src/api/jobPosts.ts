@@ -2,14 +2,15 @@ import axios from "axios";
 import { JobPostListData } from "../types/JobPostDataType";
 
 export interface FetchJobPostsParams {
-  start: number;
-  limit: number;
+  start?: number;
+  limit?: number;
   compAddr?: string;
   jobNm?: string;
   empType?: string;
   envEyesight?: string;
   envLiftPower?: string;
   envBothHands?: string;
+  sort?: string;
 }
 
 export interface JobPostsResponse {
@@ -18,7 +19,7 @@ export interface JobPostsResponse {
 }
 
 export const fetchJobPostList = async (
-  params: FetchJobPostsParams
+  params?: FetchJobPostsParams
 ): Promise<JobPostsResponse> => {
   const { data } = await axios.get<JobPostsResponse>(
     "http://localhost:8000/job_posts/search",

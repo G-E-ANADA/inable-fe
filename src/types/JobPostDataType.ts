@@ -35,6 +35,7 @@ export interface JobPostListData {
   searchEnvEyesight: string;
   searchEnvLiftPower: string;
   searchEnvLstnTalk: string;
+  compLogoUrl: string;
 }
 
 export interface MapSearchCriteria {
