@@ -6,10 +6,7 @@ import {
   SelectChangeEvent,
 } from "@mui/material";
 import styled from "styled-components";
-import {
-  mapSearchOptions,
-  MapSearchCriteria,
-} from "../../types/JobPostDataType";
+import { mapSearchOptions, MapSearchCriteria } from "../../types/PostDataType";
 
 interface MapSearchOptionsProps {
   mapSearchCriteria: MapSearchCriteria;

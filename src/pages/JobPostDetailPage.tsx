@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Rectangle from "../asset/Rectangle.png";
 import Header from "../components/Header";
 import JobPostDetail from "../components/jobPostDetail/JobPostDetail";
-import { JobPostListData } from "../types/JobPostDataType";
+import { JobPostListData } from "../types/PostDataType";
 
 const JobPostDetailPage = () => {
   const location = useLocation();

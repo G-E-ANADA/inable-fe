@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
-import { fetchJobPostList } from "../api/jobPosts";
+import { fetchJobPostList } from "../api/postsApi";
 import Header from "../components/Header";
 import SearchOptions from "../components/common/SearchOptions";
 import JobPostList from "../components/jobPostList/JobPostList";
@@ -13,7 +13,7 @@ import {
   jobPostListColumns,
   JobPostListData,
   SearchCriteria,
-} from "../types/JobPostDataType";
+} from "../types/PostDataType";
 
 const JobPostListPage = () => {
   const [searchCriteria, setSearchCriteria] = useState<SearchCriteria>({

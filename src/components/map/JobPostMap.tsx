@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { JobPostListData } from "../../types/JobPostDataType";
+import { JobPostListData } from "../../types/PostDataType";
 import CustomMapMarker from "./CustomMapMarker";
 
 interface Coordinates {

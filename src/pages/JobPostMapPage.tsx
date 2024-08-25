@@ -18,7 +18,7 @@ import {
   jobPostListColumns,
   JobPostListData,
   MapSearchCriteria,
-} from "../types/JobPostDataType";
+} from "../types/PostDataType";
 
 const JobPostMapPage = () => {
   const [searchCriteria, setSearchCriteria] = useState<MapSearchCriteria>({
