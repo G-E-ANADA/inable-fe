@@ -3,7 +3,6 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import GlobalStyle from "./components/style/GlobalStyle";
 import JobPostDetailPage from "./pages/JobPostDetailPage";
-import JobPostListPage from "./pages/JobPostListPage";
 import JobPostMapPage from "./pages/JobPostMapPage";
 import Logout from "./pages/LogoutPage";
 import Main from "./pages/Main";
@@ -12,6 +11,7 @@ import theme from "./theme";
 import LoginSelectPage from "./pages/LoginSelectPage";
 import EducationPage from "./pages/EducationPage";
 import Login from "./pages/Login";
+import JobPostListPage2 from "./pages/JobPostListPage2";
 
 const queryClient = new QueryClient();
 
@@ -29,7 +29,7 @@ const App = () => {
               <Route path="/login" element={<Login />} />
               <Route path="/logout" element={<Logout />} />
               <Route path="/signup" element={<Signup />} />
-              <Route path="/jobPostList" element={<JobPostListPage />} />
+              <Route path="/jobPostList" element={<JobPostListPage2 />} />
               <Route path="/jobPostMap" element={<JobPostMapPage />} />
               <Route path="/job-post/:id" element={<JobPostDetailPage />} />
               <Route path="/education" element={<EducationPage />} />
