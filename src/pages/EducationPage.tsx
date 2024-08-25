@@ -134,7 +134,7 @@ const EducationPage: FunctionComponent = () => {
 
                     <div className={styles.frameGroup}>
                       <img
-                        className={styles.frameChild}
+                        className={styles.modalContentImg}
                         alt=""
                         src={images[currentIndex]}
                       />
