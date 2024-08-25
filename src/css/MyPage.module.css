@@ -1,0 +1,273 @@
+.logoIcon {
+  width: 180px;
+  position: relative;
+  height: 100px;
+}
+.text {
+  position: relative;
+  line-height: 150%;
+  font-weight: 500;
+}
+.tab {
+  width: 110px;
+  background-color: #fff;
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.text3 {
+  position: relative;
+  line-height: 150%;
+}
+.tab3 {
+  width: 110px;
+  background-color: #fff;
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  color: #224a99;
+}
+.horizontalContainer1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 40px;
+}
+.horizontalContainer {
+  width: 1280px;
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.div1 {
+  align-self: stretch;
+  position: relative;
+  line-height: 150%;
+  font-weight: 500;
+}
+.hiddenIcon {
+  width: 24px;
+  position: relative;
+  height: 24px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.button1 {
+  border-radius: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 9px;
+}
+.checkbox {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+}
+.button3 {
+  position: relative;
+  letter-spacing: 0.46px;
+  line-height: 22px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.horizontalContainer4 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.button2 {
+  border-radius: 4px;
+  border: 1px solid rgba(34, 74, 153, 0.5);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  font-size: 13px;
+  color: #224a99;
+  font-family: Roboto;
+}
+.textInput {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0px 16px;
+  gap: 24px;
+}
+.button5 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 24px;
+}
+.horizontalContainer6 {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 40px 0px 16px;
+}
+.horizontalContainer5 {
+  align-self: stretch;
+  height: 71px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: center;
+}
+.horizontalContainer3 {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 16px;
+}
+.component3 {
+  border-bottom: 2px solid #224a99;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  color: #224a99;
+}
+.component2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+.component3Parent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 16px;
+}
+.icLikeIcon {
+  width: 24px;
+  position: relative;
+  height: 24px;
+}
+.button11 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+}
+.container3 {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0px 40px 0px 16px;
+}
+.container2 {
+  align-self: stretch;
+  height: 71px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+.verticalContainer2 {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 24px;
+  text-align: center;
+}
+.verticalContainer {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 24px;
+}
+.contents {
+  position: absolute;
+  top: 40px;
+  left: 60px;
+  width: 1280px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 101px;
+}
+.text10 {
+  position: absolute;
+  width: 100%;
+  top: 0%;
+  left: 0%;
+  line-height: 150%;
+  display: inline-block;
+}
+.text9 {
+  width: 130px;
+  position: relative;
+  height: 27px;
+  color: #224a99;
+}
+.text11 {
+  width: 130px;
+  position: relative;
+  height: 27px;
+}
+
+.div {
+  width: 100%;
+  position: relative;
+  background-color: #fff;
+  height: 1080px;
+
+  text-align: left;
+  font-size: 18px;
+  color: #000;
+  font-family: "Noto Sans CJK KR";
+}
+
+.contentContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+}
