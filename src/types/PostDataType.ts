@@ -38,6 +38,15 @@ export interface JobPostListData {
   compLogoUrl: string;
 }
 
+export interface EduPostListData {
+  id: string;
+  category: string;
+  title: string;
+  organization: string;
+  date: string;
+  content: string;
+}
+
 export interface MapSearchCriteria {
   searchRegion: string;
   searchJobCategory: string;
