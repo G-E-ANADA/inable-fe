@@ -11,6 +11,7 @@ import Main from "./pages/Main";
 import Signup from "./pages/Signup";
 import theme from "./theme";
 import LoginSelectPage from "./pages/LoginSelectPage";
+import EducationPage from "./pages/EducationPage";
 
 const queryClient = new QueryClient();
 
@@ -31,6 +32,7 @@ const App = () => {
               <Route path="/jobPostList" element={<JobPostListPage />} />
               <Route path="/jobPostMap" element={<JobPostMapPage />} />
               <Route path="/job-post/:id" element={<JobPostDetailPage />} />
+              <Route path="/education" element={<EducationPage />} />
             </Routes>
           </div>
         </Router>
