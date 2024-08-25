@@ -1,4 +1,5 @@
 import {
+  CircularProgress,
   FormControl,
   InputLabel,
   MenuItem,
@@ -189,7 +190,13 @@ const JobPostMapPage = () => {
     });
   };
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) {
+    return (
+      <StyledLoadingContainer>
+        <CircularProgress />
+      </StyledLoadingContainer>
+    );
+  }
   if (error) return <div>Error: {error}</div>;
 
   return (
@@ -285,6 +292,9 @@ const Text = styled.div`
   text-align: left; /* 왼쪽 정렬 */
 `;
 
-const SelectBox = styled.div`
-  text-align: right; /* 오른쪽 정렬 */
+const StyledLoadingContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 `;
