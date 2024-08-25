@@ -33,8 +33,8 @@ let navLinks = navLinksForPersonalMember;
 
 const Header = () => {
   const loginUser = useAuthStore.getState().user;
-  if (loginUser && loginUser.type === CORP_TYPE) {
-    navLinks = navLinksForCorpMember;
+  if(loginUser && loginUser.type === CORP_TYPE){
+    navLinks = navLinksForCorpMember
   }
 
   const handleLogo = () => {
@@ -43,7 +43,7 @@ const Header = () => {
 
   return (
     <>
-      <div className={styles.gnb}>
+    <div className={styles.gnb}>
         <div className={styles.logoParent}>
           <img
             className={styles.logoIcon}

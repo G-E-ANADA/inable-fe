@@ -38,7 +38,7 @@ export class User {
     name: string;
     createdAt: Date;
     updatedAt: Date;
-    type: MemberType;
+    type: MemberType,
     lastLogin?: Date;
   }) {
     return new User(
