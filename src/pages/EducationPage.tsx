@@ -22,6 +22,7 @@ const EducationPage: FunctionComponent = () => {
           handleMenuSelect={handleMenuSelect}
           selectedMenu={selectedMenu}
         />
+        {selectedMenu === "INFO" && <div>1</div>}
         {selectedMenu === "JOB_INFO" && (
           <div className={styles.tip}>
             <div className={styles.tipWrapper}>
@@ -61,6 +62,7 @@ const EducationPage: FunctionComponent = () => {
             </div>
           </div>
         )}
+        {selectedMenu === "COMMUNITY" && <div>2</div>}
       </div>
     </>
   );
