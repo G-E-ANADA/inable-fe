@@ -1,6 +1,6 @@
 import { useQuery, UseQueryResult } from "react-query";
-import { fetchJobPostList, FetchJobPostsParams } from "../api/jobPosts";
-import { JobPostsResponse } from "../api/jobPosts"; // 필요한 경우 추가
+import { fetchJobPostList, FetchJobPostsParams } from "../api/postsApi";
+import { JobPostsResponse } from "../api/postsApi"; // 필요한 경우 추가
 
 export const useJobPosts = (
   params: FetchJobPostsParams

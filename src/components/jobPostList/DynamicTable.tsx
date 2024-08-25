@@ -7,10 +7,7 @@ import {
   TableRow,
 } from "@mui/material";
 import styled from "styled-components";
-import {
-  JobPostListColumn,
-  JobPostListData,
-} from "../../types/JobPostDataType";
+import { JobPostListColumn, JobPostListData } from "../../types/PostDataType";
 
 interface DynamicTableProps {
   columns: JobPostListColumn[];

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { JobPostListData } from "../../types/JobPostDataType";
+import { JobPostListData } from "../../types/PostDataType";
 import IconLike from "../../asset/ic_like.svg";
 import IconScrap from "../../asset/ic_scrap.svg";
 import Button from "../common/Button";
