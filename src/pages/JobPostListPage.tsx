@@ -166,7 +166,6 @@ export default JobPostListPage;
 
 const StyledContainer = styled.div`
   width: 100%;
-  height: 1080px;
   position: relative;
 `;
 
@@ -176,8 +175,8 @@ const StyledContents = styled.div`
 `;
 
 const StyledTitle = styled.div`
+  padding-top: 60px;
   text-align: center;
-  color: "black";
   font-size: 24px;
   font-weight: 500;
   line-height: 2;

@@ -96,6 +96,8 @@
   display: flex;
   flex-direction: row;
   align-items: start;
+  /* margin: 0 auto; */
+  /* width: 1470px; */
 }
 
 .modalBackground {
@@ -184,4 +186,8 @@
   overflow: hidden;
   flex-shrink: 0;
   object-fit: cover;
+}
+
+.eduContent {
+  padding-left: 60px;
 }

@@ -1,15 +1,16 @@
-import { FunctionComponent, useState, useEffect } from "react";
-import styles from "../css/Education.module.css";
-import Header from "../components/Header";
-import EducationSNB from "../components/EducationSNB";
+import { FunctionComponent, useEffect, useState } from "react";
+import cancelBtn from "../asset/cancelBtn.svg";
 import jobInfoDummy_1 from "../asset/jobInfoDummy_1.svg";
-import jobInfoDummy_2 from "../asset/jobInfoDummy_2.svg";
 import jobInfoDummy_1_inner_2 from "../asset/jobInfoDummy_1_inner_2.svg";
 import jobInfoDummy_1_inner_3 from "../asset/jobInfoDummy_1_inner_3.svg";
 import jobInfoDummy_1_inner_4 from "../asset/jobInfoDummy_1_inner_4.svg";
+import jobInfoDummy_2 from "../asset/jobInfoDummy_2.svg";
 import leftBtn from "../asset/leftBtn.svg";
 import rightBtn from "../asset/rightBtn.svg";
-import cancelBtn from "../asset/cancelBtn.svg";
+import EducationSNB from "../components/EducationSNB";
+import Header from "../components/Header";
+import styles from "../css/Education.module.css";
+import EduPostList from "../components/eduPostList/EduPostList";
 
 type MyPageSNBMenu = "INFO" | "JOB_INFO" | "COMMUNITY";
 
@@ -74,7 +75,11 @@ const EducationPage: FunctionComponent = () => {
           handleMenuSelect={handleMenuSelect}
           selectedMenu={selectedMenu}
         />
-        {selectedMenu === "INFO" && <div>1</div>}
+        {selectedMenu === "INFO" && (
+          <div className={styles.eduContent}>
+            <EduPostList />
+          </div>
+        )}
         {selectedMenu === "JOB_INFO" && (
           <div className={styles.tip}>
             <div className={styles.tipWrapper}>
