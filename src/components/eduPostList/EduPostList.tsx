@@ -12,6 +12,7 @@ import styled from "styled-components";
 import { fetchEduPostList } from "../../api/postsApi";
 import { EduPostListData, eduPostListColumns } from "../../types/PostDataType";
 import DynamicTable from "./DynamicTable";
+import EduPostDetail from "../eduPostDetail/EduPostDetail";
 
 const EduPostList = () => {
   const [eduPosts, setEduPosts] = useState<any[]>([]);
@@ -20,6 +21,9 @@ const EduPostList = () => {
   const [itemsPerPage, setItemsPerPage] = useState<number>(10);
   const [totalItemsCount, setTotalItemsCount] = useState<number>(0);
   const [sort, setSort] = useState<string>("date");
+  const [showDetail, setShowDetail] = useState<boolean>(false);
+  const [selectedEduPost, setSelectedEduPost] =
+    useState<EduPostListData | null>(null);
 
   const navigate = useNavigate(); // useNavigate 훅 호출
 
@@ -58,48 +62,53 @@ const EduPostList = () => {
   };
 
   const handleRowClick = (eduPost: EduPostListData) => {
-    navigate(`/edu-post/${eduPost.id}`, { state: { eduPost } });
+    setSelectedEduPost(eduPost);
+    setShowDetail(true);
   };
 
   return (
     <StyledContainer>
       <StyledContents>
-        <StyledTitle>실시간 교육 정보</StyledTitle>
-        <StyledSubTitle>실시간 교육 정보를 확인해 보세요</StyledSubTitle>
-        <StyledListHeader>
-          <Text>검색결과</Text>
-          <FormControl sx={{ m: 1, minWidth: 220 }} size="small">
-            <InputLabel id="sort-label">정렬</InputLabel>
-            <Select
-              labelId="sort-label"
-              id="sort-select"
-              value={sort}
-              label="정렬"
-              onChange={(e) => setSort(e.target.value)}
-            >
-              <MenuItem value={"date"}>최신순</MenuItem>
-            </Select>
-          </FormControl>
-        </StyledListHeader>
-        <StyledDynamicTableContainer>
-          <DynamicTable
-            columns={eduPostListColumns}
-            data={eduPosts}
-            onRowClick={handleRowClick}
-          />
-        </StyledDynamicTableContainer>
-        <StyledPaginationContainer>
-          <Pagination
-            size="small"
-            color="primary"
-            shape="rounded"
-            count={totalPages}
-            page={currentPage}
-            onChange={handlePageChange}
-            siblingCount={1} // Number of sibling pages to show
-            boundaryCount={2} // Number of boundary pages to show
-          />
-        </StyledPaginationContainer>
+        {!showDetail ? (
+          <>
+            <StyledListHeader>
+              <Text>검색결과</Text>
+              <FormControl sx={{ m: 1, minWidth: 220 }} size="small">
+                <InputLabel id="sort-label">정렬</InputLabel>
+                <Select
+                  labelId="sort-label"
+                  id="sort-select"
+                  value={sort}
+                  label="정렬"
+                  onChange={(e) => setSort(e.target.value)}
+                >
+                  <MenuItem value={"date"}>최신순</MenuItem>
+                </Select>
+              </FormControl>
+            </StyledListHeader>
+            <StyledDynamicTableContainer>
+              <DynamicTable
+                columns={eduPostListColumns}
+                data={eduPosts}
+                onRowClick={handleRowClick}
+              />
+            </StyledDynamicTableContainer>
+            <StyledPaginationContainer>
+              <Pagination
+                size="small"
+                color="primary"
+                shape="rounded"
+                count={totalPages}
+                page={currentPage}
+                onChange={handlePageChange}
+                siblingCount={1} // Number of sibling pages to show
+                boundaryCount={2} // Number of boundary pages to show
+              />
+            </StyledPaginationContainer>
+          </>
+        ) : (
+          selectedEduPost && <EduPostDetail eduPost={selectedEduPost} />
+        )}
       </StyledContents>
     </StyledContainer>
   );

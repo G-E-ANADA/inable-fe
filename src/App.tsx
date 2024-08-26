@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import GlobalStyle from "./components/style/GlobalStyle";
 import EducationPage from "./pages/EducationPage";
+import EduPostDetailPage from "./pages/EducationPostDetailPage";
 import JobPostDetailPage from "./pages/JobPostDetailPage";
 import JobPostListPage from "./pages/JobPostListPage";
 import JobPostMapPage from "./pages/JobPostMapPage";
@@ -35,6 +36,7 @@ const App = () => {
               <Route path="/jobPostMap" element={<JobPostMapPage />} />
               <Route path="/job-post/:id" element={<JobPostDetailPage />} />
               <Route path="/education" element={<EducationPage />} />
+              <Route path="/education/:id" element={<EduPostDetailPage />} />
               <Route path="/myPage" element={<MyPage />} />
               <Route path="/resumeWriteForm" element={<ResumeWriteForm />} />
             </Routes>
