@@ -10,7 +10,7 @@ import rightBtn from "../asset/rightBtn.svg";
 import EducationSNB from "../components/EducationSNB";
 import Header from "../components/Header";
 import styles from "../css/Education.module.css";
-import EduPostList from "../components/education/EduPostList";
+import EduPostList from "../components/eduPostList/EduPostList";
 
 type MyPageSNBMenu = "INFO" | "JOB_INFO" | "COMMUNITY";
 
