@@ -1,11 +1,11 @@
 import { Pagination } from "@mui/material";
 import React from "react";
 import styled from "styled-components";
-import { JobPostListColumn, JobPostListData } from "../../types/PostDataType";
+import { PostListColumn, JobPostListData } from "../../types/PostDataType";
 import DynamicTable from "./DynamicTable";
 
 interface JobPostListProps {
-  columns: JobPostListColumn[];
+  columns: PostListColumn[];
   data: any[];
   currentPage: number;
   totalItemsCount: number;

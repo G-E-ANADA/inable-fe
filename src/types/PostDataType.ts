@@ -57,7 +57,7 @@ export interface MapSearchCriteria {
   searchEnvLiftPower: string;
 }
 
-export interface JobPostListColumn {
+export interface PostListColumn {
   id: string;
   label: string;
   width?: string;
@@ -65,7 +65,7 @@ export interface JobPostListColumn {
   rowAlign: "inherit" | "left" | "center" | "right" | "justify";
 }
 
-export const jobPostListColumns: JobPostListColumn[] = [
+export const jobPostListColumns: PostListColumn[] = [
   {
     id: "busplaName",
     label: "사업장명",
@@ -133,6 +133,37 @@ export const jobPostListColumns: JobPostListColumn[] = [
     id: "termDate",
     label: "모집 기간",
     width: "220px",
+    colAlign: "center",
+    rowAlign: "center",
+  },
+];
+
+export const eduPostListColumns: PostListColumn[] = [
+  {
+    id: "category",
+    label: "분류",
+    width: "100px",
+    colAlign: "center",
+    rowAlign: "center",
+  },
+  {
+    id: "title",
+    label: "제목",
+    width: "200px",
+    colAlign: "center",
+    rowAlign: "center",
+  },
+  {
+    id: "organization",
+    label: "등록기관",
+    width: "200px",
+    colAlign: "center",
+    rowAlign: "center",
+  },
+  {
+    id: "date",
+    label: "등록일",
+    width: "110px",
     colAlign: "center",
     rowAlign: "center",
   },
