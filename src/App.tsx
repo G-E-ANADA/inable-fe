@@ -14,6 +14,8 @@ import EducationPage from "./pages/EducationPage";
 import Login from "./pages/Login";
 import MyPage from "./pages/MyPage";
 import ResumeWriteForm from "./pages/ResumeWriteForm";
+import ApplicantManagementPage from "./pages/ApplicantManagementPage";
+import ApplicantResumePage from "./pages/ApplicantResumePage";
 
 const queryClient = new QueryClient();
 
@@ -35,8 +37,16 @@ const App = () => {
               <Route path="/jobPostMap" element={<JobPostMapPage />} />
               <Route path="/job-post/:id" element={<JobPostDetailPage />} />
               <Route path="/education" element={<EducationPage />} />
-            <Route path="/myPage" element={<MyPage />} />
-            <Route path="/resumeWriteForm" element={<ResumeWriteForm />} />
+              <Route path="/myPage" element={<MyPage />} />
+              <Route path="/resumeWriteForm" element={<ResumeWriteForm />} />
+              <Route
+                path="/applicantResumePage"
+                element={<ApplicantResumePage />}
+              />
+              <Route
+                path="/applicantManagementPage"
+                element={<ApplicantManagementPage />}
+              />
             </Routes>
           </div>
         </Router>
