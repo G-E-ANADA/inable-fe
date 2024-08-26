@@ -1,10 +1,7 @@
 import { Pagination } from "@mui/material";
 import React from "react";
 import styled from "styled-components";
-import {
-  JobPostListColumn,
-  JobPostListData,
-} from "../../types/JobPostDataType";
+import { JobPostListColumn, JobPostListData } from "../../types/PostDataType";
 import DynamicTable from "./DynamicTable";
 
 interface JobPostListProps {
@@ -51,19 +48,9 @@ const JobPostList = ({
 
 export default JobPostList;
 
-const StyledContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 1040px;
-  max-width: 1040px;
-`;
+const StyledContainer = styled.div``;
 
-const StyledDynamicTableContainer = styled.div`
-  width: 100%;
-  min-width: 800px;
-  overflow-x: auto;
-`;
+const StyledDynamicTableContainer = styled.div``;
 
 const StyledPaginationContainer = styled.div`
   display: flex;
