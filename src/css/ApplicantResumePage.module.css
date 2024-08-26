@@ -1,0 +1,184 @@
+.textInput {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 1030px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.div2 {
+  width: 100px;
+  position: relative;
+  line-height: 150%;
+  font-weight: 500;
+  display: inline-block;
+  flex-shrink: 0;
+}
+.div3 {
+  position: relative;
+  line-height: 150%;
+}
+.paragraphContainer {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 40px;
+}
+.textInput1 {
+  width: 1281px;
+  position: relative;
+  border-top: 1px solid #c6c6c6;
+  box-sizing: border-box;
+  height: 1px;
+}
+.ui {
+  margin: 0;
+}
+.uiContainer {
+  position: relative;
+  font-size: 16px;
+  line-height: 150%;
+}
+.div8 {
+  width: 100px;
+  position: relative;
+  line-height: 150%;
+  font-weight: 500;
+  display: inline-block;
+}
+.button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+.horizontalContainer4 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.horizontalContainer3 {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  font-size: 16px;
+}
+.horizontalContainer1 {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 40px;
+}
+.horizontalContainer {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.verticalContainer1 {
+  position: absolute;
+  top: 67px;
+  left: 0px;
+  width: 1030px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 60px;
+}
+.verticalContainer {
+  position: absolute;
+  top: 40px;
+  left: 320px;
+  width: 1280px;
+  height: 1675px;
+  text-align: left;
+}
+.text {
+  position: relative;
+  line-height: 150%;
+  font-weight: 500;
+}
+.btn {
+  width: 300px;
+  border-radius: 6px;
+  background-color: #fff;
+  border: 1px solid #9b9b9b;
+  box-sizing: border-box;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 60px;
+}
+.textInput9 {
+  position: absolute;
+  top: 1876px;
+  left: calc(50% - 150px);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  color: #224a99;
+}
+.logoIcon {
+  width: 180px;
+  position: relative;
+  height: 100px;
+}
+.tab {
+  width: 110px;
+  background-color: #fff;
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.tab2 {
+  width: 110px;
+  background-color: #fff;
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  color: #224a99;
+}
+.horizontalContainer11 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 40px;
+}
+.horizontalContainer10 {
+  width: 1280px;
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.div {
+  width: 100%;
+  position: relative;
+  background-color: #fff;
+  height: 2026px;
+  overflow: hidden;
+  text-align: center;
+  font-size: 18px;
+  color: #000;
+  font-family: "Noto Sans CJK KR";
+}
