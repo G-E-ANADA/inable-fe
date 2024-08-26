@@ -36,7 +36,7 @@ const App = () => {
               <Route path="/jobPostMap" element={<JobPostMapPage />} />
               <Route path="/job-post/:id" element={<JobPostDetailPage />} />
               <Route path="/education" element={<EducationPage />} />
-              <Route path="/education/:id" element={<EduPostDetailPage />} />
+              <Route path="/edu-post/:id" element={<EduPostDetailPage />} />
               <Route path="/myPage" element={<MyPage />} />
               <Route path="/resumeWriteForm" element={<ResumeWriteForm />} />
             </Routes>

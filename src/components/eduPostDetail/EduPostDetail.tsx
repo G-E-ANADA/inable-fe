@@ -25,7 +25,7 @@ const EduPostDetail = ({ eduPost }: { eduPost: EduPostListData }) => {
       <Section title="교육 상세">
         <InfoGroup>
           <InfoItem>
-            <Label>모집 직종</Label>
+            <Label>내용</Label>
             <Value>{eduPost.content}</Value>
           </InfoItem>
         </InfoGroup>

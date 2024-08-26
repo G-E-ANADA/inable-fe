@@ -176,7 +176,7 @@ const Home = ({}) => {
   };
 
   const handleEduInfoClick = (eduPost: EduPostListData) => {
-    navigate(`/eud-post/${eduPost.id}`, { state: { eduPost } });
+    navigate(`/edu-post/${eduPost.id}`, { state: { eduPost } });
   };
   return (
     <div className={styles.home}>
