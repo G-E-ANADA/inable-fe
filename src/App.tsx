@@ -3,7 +3,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import GlobalStyle from "./components/style/GlobalStyle";
 import EducationPage from "./pages/EducationPage";
-import EduPostDetailPage from "./pages/EducationDetailPage";
+import EduPostDetailPage from "./pages/EducationPostDetailPage";
 import JobPostDetailPage from "./pages/JobPostDetailPage";
 import JobPostListPage from "./pages/JobPostListPage";
 import JobPostMapPage from "./pages/JobPostMapPage";
