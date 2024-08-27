@@ -97,14 +97,14 @@ const JobPostMap = ({
     markerListRef.current = [];
 
     jobPostData.forEach((data) => {
-      const { id, busplaName, latitude, longitude } = data;
-      addMarker(map, id, busplaName, latitude, longitude);
+      const { postId, busplaName, latitude, longitude } = data;
+      addMarker(map, postId, busplaName, latitude, longitude);
     });
   };
 
   const addMarker = (
     map: naver.maps.Map,
-    id: string,
+    postId: number,
     title: string,
     lat: number,
     lng: number
@@ -129,7 +129,7 @@ const JobPostMap = ({
       markerListRef.current.push(newMarker);
 
       naver.maps.Event.addListener(newMarker, "click", () =>
-        markerClickHandler(id)
+        markerClickHandler(postId)
       );
     } catch (e) {
       console.error(e);
@@ -178,11 +178,13 @@ const JobPostMap = ({
     marker.setMap(null);
   };
 
-  const markerClickHandler = (id: string) => {
-    const selectedJobPost = jobPostData.find((jobPost) => jobPost.id === id);
+  const markerClickHandler = (postId: number) => {
+    const selectedJobPost = jobPostData.find(
+      (jobPost) => jobPost.postId === postId
+    );
 
     if (selectedJobPost) {
-      navigate(`/job-post/${id}`, { state: { jobPost: selectedJobPost } });
+      navigate(`/job-post/${postId}`, { state: { jobPost: selectedJobPost } });
     }
   };
 

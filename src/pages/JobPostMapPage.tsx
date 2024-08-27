@@ -165,7 +165,7 @@ const JobPostMapPage = () => {
   };
 
   const handleRowClick = (jobPost: JobPostListData) => {
-    navigate(`/job-post/${jobPost.id}`, { state: { jobPost } });
+    navigate(`/job-post/${jobPost.postId}`, { state: { jobPost } });
   };
 
   const handleSortChange = (event: SelectChangeEvent<string>) => {
