@@ -51,13 +51,13 @@ const Login = () => {
             </div>
           </div>
           <div className={styles.btn}>
-            <div className={styles.text} onClick={handleLogin}>
+            <div className={styles.loginLabel} onClick={handleLogin}>
               로그인
             </div>
           </div>
           <div className={styles.btn1}>
             <div className={styles.text}>
-              <a className={styles.text} href="/signup">
+              <a className={styles.signupLabel} href="/signup">
                 회원가입
               </a>
             </div>
@@ -65,14 +65,6 @@ const Login = () => {
           <div className={styles.frameDiv}>
             <div className={styles.div4}>아이디 찾기</div>
             <div className={styles.div4}>비밀번호 찾기</div>
-          </div>
-        </div>
-        <div className={styles.parent1}>
-          <div className={styles.div2}>다른 계정으로 로그인하기</div>
-          <div className={styles.image50Parent}>
-            <img className={styles.image50Icon} alt="" src="image 50.png" />
-            <img className={styles.image50Icon} alt="" src="image 51.png" />
-            <img className={styles.image52Icon} alt="" src="image 52.png" />
           </div>
         </div>
       </div>
