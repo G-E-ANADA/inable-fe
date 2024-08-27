@@ -4,12 +4,14 @@ import { EduPostListData, JobPostListData } from "../types/PostDataType";
 export interface FetchJobPostsParams {
   start?: number;
   limit?: number;
-  compAddr?: string;
-  jobNm?: string;
   empType?: string;
-  envEyesight?: string;
-  envLiftPower?: string;
-  envBothHands?: string;
+  enterType?: string;
+  searchRegion?: string;
+  searchJobCategory?: string;
+  searchEnvEyesight?: string;
+  searchEnvLstnTalk?: string;
+  searchEnvLiftPower?: string;
+  searchEnvBothHands?: string;
   sort?: string;
 }
 

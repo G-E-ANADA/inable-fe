@@ -36,6 +36,7 @@ export interface JobPostListData {
   searchEnvLiftPower: string;
   searchEnvLstnTalk: string;
   compLogoUrl: string;
+  postId: number;
 }
 
 export interface EduPostListData {
@@ -57,6 +58,17 @@ export interface MapSearchCriteria {
   searchEnvLiftPower: string;
 }
 
+export interface ListSearchCriteria {
+  empType: string;
+  enterType: string;
+  searchRegion: string;
+  searchJobCategory: string;
+  searchEnvLstnTalk: string;
+  searchEnvEyesight: string;
+  searchEnvLiftPower: string;
+  searchEnvBothHands: string;
+}
+
 export interface PostListColumn {
   id: string;
   label: string;
@@ -69,70 +81,70 @@ export const jobPostListColumns: PostListColumn[] = [
   {
     id: "busplaName",
     label: "사업장명",
-    width: "150px",
+    width: "170px",
     colAlign: "center",
-    rowAlign: "left",
+    rowAlign: "center",
   },
   {
     id: "area",
     label: "사업장 주소",
-    width: "140px",
+    width: "160px",
     colAlign: "center",
-    rowAlign: "left",
+    rowAlign: "center",
   },
   {
     id: "empType",
     label: "고용 형태",
-    width: "90px",
+    width: "100px",
     colAlign: "center",
     rowAlign: "center",
   },
   {
-    id: "jobNm",
+    id: "searchJobCategory",
     label: "모집 직종",
-    width: "120px",
+    width: "150px",
     colAlign: "center",
-    rowAlign: "left",
+    rowAlign: "center",
   },
   {
     id: "salaryType",
     label: "임금 형태",
+    width: "100px",
+    colAlign: "center",
+    rowAlign: "center",
+  },
+  {
+    id: "searchEnvLstnTalk",
+    label: "듣고 말하기",
+    width: "120px",
+    colAlign: "center",
+    rowAlign: "center",
+  },
+  {
+    id: "searchEnvEyesight",
+    label: "시력",
+    width: "80px",
+    colAlign: "center",
+    rowAlign: "center",
+  },
+  {
+    id: "searchEnvLiftPower",
+    label: "드는힘",
     width: "90px",
     colAlign: "center",
     rowAlign: "center",
   },
   {
-    id: "salary",
-    label: "임금",
-    width: "120px",
+    id: "searchEnvBothHands",
+    label: "손작업",
+    width: "90px",
     colAlign: "center",
-    rowAlign: "left",
-  },
-  {
-    id: "envBothHands",
-    label: "양손",
-    width: "70px",
-    colAlign: "center",
-    rowAlign: "left",
-  },
-  {
-    id: "envEyesight",
-    label: "시력",
-    width: "200px",
-    colAlign: "center",
-    rowAlign: "left",
-  },
-  {
-    id: "envLiftPower",
-    label: "드는힘",
-    width: "80px",
-    colAlign: "center",
-    rowAlign: "left",
+    rowAlign: "center",
   },
   {
     id: "termDate",
     label: "모집 기간",
-    width: "220px",
+    width: "210px",
     colAlign: "center",
     rowAlign: "center",
   },
@@ -166,6 +178,90 @@ export const eduPostListColumns: PostListColumn[] = [
     width: "110px",
     colAlign: "center",
     rowAlign: "center",
+  },
+];
+
+export const jobPostListSelectOptions = [
+  {
+    id: "empType",
+    label: "고용 형태",
+    values: ["무관", "계약직", "상용직", "시간제"],
+  },
+  {
+    id: "enterType",
+    label: "입사 형태",
+    values: ["무관", "신입", "경력"],
+  },
+];
+
+export const jobPostListSearchOptions = [
+  {
+    id: "searchRegion",
+    label: "근무 위치",
+    values: [
+      "전체",
+      "서울특별시",
+      "경기도",
+      "인천광역시",
+      "강원도",
+      "충청북도",
+      "충청남도",
+      "세종시",
+      "대전광역시",
+      "전라북도",
+      "전라남도",
+      "광주광역시",
+      "경상북도",
+      "경상남도",
+      "부산광역시",
+      "대구광역시",
+      "울산광역시",
+      "제주특별자치도",
+    ],
+  },
+  {
+    id: "searchJobCategory",
+    label: "모집 직종",
+    values: [
+      "무관",
+      "정리/청소원",
+      "사무/사무보조",
+      "단순종사",
+      "주방/식품",
+      "경비/관리",
+      "요양보호/사회복지/의료",
+      "마케팅/판매",
+      "상담/서비스",
+      "연구/검사",
+      "운전/조작/제어/건설",
+      "예술/디자인/공예",
+      "교육",
+    ],
+  },
+  {
+    id: "searchEnvLstnTalk",
+    label: "듣고 말하기",
+    values: ["무관", "간단한 듣고 말하기", "어려움 없음", "어려움"],
+  },
+  {
+    id: "searchEnvEyesight",
+    label: "시력",
+    values: [
+      "무관",
+      "일상적 활동 가능",
+      "비교적 큰 인쇄물 가능",
+      "아주 작은 글씨 가능",
+    ],
+  },
+  {
+    id: "searchEnvLiftPower",
+    label: "드는힘",
+    values: ["무관", "5Kg 이내 가능", "5~20Kg 이내 가능", "20Kg 이상 가능"],
+  },
+  {
+    id: "searchEnvBothHands",
+    label: "손작업",
+    values: ["무관", "양손작업 가능", "한손보조작업 가능", "한손작업 가능"],
   },
 ];
 
