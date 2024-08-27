@@ -88,16 +88,43 @@ const JobPostListPage = () => {
     }
   }, [isLoading]);
 
-  const handleSearch = () => {
-    setCurrentPage(1);
-  };
+  const handleFilterChange = (filter: string, value: string) => {
+    const filterValueMap: { [key: string]: { [key: string]: string } } = {
+      searchRegion: {
+        전체: "",
+      },
+      searchJobCategory: {
+        무관: "",
+      },
+      searchEnvEyesight: {
+        무관: "",
+      },
+      searchEnvLstnTalk: {
+        무관: "",
+      },
+      searchEnvLiftPower: {
+        무관: "",
+        "5Kg 이내 가능": "5Kg 이내",
+        "5~20Kg 이내 가능": "5~20Kg 이내",
+        "20Kg 이상 가능": "20Kg 이상",
+      },
+      searchEnvBothHands: {
+        무관: "",
+        "양손작업 가능": "양손작업",
+        "한손보조작업 가능": "한손보조작업",
+        "한손작업 가능": "한손작업",
+      },
+    };
 
-  const handleChange = (event: SelectChangeEvent<string>) => {
-    const { name, value } = event.target;
+    const currentFilterMap = filterValueMap[filter] || {};
+    const filterValue =
+      currentFilterMap[value] !== undefined ? currentFilterMap[value] : value;
+
     setSearchCriteria((prev) => ({
       ...prev,
-      [name]: value,
+      [filter]: filterValue,
     }));
+    setCurrentPage(1);
   };
 
   const handleSortChange = (event: SelectChangeEvent<string>) => {
@@ -150,9 +177,11 @@ const JobPostListPage = () => {
         <StyledContents>
           <StyledTitle>실시간 채용 정보</StyledTitle>
           <StyledSubTitle>실시간 채용 정보를 확인해 보세요</StyledSubTitle>
-
           <StyledJobPostListFilter>
-            <JobPostListFilter filterOptions={jobPostListSearchOptions} />
+            <JobPostListFilter
+              filterOptions={jobPostListSearchOptions}
+              onFilterChange={handleFilterChange}
+            />
           </StyledJobPostListFilter>
           <StyledListHeader>
             <Text>검색결과</Text>

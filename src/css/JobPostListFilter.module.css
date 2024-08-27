@@ -115,6 +115,21 @@
   justify-content: space-between;
   padding: 8px;
 }
+.button5:hover {
+  background-color: #eff4ff;
+  color: #224a99;
+}
+
+.button5:active {
+  background-color: #cce0ff;
+  color: #003a6b;
+}
+.button5.selected {
+  background-color: #eff4ff;
+  color: #224a99;
+  font-weight: 500;
+}
+
 .card1 {
   position: absolute;
   top: 0px;

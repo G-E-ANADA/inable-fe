@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import styles from "../../css/JobPostListFilter.module.css";
 
 interface Option {
@@ -8,8 +9,36 @@ interface Option {
 
 interface JobPostListFilterProps {
   filterOptions: Option[];
+  onFilterChange: (filter: string, value: string) => void;
 }
-const JobPostListFilter = ({ filterOptions }: JobPostListFilterProps) => {
+const JobPostListFilter = ({
+  filterOptions,
+  onFilterChange,
+}: JobPostListFilterProps) => {
+  const [selectedFilters, setSelectedFilters] = useState<{
+    [key: string]: string;
+  }>({});
+
+  useEffect(() => {
+    const initialFilters: { [key: string]: string } = {};
+    filterOptions.forEach((option) => {
+      if (option.values.length > 0) {
+        const defaultValue = option.values[0];
+        initialFilters[option.id] = defaultValue;
+        onFilterChange(option.id, defaultValue);
+      }
+    });
+    setSelectedFilters(initialFilters);
+  }, []);
+
+  const handleButtonClick = (filter: string, value: string) => {
+    setSelectedFilters((prev) => ({
+      ...prev,
+      [filter]: value,
+    }));
+    onFilterChange(filter, value);
+  };
+
   return (
     <div className={styles.tableContainer}>
       <div className={styles.tableContainer1}>
@@ -44,7 +73,15 @@ const JobPostListFilter = ({ filterOptions }: JobPostListFilterProps) => {
                   <div className={styles.text}>{option.label}</div>
                   <div className={styles.card}>
                     {option.values.map((value, index) => (
-                      <div key={index} className={styles.button5}>
+                      <div
+                        key={index}
+                        className={`${styles.button5} ${
+                          selectedFilters[option.id] === value
+                            ? styles.selected
+                            : ""
+                        }`}
+                        onClick={() => handleButtonClick(option.id, value)}
+                      >
                         <div className={styles.div8}>{value}</div>
                         <div className={styles.textInput6} />
                       </div>
