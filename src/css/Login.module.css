@@ -198,4 +198,14 @@
 }
 .loginLabel{
   color:#ffffff;
+  font-weight: 400;
+}
+.signupLabel{
+  color : #224A99;
+  text-decoration: none;
+  font-weight: 400;
+}
+.signupLabel:visited {
+  color: inherit; /* 원래 색상을 유지하거나 원하는 색상으로 설정 */
+  text-decoration: none; /* 텍스트 장식을 제거할 수도 있습니다 */
 }

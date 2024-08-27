@@ -57,7 +57,7 @@ const Login = () => {
           </div>
           <div className={styles.btn1}>
             <div className={styles.text}>
-              <a className={styles.text} href="/signup">
+              <a className={styles.signupLabel} href="/signup">
                 회원가입
               </a>
             </div>
