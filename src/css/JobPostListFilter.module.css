@@ -1,10 +1,12 @@
 .div {
-  position: absolute;
-  top: 0px;
-  left: 0px;
+  position: relative;
+  font-size: 21px;
   line-height: 150%;
   font-weight: 500;
+  color: #191919;
+  text-align: left;
 }
+
 .textInput {
   position: absolute;
   top: 0px;
@@ -31,17 +33,7 @@
   height: 0px;
   z-index: 2;
 }
-.arrowdropdownfilledIcon {
-  width: 24px;
-  position: absolute;
-  margin: 0 !important;
-  top: calc(50% - 12px);
-  right: 0px;
-  height: 24px;
-  overflow: hidden;
-  flex-shrink: 0;
-  z-index: 3;
-}
+
 .horizontalContainer1 {
   align-self: stretch;
   overflow: hidden;
@@ -79,18 +71,16 @@
 .container {
   width: 213px;
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
+  align-items: left;
   justify-content: flex-start;
   padding: 10px 4px;
   box-sizing: border-box;
+  margin-right: 10px;
 }
 .horizontalContainer3 {
-  align-self: stretch;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
+  align-items: flex-start;
   font-size: 18px;
   color: #191919;
 }
@@ -138,8 +128,9 @@
 }
 .card {
   width: 213px;
+  max-height: 304px;
   position: relative;
-  height: 304px;
+  overflow-y: auto;
 }
 .textInputContainer {
   align-self: stretch;
@@ -432,7 +423,6 @@
   gap: 24px;
 }
 .tableContainer {
-  position: absolute;
   top: 231px;
   left: 333px;
   width: 1280px;

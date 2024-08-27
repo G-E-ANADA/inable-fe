@@ -1,34 +1,44 @@
-import { SelectChangeEvent } from "@mui/material";
-import Button from "@mui/material/Button";
-import Skeleton from "@mui/material/Skeleton";
+import {
+  CircularProgress,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+  Skeleton,
+} from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 import { fetchJobPostList } from "../api/postsApi";
 import Header from "../components/Header";
-import SearchOptions from "../components/common/SearchOptions";
 import JobPostList from "../components/jobPostList/JobPostList";
 import {
   jobPostListColumns,
+  jobPostListSearchOptions,
   JobPostListData,
-  SearchCriteria,
+  ListSearchCriteria,
 } from "../types/PostDataType";
+import JobPostListFilter from "../components/jobPostList/JobPostListFilter";
 
 const JobPostListPage = () => {
-  const [searchCriteria, setSearchCriteria] = useState<SearchCriteria>({
-    compAddr: "",
-    jobNm: "",
+  const [searchCriteria, setSearchCriteria] = useState<ListSearchCriteria>({
     empType: "",
-    envEyesight: "",
-    envLiftPower: "",
-    envBothHands: "",
+    enterType: "",
+    searchRegion: "",
+    searchJobCategory: "",
+    searchEnvEyesight: "",
+    searchEnvLstnTalk: "",
+    searchEnvLiftPower: "",
+    searchEnvBothHands: "",
   });
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [itemsPerPage, setItemsPerPage] = useState<number>(10);
   const [jobPosts, setJobPosts] = useState<JobPostListData[]>([]);
   const [totalItemsCount, setTotalItemsCount] = useState<number>(0);
   const [showLoading, setShowLoading] = useState<boolean>(true); // 로딩 상태
+  const [sort, setSort] = useState<string>("regDt");
 
   const navigate = useNavigate();
 
@@ -90,6 +100,12 @@ const JobPostListPage = () => {
     }));
   };
 
+  const handleSortChange = (event: SelectChangeEvent<string>) => {
+    const { value } = event.target;
+    setSort(value);
+    setCurrentPage(1);
+  };
+
   const handlePageChange = (
     event: React.ChangeEvent<unknown>,
     newPage: number
@@ -97,15 +113,8 @@ const JobPostListPage = () => {
     setCurrentPage(newPage);
   };
 
-  const handleRowsPerPageChange = (
-    event: React.ChangeEvent<{ value: unknown }>
-  ) => {
-    setItemsPerPage(parseInt(event.target.value as string, 10));
-    setCurrentPage(1);
-  };
-
   const handleRowClick = (jobPost: JobPostListData) => {
-    navigate(`/job-post/${jobPost.id}`, { state: { jobPost } });
+    navigate(`/job-post/${jobPost.postId}`, { state: { jobPost } });
   };
 
   if (showLoading)
@@ -142,11 +151,25 @@ const JobPostListPage = () => {
           <StyledTitle>실시간 채용 정보</StyledTitle>
           <StyledSubTitle>실시간 채용 정보를 확인해 보세요</StyledSubTitle>
 
-          <div>검색 필터</div>
-          <div>검색 조건 확인</div>
-          <div>
-            <div>검색결과</div>
-          </div>
+          <StyledJobPostListFilter>
+            <JobPostListFilter filterOptions={jobPostListSearchOptions} />
+          </StyledJobPostListFilter>
+          <StyledListHeader>
+            <Text>검색결과</Text>
+            <FormControl sx={{ m: 1, minWidth: 220 }} size="small">
+              <InputLabel id="sort-label">정렬</InputLabel>
+              <Select
+                labelId="sort-label"
+                id="sort-select"
+                value={sort}
+                label="정렬"
+                onChange={handleSortChange}
+              >
+                <MenuItem value={"regDt"}>최신순</MenuItem>
+                <MenuItem value={"endDt"}>마감순</MenuItem>
+              </Select>
+            </FormControl>
+          </StyledListHeader>
           <JobPostList
             columns={jobPostListColumns}
             data={jobPosts}
@@ -217,4 +240,30 @@ const StyledRowSkeleton = styled(Skeleton)`
   border-radius: 16px;
   border: 1px solid #c5c5c5;
   margin-bottom: 4px;
+`;
+
+const StyledJobPostListFilter = styled.div`
+  margin-bottom: 60px;
+`;
+
+const StyledListHeader = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  text-align: left;
+  font-size: 21px;
+  color: #191919;
+  margin-bottom: 24px;
+`;
+
+const Text = styled.div`
+  flex-grow: 1; /* 나머지 공간을 차지 */
+  text-align: left; /* 왼쪽 정렬 */
+`;
+
+const StyledLoadingContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 `;
