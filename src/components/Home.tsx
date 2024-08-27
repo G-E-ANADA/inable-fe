@@ -172,11 +172,11 @@ const Home = ({}) => {
   };
 
   const handleJobInfoClick = (jobPost: JobPostListData) => {
-    navigate(`/job-post/${jobPost.id}`, { state: { jobPost } });
+    navigate(`/job-post/${jobPost.postId}`, { state: { jobPost } });
   };
 
   const handleEduInfoClick = (eduPost: EduPostListData) => {
-    navigate(`/edu-post/${eduPost.id}`, { state: { eduPost } });
+    navigate(`/edu-post/${eduPost.postId}`, { state: { eduPost } });
   };
   return (
     <div className={styles.home}>
