@@ -66,6 +66,27 @@
   position: relative;
   line-height: 150%;
   font-weight: 500;
+  text-decoration: none;
+  color: inherit;
+}
+
+.text:hover {
+  color: #224a99;
+}
+
+.text:active {
+  color: #224a99;
+}
+
+.text:focus {
+  outline: none;
+}
+.btnText {
+  position: relative;
+  line-height: 150%;
+  font-weight: 500;
+  text-decoration: none;
+  color: inherit;
 }
 .component2 {
   width: 100px;
@@ -185,6 +206,13 @@
   justify-content: center;
   padding: 12px 60px;
 }
+.btn:hover {
+  background-color: #ececec82; /* 마우스를 올렸을 때 배경색 변경 */
+}
+
+.btn:active {
+  background-color: #e2e2e281; /* 클릭 시 배경색 변경 */
+}
 .btn1 {
   border-radius: 6px;
   background-color: #224a99;
@@ -197,11 +225,18 @@
   box-sizing: border-box;
 }
 .button3 {
+  border-radius: 6px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
   color: #fff;
+}
+.btn1:hover {
+  background-color: #1a397a;
+}
+.btn1:active {
+  background-color: #112856;
 }
 .segmentedPicker {
   display: flex;

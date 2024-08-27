@@ -1,10 +1,17 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useState } from "react";
 import styles from "../css/ApplicantManagementPage.module.css";
 import Header from "../components/Header";
 import { Checkbox } from "@mui/material";
 import { Select } from "@mui/material";
+import Modal from "../components/common/Modal";
+import ResultsModal from "../components/applicantManagement/ResultsModal";
 
 const ApplicantManagementPage: FunctionComponent = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
   return (
     <>
       <Header />
@@ -76,8 +83,8 @@ const ApplicantManagementPage: FunctionComponent = () => {
                   </div>
                 </div>
                 <div className={styles.button3}>
-                  <div className={styles.btn1}>
-                    <div className={styles.text}>합격 발표</div>
+                  <div className={styles.btn1} onClick={openModal}>
+                    <div className={styles.btnText}>합격 발표</div>
                   </div>
                 </div>
               </div>
@@ -85,6 +92,9 @@ const ApplicantManagementPage: FunctionComponent = () => {
           </div>
         </div>
       </div>
+      <Modal isOpen={isModalOpen} onClose={closeModal}>
+        <ResultsModal onClose={closeModal} />
+      </Modal>
     </>
   );
 };

@@ -87,20 +87,15 @@
 .verticalContainer1 {
   position: absolute;
   top: 67px;
-  left: 0px;
   width: 1030px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
   gap: 60px;
 }
 .verticalContainer {
-  position: absolute;
-  top: 40px;
-  left: 320px;
+  margin: 0 auto;
+  margin-top: 40px;
   width: 1280px;
-  height: 1675px;
   text-align: left;
 }
 .text {
@@ -117,19 +112,24 @@
   height: 50px;
   display: flex;
   flex-direction: row;
-  align-items: center;
   justify-content: center;
   padding: 12px 60px;
+  position: relative;
+}
+.btn:hover {
+  background-color: #ececec82;
+}
+
+.btn:active {
+  background-color: #e2e2e281;
 }
 .textInput9 {
   position: absolute;
-  top: 1876px;
-  left: calc(50% - 150px);
+  top: 1680px;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
   color: #224a99;
+  left: calc(50% - 150px);
+  padding-bottom: 100px;
 }
 .logoIcon {
   width: 180px;
@@ -174,11 +174,6 @@
 .div {
   width: 100%;
   position: relative;
-  background-color: #fff;
-  height: 2026px;
-  overflow: hidden;
-  text-align: center;
-  font-size: 18px;
-  color: #000;
-  font-family: "Noto Sans CJK KR";
+  margin: 0 auto;
+  width: 1280px;
 }
