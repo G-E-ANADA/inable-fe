@@ -51,7 +51,7 @@ const Login = () => {
             </div>
           </div>
           <div className={styles.btn}>
-            <div className={styles.text} onClick={handleLogin}>
+            <div className={styles.loginLabel} onClick={handleLogin}>
               로그인
             </div>
           </div>
