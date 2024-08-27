@@ -1,8 +1,15 @@
 import { FunctionComponent } from "react";
 import styles from "../css/ApplicantResumePage.module.css";
 import Header from "../components/Header";
+import { useNavigate } from "react-router-dom";
 
 const ApplicantResumePage: FunctionComponent = () => {
+  const navigate = useNavigate();
+
+  const handleClose = () => {
+    navigate(-1); // 이전 페이지로 이동
+  };
+
   return (
     <>
       <Header />
@@ -127,7 +134,7 @@ const ApplicantResumePage: FunctionComponent = () => {
           </div>
         </div>
         <div className={styles.textInput9}>
-          <div className={styles.btn}>
+          <div className={styles.btn} onClick={handleClose}>
             <div className={styles.text}>닫기</div>
           </div>
         </div>
