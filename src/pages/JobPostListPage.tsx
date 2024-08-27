@@ -70,12 +70,13 @@ const JobPostListPage = () => {
   };
 
   const { isLoading, error } = useQuery(
-    ["jobPosts", searchCriteria, currentPage, itemsPerPage],
+    ["jobPosts", searchCriteria, currentPage, itemsPerPage, sort],
     () =>
       fetchJobPostList({
         ...searchCriteria,
         start: (currentPage - 1) * itemsPerPage,
         limit: itemsPerPage,
+        sort,
       }),
     {
       onSuccess: (data) => {
@@ -121,6 +122,8 @@ const JobPostListPage = () => {
 
   const handleFilterChange = (filter: string, value: string) => {
     const filterValueMap: { [key: string]: { [key: string]: string } } = {
+      empType: { 무관: "" },
+      enterType: { 무관: "" },
       searchRegion: {
         전체: "",
       },
@@ -175,29 +178,37 @@ const JobPostListPage = () => {
     navigate(`/job-post/${jobPost.postId}`, { state: { jobPost } });
   };
 
-  if (showLoading)
+  if (showLoading) {
     return (
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          height: "100vh",
-          justifyContent: "center",
-        }}
-      >
-        <StyledSkeletonContainer>
-          <StyledHeaderSkeleton variant="rectangular" />
-          <div style={{ width: "100%" }}>
-            {Array(5)
-              .fill(null)
-              .map((_, index) => (
-                <StyledRowSkeleton key={index} variant="rectangular" />
-              ))}
-          </div>
-        </StyledSkeletonContainer>
-      </div>
+      <StyledLoadingContainer>
+        <CircularProgress />
+      </StyledLoadingContainer>
     );
+  }
+
+  // if (showLoading)
+  //   return (
+  //     <div
+  //       style={{
+  //         display: "flex",
+  //         flexDirection: "column",
+  //         alignItems: "center",
+  //         height: "100vh",
+  //         justifyContent: "center",
+  //       }}
+  //     >
+  //       <StyledSkeletonContainer>
+  //         <StyledHeaderSkeleton variant="rectangular" />
+  //         <div style={{ width: "100%" }}>
+  //           {Array(5)
+  //             .fill(null)
+  //             .map((_, index) => (
+  //               <StyledRowSkeleton key={index} variant="rectangular" />
+  //             ))}
+  //         </div>
+  //       </StyledSkeletonContainer>
+  //     </div>
+  //   );
 
   if (error) return <div>Error: {error as string}</div>;
 
@@ -226,7 +237,7 @@ const JobPostListPage = () => {
                 onChange={handleSortChange}
               >
                 <MenuItem value={"regDt"}>최신순</MenuItem>
-                <MenuItem value={"endDt"}>마감순</MenuItem>
+                <MenuItem value={"endDate"}>마감순</MenuItem>
               </Select>
             </FormControl>
           </StyledListHeader>
@@ -273,17 +284,8 @@ const StyledSubTitle = styled.div`
 `;
 
 const StyledSkeletonContainer = styled.div`
-  padding-left: 320px;
-  padding-right: 320px;
   width: 100%;
-  min-width: 1040px;
-  overflow-x: auto;
-  align-items: center;
-  flex-direction: column;
-  display: flex;
-  padding-left: 320px;
-  padding-right: 320px;
-  padding-bottom: 80px;
+  position: relative;
 `;
 
 const StyledHeaderSkeleton = styled(Skeleton)`

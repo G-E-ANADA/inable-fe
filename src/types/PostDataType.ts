@@ -181,6 +181,19 @@ export const eduPostListColumns: PostListColumn[] = [
   },
 ];
 
+export const jobPostListSelectOptions = [
+  {
+    id: "empType",
+    label: "고용 형태",
+    values: ["무관", "계약직", "상용직", "시간제"],
+  },
+  {
+    id: "enterType",
+    label: "입사 형태",
+    values: ["무관", "신입", "경력"],
+  },
+];
+
 export const jobPostListSearchOptions = [
   {
     id: "searchRegion",

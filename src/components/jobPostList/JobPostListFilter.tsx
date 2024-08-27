@@ -1,5 +1,13 @@
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
 import { useEffect, useState } from "react";
 import styles from "../../css/JobPostListFilter.module.css";
+import { jobPostListSelectOptions } from "../../types/PostDataType";
 
 interface Option {
   id: string;
@@ -31,6 +39,16 @@ const JobPostListFilter = ({
     setSelectedFilters(initialFilters);
   }, []);
 
+  const handleSelectChange =
+    (filter: string) => (event: SelectChangeEvent<string>) => {
+      const value = event.target.value;
+      setSelectedFilters((prev) => ({
+        ...prev,
+        [filter]: value,
+      }));
+      onFilterChange(filter, value);
+    };
+
   const handleButtonClick = (filter: string, value: string) => {
     setSelectedFilters((prev) => ({
       ...prev,
@@ -48,24 +66,50 @@ const JobPostListFilter = ({
           </div>
           <div className={styles.horizontalContainer}>
             <div className={styles.segmentedPicker}>
-              <div className={styles.select}>
-                <div className={styles.button}>
-                  <div className={styles.horizontalContainer1}>
-                    <div className={styles.textInput1} />
-                    <div className={styles.label}>고용 형태</div>
-                    <div className={styles.textInput2} />
-                  </div>
-                </div>
-              </div>
-              <div className={styles.select}>
-                <div className={styles.button}>
-                  <div className={styles.horizontalContainer1}>
-                    <div className={styles.textInput1} />
-                    <div className={styles.label}>입사 형태</div>
-                    <div className={styles.textInput2} />
-                  </div>
-                </div>
-              </div>
+              <FormControl
+                sx={{ m: 1, minWidth: 120 }}
+                size="small"
+                style={{ marginLeft: "0" }}
+              >
+                <InputLabel id="empType-label">고용 형태</InputLabel>
+                <Select
+                  labelId="empType-label"
+                  id="empType-select"
+                  value={selectedFilters["empType"] || ""}
+                  label="고용 형태"
+                  onChange={handleSelectChange("empType")}
+                >
+                  {jobPostListSelectOptions
+                    .find((option) => option.id === "empType")
+                    ?.values.map((value) => (
+                      <MenuItem key={value} value={value}>
+                        {value}
+                      </MenuItem>
+                    ))}
+                </Select>
+              </FormControl>
+              <FormControl
+                sx={{ m: 1, minWidth: 120 }}
+                size="small"
+                style={{ marginLeft: "0" }}
+              >
+                <InputLabel id="enterType-label">입사 형태</InputLabel>
+                <Select
+                  labelId="enterType-label"
+                  id="enterType-select"
+                  value={selectedFilters["enterType"] || ""}
+                  label="입사 형태"
+                  onChange={handleSelectChange("enterType")}
+                >
+                  {jobPostListSelectOptions
+                    .find((option) => option.id === "enterType")
+                    ?.values.map((value) => (
+                      <MenuItem key={value} value={value}>
+                        {value}
+                      </MenuItem>
+                    ))}
+                </Select>
+              </FormControl>
             </div>
             <div className={styles.horizontalContainer3}>
               {filterOptions.map((option) => (
