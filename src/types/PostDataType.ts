@@ -46,6 +46,7 @@ export interface EduPostListData {
   organization: string;
   date: string;
   content: string;
+  postId: number;
 }
 
 export interface MapSearchCriteria {
