@@ -77,7 +77,7 @@ const ApplicantManagementPage: FunctionComponent = () => {
                 </div>
                 <div className={styles.button3}>
                   <div className={styles.btn1}>
-                    <div className={styles.text}>합격 발표</div>
+                    <div className={styles.btnText}>합격 발표</div>
                   </div>
                 </div>
               </div>

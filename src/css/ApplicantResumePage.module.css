@@ -121,6 +121,13 @@
   justify-content: center;
   padding: 12px 60px;
 }
+.btn:hover {
+  background-color: #ececec82; /* 마우스를 올렸을 때 배경색 변경 */
+}
+
+.btn:active {
+  background-color: #e2e2e281; /* 클릭 시 배경색 변경 */
+}
 .textInput9 {
   position: absolute;
   top: 1876px;
