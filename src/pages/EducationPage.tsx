@@ -15,7 +15,7 @@ import EduPostList from "../components/eduPostList/EduPostList";
 type MyPageSNBMenu = "INFO" | "JOB_INFO" | "COMMUNITY";
 
 const EducationPage: FunctionComponent = () => {
-  const [selectedMenu, setSelectedMenu] = useState("JOB_INFO");
+  const [selectedMenu, setSelectedMenu] = useState("INFO");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const images = [

@@ -62,7 +62,7 @@ const JobPostDetail = ({ jobPost }: { jobPost: JobPostListData }) => {
           </InfoItem>
           <InfoItem>
             <Label>임금</Label>
-            <Value>{jobPost.salary}</Value>
+            <Value>{jobPost.salary} 원</Value>
           </InfoItem>
         </InfoGroup>
       </Section>
