@@ -50,6 +50,33 @@ const JobPostMapPage = () => {
 
   const navigate = useNavigate();
 
+  const valueMapping: { [key: string]: { [key: string]: string } } = {
+    searchEnvLstnTalk: {
+      "-": "-",
+      "간단한 듣고 말하기": "간단히 가능",
+      "어려움 없음": "어려움 없음",
+      어려움: "어려움",
+    },
+    searchEnvEyesight: {
+      "-": "-",
+      "일상적 활동 가능": "일상",
+      "비교적 큰 인쇄물 가능": "큰 인쇄물",
+      "아주 작은 글씨 가능": "작은 글씨",
+    },
+    searchEnvLiftPower: {
+      "-": "-",
+      "5Kg 이내": "5Kg",
+      "5~20Kg 이내": "5~20Kg",
+      "20Kg 이상": "20Kg이상",
+    },
+    searchEnvBothHands: {
+      "-": "-",
+      양손작업: "양손",
+      한손보조작업: "한손보조",
+      한손작업: "한손",
+    },
+  };
+
   useEffect(() => {
     const fetchJobPosts = async () => {
       setLoading(true);
@@ -71,14 +98,18 @@ const JobPostMapPage = () => {
               jobPost.compAddr.split(" ")[0] +
               " " +
               jobPost.compAddr.split(" ")[1],
-            envBothHands: jobPost.envBothHands.substring(
-              0,
-              jobPost.envBothHands.indexOf("작")
-            ),
-            envLiftPower: jobPost.envLiftPower.substring(
-              0,
-              jobPost.envLiftPower.indexOf("g") + 1
-            ),
+            searchEnvLstnTalk:
+              valueMapping.searchEnvLstnTalk[jobPost.searchEnvLstnTalk] ||
+              jobPost.searchEnvLstnTalk,
+            searchEnvEyesight:
+              valueMapping.searchEnvEyesight[jobPost.searchEnvEyesight] ||
+              jobPost.searchEnvEyesight,
+            searchEnvLiftPower:
+              valueMapping.searchEnvLiftPower[jobPost.searchEnvLiftPower] ||
+              jobPost.searchEnvLiftPower,
+            searchEnvBothHands:
+              valueMapping.searchEnvBothHands[jobPost.searchEnvBothHands] ||
+              jobPost.searchEnvBothHands,
           };
         });
 
