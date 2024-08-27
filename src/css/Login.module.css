@@ -4,11 +4,6 @@
   line-height: 150%;
   font-weight: 500;
 }
-.div2 {
-  align-self: stretch;
-  position: relative;
-  line-height: 150%;
-}
 .label {
   flex: 1;
   position: relative;
@@ -149,41 +144,6 @@
   width: 400px;
   height: 489px;
   color: #000;
-}
-.image50Icon {
-  width: 50px;
-  position: relative;
-  height: 50px;
-  object-fit: cover;
-}
-.image52Icon {
-  width: 50px;
-  position: relative;
-  border-radius: 99px;
-  height: 49.9px;
-  object-fit: cover;
-}
-.image50Parent {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 80px;
-}
-.parent1 {
-  position: absolute;
-  top: calc(50% + 200px);
-  left: calc(50% - 200px);
-  width: 400px;
-  height: 489px;
-  color: #000;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 24px;
-  text-align: left;
-  color: #494949;
 }
 .div {
   width: 100%;
