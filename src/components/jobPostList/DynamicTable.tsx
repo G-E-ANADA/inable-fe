@@ -87,15 +87,19 @@ const StyledTableRow = styled(TableRow)`
 `;
 
 const StyledTableColCell = styled(TableCell)`
-  font-size: 18px;
-  color: #1f1f1f;
+  && {
+    font-size: 18px;
+    color: #1f1f1f;
+  }
 `;
 
 const StyledTableRowCell = styled(TableCell)`
-  font-size: 16px;
-  color: #000000;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  padding: 0 16px;
+  && {
+    font-size: 16px;
+    color: #000000;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 13px 15px;
+  }
 `;

@@ -81,21 +81,21 @@ export const jobPostListColumns: PostListColumn[] = [
   {
     id: "busplaName",
     label: "사업장명",
-    width: "180px",
+    width: "170px",
     colAlign: "center",
     rowAlign: "center",
   },
   {
     id: "area",
     label: "사업장 주소",
-    width: "200px",
+    width: "160px",
     colAlign: "center",
     rowAlign: "center",
   },
   {
     id: "empType",
     label: "고용 형태",
-    width: "90px",
+    width: "100px",
     colAlign: "center",
     rowAlign: "center",
   },
@@ -116,7 +116,7 @@ export const jobPostListColumns: PostListColumn[] = [
   {
     id: "searchEnvLstnTalk",
     label: "듣고 말하기",
-    width: "110px",
+    width: "120px",
     colAlign: "center",
     rowAlign: "center",
   },
@@ -144,7 +144,7 @@ export const jobPostListColumns: PostListColumn[] = [
   {
     id: "termDate",
     label: "모집 기간",
-    width: "190px",
+    width: "210px",
     colAlign: "center",
     rowAlign: "center",
   },
