@@ -102,7 +102,7 @@ export const jobPostListColumns: PostListColumn[] = [
   {
     id: "searchJobCategory",
     label: "모집 직종",
-    width: "160px",
+    width: "150px",
     colAlign: "center",
     rowAlign: "center",
   },
@@ -130,21 +130,21 @@ export const jobPostListColumns: PostListColumn[] = [
   {
     id: "searchEnvLiftPower",
     label: "드는힘",
-    width: "80px",
+    width: "90px",
     colAlign: "center",
     rowAlign: "center",
   },
   {
     id: "searchEnvBothHands",
     label: "손작업",
-    width: "70px",
+    width: "90px",
     colAlign: "center",
     rowAlign: "center",
   },
   {
     id: "termDate",
     label: "모집 기간",
-    width: "216px",
+    width: "190px",
     colAlign: "center",
     rowAlign: "center",
   },
