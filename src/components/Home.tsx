@@ -289,28 +289,28 @@ const Home = ({}) => {
                 <div className={styles.div20}>재들린</div>
               </div>
               <div className={styles.parent3}>
-                <div className={styles.div}>면접 잘 보는 법</div>
+                <div className={styles.div}>첫 출근 꿀팁🧚‍♀️</div>
                 <div className={styles.div20}>재들린</div>
               </div>
               <div className={styles.parent3}>
-                <div className={styles.div}>면접 잘 보는 법</div>
+                <div className={styles.div}>면접 복장 추천👔</div>
+                <div className={styles.div20}>재이든</div>
+              </div>
+              <div className={styles.parent3}>
+                <div className={styles.div}>[Tip]메일 보내는 방법📨</div>
                 <div className={styles.div20}>재들린</div>
               </div>
               <div className={styles.parent3}>
-                <div className={styles.div}>면접 잘 보는 법</div>
+                <div className={styles.div}>잘 맞는 회사 찾는 방법</div>
                 <div className={styles.div20}>재들린</div>
               </div>
               <div className={styles.parent3}>
-                <div className={styles.div}>면접 잘 보는 법</div>
+                <div className={styles.div}>🙌🏻 강점 찾기 🙌🏻</div>
                 <div className={styles.div20}>재들린</div>
               </div>
               <div className={styles.parent3}>
-                <div className={styles.div}>면접 잘 보는 법</div>
-                <div className={styles.div20}>재들린</div>
-              </div>
-              <div className={styles.parent3}>
-                <div className={styles.div}>면접 잘 보는 법</div>
-                <div className={styles.div20}>재들린</div>
+                <div className={styles.div}>직무 문의</div>
+                <div className={styles.div20}>재이든</div>
               </div>
             </div>
           </div>
