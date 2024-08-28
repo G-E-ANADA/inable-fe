@@ -1,6 +1,7 @@
 import { Checkbox } from "@mui/material";
 import { useState } from "react";
 import styled from "styled-components";
+import useAuthStore from "../../store/store";
 
 interface JobApplicationModalContentProps {
   onClose: () => void;
@@ -10,6 +11,8 @@ const JobApplicationModalContent = ({
   onClose,
 }: JobApplicationModalContentProps) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const loginUser = useAuthStore.getState().user;
 
   const handleSubmit = () => {
     setIsSubmitted(true);
@@ -48,11 +51,11 @@ const JobApplicationModalContent = ({
               <InfoContainer>
                 <InfoRow>
                   <Label>이름</Label>
-                  <Value>재들린</Value>
+                  <Value>{`${loginUser.name}님,`}</Value>
                 </InfoRow>
                 <InfoRow>
                   <Label>이메일</Label>
-                  <Value>jeajejea@gmail.com</Value>
+                  <Value>{`${loginUser.uid}`}</Value>
                 </InfoRow>
                 <InfoRow>
                   <Label>연락처</Label>
